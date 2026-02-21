@@ -1,0 +1,49 @@
+/* =============================================
+   Marquee — Graza-inspired scrolling text
+   ============================================= */
+.marquee {
+    overflow: hidden;
+    border-top: 2px dashed var(--color-border-light);
+    border-bottom: 2px dashed var(--color-border-light);
+    padding: var(--space-md) 0;
+    background: var(--color-bg);
+}
+
+.marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 28s linear infinite;
+    gap: 0;
+}
+
+.marquee__item {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 600;
+    color: var(--color-text);
+    white-space: nowrap;
+    padding: 0 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.marquee__dot {
+    color: var(--color-text-muted);
+    padding: 0 var(--space-sm);
+    font-weight: 400;
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Pause on hover */
+.marquee:hover .marquee__track {
+    animation-play-state: paused;
+}

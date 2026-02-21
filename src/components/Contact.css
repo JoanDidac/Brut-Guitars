@@ -1,0 +1,119 @@
+/* =============================================
+   Contact Section — Graza-inspired
+   ============================================= */
+.contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+}
+
+/* Info */
+.contact__text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    font-weight: 300;
+    margin-bottom: var(--space-xl);
+}
+
+.contact__details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.contact__detail {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.contact__detail-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+}
+
+.contact__detail-value {
+    font-size: 1rem;
+    color: var(--color-text);
+}
+
+/* Form */
+.contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-xl);
+    background: var(--color-bg-alt);
+    border: 2px dashed var(--color-border-light);
+    border-radius: var(--radius-xl);
+}
+
+.contact__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.contact__label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.contact__input {
+    padding: 0.85rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.contact__input::placeholder {
+    color: var(--color-text-dim);
+    font-weight: 300;
+}
+
+.contact__input:focus {
+    border-color: var(--color-text);
+}
+
+.contact__textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact__submit {
+    margin-top: var(--space-xs);
+    width: 100%;
+}
+
+.contact__submit:disabled {
+    opacity: 0.7;
+    cursor: default;
+    background: #4a7c59;
+    border-color: #4a7c59;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .contact__form {
+        padding: var(--space-md);
+    }
+}

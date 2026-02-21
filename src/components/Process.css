@@ -1,0 +1,67 @@
+/* =============================================
+   Process Section — Graza-inspired
+   ============================================= */
+.process {
+    background: var(--color-bg-alt);
+}
+
+.process__header {
+    margin-bottom: var(--space-3xl);
+}
+
+.process__steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+}
+
+.process__step {
+    position: relative;
+    padding: var(--space-lg);
+    background: var(--color-bg);
+    border: 2px dashed var(--color-border-light);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+}
+
+.process__step:hover {
+    border-color: var(--color-text);
+    transform: translateY(-4px);
+}
+
+.process__step-number {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-text-dim);
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.05em;
+}
+
+.process__step-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    color: var(--color-text);
+}
+
+.process__step-desc {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    font-weight: 300;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .process__steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .process__steps {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+}

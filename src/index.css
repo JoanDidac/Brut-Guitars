@@ -1,0 +1,236 @@
+/* =============================================
+   BRUT GUITARS — Design System (Graza-Inspired)
+   ============================================= */
+
+:root {
+  /* Color Palette — Warm, cream, premium craft */
+  --color-bg: #f4ede4;
+  --color-bg-alt: #ebe3d8;
+  --color-bg-card: #ffffff;
+  --color-bg-dark: #1a1a1a;
+
+  --color-text: #1a1a1a;
+  --color-text-muted: #5a5347;
+  --color-text-dim: #8a8275;
+  --color-text-light: #f4ede4;
+
+  /* Accent — TBD. Using neutral black for now */
+  --color-accent: #1a1a1a;
+  --color-accent-hover: #333333;
+
+  --color-border: #1a1a1a;
+  --color-border-light: rgba(26, 26, 26, 0.15);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 8rem;
+
+  /* Borders & Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* =============================================
+   Reset & Base
+   ============================================= */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* =============================================
+   Utility Classes
+   ============================================= */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 550px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* Dashed divider — Graza signature */
+.dashed-divider {
+  border: none;
+  border-top: 2px dashed var(--color-border-light);
+  margin: var(--space-xl) 0;
+}
+
+/* Pill button */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.btn-pill--dark {
+  background: var(--color-accent);
+  color: var(--color-text-light);
+  border: 2px solid var(--color-accent);
+}
+
+.btn-pill--dark:hover {
+  background: transparent;
+  color: var(--color-accent);
+}
+
+.btn-pill--outline {
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+}
+
+.btn-pill--outline:hover {
+  background: var(--color-accent);
+  color: var(--color-text-light);
+}
+
+/* =============================================
+   Scrollbar
+   ============================================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* =============================================
+   Selection
+   ============================================= */
+::selection {
+  background-color: rgba(26, 26, 26, 0.12);
+  color: var(--color-text);
+}
+
+/* =============================================
+   GSAP — Initial hidden states
+   ============================================= */
+.gs-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: opacity, transform;
+}
+
+.gs-reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  will-change: opacity, transform;
+}
+
+.gs-reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  will-change: opacity, transform;
+}
+
+.gs-reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  will-change: opacity, transform;
+}
