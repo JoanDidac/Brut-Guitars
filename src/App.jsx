@@ -1,28 +1,68 @@
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import About from './components/About';
 import Gallery from './components/Gallery';
 import Process from './components/Process';
+import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ServicesPage from './components/ServicesPage'; // Creating this component next
 import useGsapAnimations from './hooks/useGsapAnimations';
 
 function App() {
-  useGsapAnimations();
+  const [currentPage, setCurrentPage] = useState('home');
+  const [selectedService, setSelectedService] = useState(null);
+  const [pendingScroll, setPendingScroll] = useState(null);
+
+  useGsapAnimations([currentPage]);
+
+  const navigateTo = (page, data = null) => {
+    setCurrentPage(page);
+
+    if (page === 'services') {
+      setSelectedService(data);
+      window.scrollTo(0, 0);
+    } else if (page === 'home') {
+      if (data) {
+        setPendingScroll(data);
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (currentPage === 'home' && pendingScroll) {
+      // Small timeout to allow DOM to attach first
+      setTimeout(() => {
+        document.getElementById(pendingScroll)?.scrollIntoView({ behavior: 'smooth' });
+        setPendingScroll(null);
+      }, 50);
+    }
+  }, [currentPage, pendingScroll]);
 
   return (
     <>
-      <Navbar />
+      <Navbar currentPage={currentPage} onNavigate={navigateTo} />
       <main>
-        <Hero />
-        <Marquee />
-        <About />
-        <Gallery />
-        <Process />
-        <Contact />
+        {currentPage === 'home' && (
+          <>
+            <Hero />
+            <Marquee />
+            <About />
+            <Gallery />
+            <Process />
+            <Services onNavigate={navigateTo} />
+            <Contact />
+          </>
+        )}
+        {currentPage === 'services' && (
+          <ServicesPage selectedCategory={selectedService} onNavigate={navigateTo} />
+        )}
       </main>
-      <Footer />
+      <Footer onNavigate={navigateTo} />
     </>
   );
 }

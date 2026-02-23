@@ -1,0 +1,120 @@
+.services {
+    background-color: var(--color-bg-alt);
+    position: relative;
+    overflow: hidden;
+}
+
+.services__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+.services__card {
+    background: var(--color-bg-card);
+    padding: var(--space-xl) var(--space-lg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.services__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--bg-img);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    /* Low opacity like hero */
+    transition: opacity var(--transition-base), transform var(--transition-slow);
+    z-index: 0;
+}
+
+.services__card:hover::before {
+    opacity: 0.15;
+    transform: scale(1.05);
+    /* Slight zoom on hover */
+}
+
+.services__card>* {
+    position: relative;
+    z-index: 1;
+    /* Keep text above the background */
+}
+
+.services__card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-color: var(--color-text-dim);
+}
+
+.services__icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: var(--space-md);
+    background: var(--color-bg-alt);
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+}
+
+.services__card-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+}
+
+.services__card-desc {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+/* Abstract modern art background shapes */
+.services::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(26, 26, 26, 0.03) 0%, rgba(244, 237, 228, 0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .services__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services__header {
+        margin-bottom: var(--space-xl);
+    }
+}

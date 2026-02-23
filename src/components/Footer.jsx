@@ -1,8 +1,17 @@
 import './Footer.css';
 import brandLogo from '../assets/brut_logo.png';
 
-export default function Footer() {
+export default function Footer({ onNavigate }) {
     const year = new Date().getFullYear();
+
+    const handleNav = (e, id) => {
+        e.preventDefault();
+        if (onNavigate) {
+            onNavigate('home', id);
+        } else {
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <footer className="footer">
@@ -18,10 +27,10 @@ export default function Footer() {
                     <div className="footer__links-group">
                         <h4 className="footer__links-title">Navigate</h4>
                         <ul className="footer__links">
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#gallery">Gallery</a></li>
-                            <li><a href="#process">Process</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#about" onClick={(e) => handleNav(e, 'about')}>About</a></li>
+                            <li><a href="#gallery" onClick={(e) => handleNav(e, 'gallery')}>Gallery</a></li>
+                            <li><a href="#process" onClick={(e) => handleNav(e, 'process')}>Process</a></li>
+                            <li><a href="#contact" onClick={(e) => handleNav(e, 'contact')}>Contact</a></li>
                         </ul>
                     </div>
 

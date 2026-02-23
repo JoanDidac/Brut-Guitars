@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function useGsapAnimations() {
+export default function useGsapAnimations(deps = []) {
   useEffect(() => {
     /* ── Reveal-on-scroll (fade-up) ── */
     const reveals = gsap.utils.toArray('.gs-reveal');
@@ -110,5 +110,5 @@ export default function useGsapAnimations() {
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
-  }, []);
+  }, deps);
 }
