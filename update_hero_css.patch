@@ -1,0 +1,46 @@
+--- src/components/Hero.css
++++ src/components/Hero.css
+@@ -1,13 +1,24 @@
+ /* =============================================
+    Hero Section — Graza-inspired
+    ============================================= */
+ .hero {
+     min-height: 100vh;
+     display: flex;
+     align-items: center;
+     padding-top: 100px;
+-    overflow: hidden;
++    position: relative;
++}
++
++.hero::before {
++    content: '';
++    position: absolute;
++    top: 0;
++    left: 0;
++    right: 0;
++    bottom: 0;
++    background: url('../assets/hero-bg.jpg') center/cover no-repeat;
++    opacity: 0.25; /* Lower opacity, clearer tone */
++    z-index: -1;
+ }
+ 
+ .hero__content {
+@@ -66,15 +77,6 @@
+ }
+ 
+-/* Image */
+-.hero__image-wrap {
+-    position: relative;
+-    display: flex;
+-    justify-content: flex-end;
+-}
+-
+-.hero__image {
+-    width: 100%;
+-    max-width: 520px;
+-    border-radius: var(--radius-lg);
+-    object-fit: cover;
+-}
+-
+ /* Responsive */

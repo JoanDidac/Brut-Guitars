@@ -1,0 +1,86 @@
+commit 5bc7cdc10eec83989e98dca0e21fc71b8f696da1
+Author: Joan D <joandidachr@gmail.comm>
+Date:   Mon Feb 23 19:48:02 2026 +0100
+
+    style: replace brut text with logo image
+
+diff --git a/src/components/Hero.jsx b/src/components/Hero.jsx
+index 4a7c20a..0b95110 100644
+--- a/src/components/Hero.jsx
++++ b/src/components/Hero.jsx
+@@ -1,12 +1,11 @@
+ import './Hero.css';
+-import heroImg from '../assets/hero-workshop.png';
++import heroImg from '../assets/guitar-showcase.png';
+ 
+ export default function Hero() {
+     return (
+         <section className="hero" id="hero">
+             <div className="hero__content container">
+                 <div className="hero__text">
+-                    <p className="hero__label">Handcrafted in La Garriga, Catalonia</p>
+                     <h1 className="hero__title">
+                         Custom Guitars,<br />
+                         Built by <em>Hand.</em>
+@@ -32,7 +31,7 @@ export default function Hero() {
+                 </div>
+ 
+                 <div className="hero__image-wrap">
+-                    <img src={heroImg} alt="Luthier workshop" className="hero__image gs-parallax" />
++                    <img src={heroImg} alt="Custom handcrafted guitar" className="hero__image gs-parallax" />
+                 </div>
+             </div>
+         </section>
+
+commit e0cb9e164f62ac7f97001c1e5ebd4a79e9520701
+Author: Joan D <joandidachr@gmail.comm>
+Date:   Sat Feb 21 22:40:50 2026 +0100
+
+    Initial commit: Brut-Guitars luthier website with Graza-inspired design
+
+diff --git a/src/components/Hero.jsx b/src/components/Hero.jsx
+new file mode 100644
+index 0000000..4a7c20a
+--- /dev/null
++++ b/src/components/Hero.jsx
+@@ -0,0 +1,40 @@
++import './Hero.css';
++import heroImg from '../assets/hero-workshop.png';
++
++export default function Hero() {
++    return (
++        <section className="hero" id="hero">
++            <div className="hero__content container">
++                <div className="hero__text">
++                    <p className="hero__label">Handcrafted in La Garriga, Catalonia</p>
++                    <h1 className="hero__title">
++                        Custom Guitars,<br />
++                        Built by <em>Hand.</em>
++                    </h1>
++                    <p className="hero__subtitle">
++                        Every instrument is a unique creation — shaped by hand, tuned by ear,
++                        and built to inspire musicians who demand more from their craft.
++                    </p>
++                    <div className="hero__actions">
++                        <button
++                            className="btn-pill btn-pill--dark"
++                            onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
++                        >
++                            View Instruments
++                        </button>
++                        <button
++                            className="btn-pill btn-pill--outline"
++                            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
++                        >
++                            Commission a Build
++                        </button>
++                    </div>
++                </div>
++
++                <div className="hero__image-wrap">
++                    <img src={heroImg} alt="Luthier workshop" className="hero__image gs-parallax" />
++                </div>
++            </div>
++        </section>
++    );
++}
