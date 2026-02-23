@@ -1,4 +1,5 @@
 import './Footer.css';
+import brandLogo from '../assets/brut_logo.png';
 
 export default function Footer() {
     const year = new Date().getFullYear();
@@ -8,7 +9,7 @@ export default function Footer() {
             <div className="container">
                 <div className="footer__top">
                     <div className="footer__brand">
-                        <span className="footer__logo">Brut Guitars</span>
+                        <img src={brandLogo} alt="Brut Guitars Logo" className="footer__logo-img" />
                         <p className="footer__tagline">
                             Handcrafted custom guitars, built with passion and precision in La Garriga, Catalonia.
                         </p>

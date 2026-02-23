@@ -1,11 +1,18 @@
 import './Gallery.css';
-import guitarImg from '../assets/guitar-showcase.png';
+import img1 from '../assets/gallery-bass-body.jpg';
+import img2 from '../assets/gallery-bass-closeup.jpg';
+import img3 from '../assets/gallery-bass-angle.jpg';
+import img4 from '../assets/gallery-headstock.jpg';
+import img5 from '../assets/gallery-fretboard.jpg';
+import img6 from '../assets/gallery-luthier-playing.jpg';
 
 const guitars = [
-    { id: 1, name: 'The Sovereign', spec: 'Figured maple · Mahogany body', image: guitarImg },
-    { id: 2, name: 'Blackwood Series', spec: 'African blackwood · Ebony fretboard', image: guitarImg },
-    { id: 3, name: 'The Nomad', spec: 'Swamp ash · Vintage tones', image: guitarImg },
-    { id: 4, name: 'Heritage Custom', spec: 'Reclaimed wood · One-of-a-kind', image: guitarImg },
+    { id: 1, name: 'Walnut Burl 5-String', spec: 'Burl walnut top · Dual humbuckers', image: img1 },
+    { id: 2, name: 'Maple Body Close-up', spec: 'Figured maple body · Custom pickups', image: img2 },
+    { id: 3, name: 'Custom Bass Build', spec: 'Handcrafted body · Premium tonewoods', image: img3 },
+    { id: 4, name: 'BRUT Headstock', spec: 'Hand-shaped headstock · Precision tuners', image: img4 },
+    { id: 5, name: 'Fretboard Detail', spec: 'Rosewood fretboard · Hand-dressed frets', image: img5 },
+    { id: 6, name: 'In the Hands', spec: 'Road-tested by the maker himself', image: img6 },
 ];
 
 export default function Gallery() {

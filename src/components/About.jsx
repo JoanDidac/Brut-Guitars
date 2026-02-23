@@ -1,12 +1,12 @@
 import './About.css';
-import craftImg from '../assets/craftsmanship-detail.png';
+import craftImg from '../assets/about-workshop.jpg';
 
 export default function About() {
     return (
         <section className="about section" id="about">
             <div className="container about__grid">
                 <div className="about__image-wrap gs-reveal-left">
-                    <img src={craftImg} alt="Luthier at work" className="about__image" />
+                    <img src={craftImg} alt="Luthier working in the workshop" className="about__image" />
                 </div>
 
                 <div className="about__content gs-reveal-right">

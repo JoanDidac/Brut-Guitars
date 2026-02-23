@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import brandLogo from '../assets/brut_logo.png';
 import './Navbar.css';
 
 export default function Navbar() {
@@ -20,7 +21,7 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__inner container">
         <a className="navbar__logo" href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          Brut Guitars
+          <img src={brandLogo} alt="Brut Guitars Logo" className="navbar__logo-img" />
         </a>
 
         <ul className={`navbar__links ${mobileOpen ? 'navbar__links--open' : ''}`}>

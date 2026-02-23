@@ -7,7 +7,7 @@
 
 .gallery__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
 }
 
@@ -66,6 +66,12 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .gallery__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .gallery__grid {
         grid-template-columns: 1fr;
