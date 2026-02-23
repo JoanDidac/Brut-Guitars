@@ -84,6 +84,30 @@ export default function Hero() {
                 "+=0.2" // Start a moment after Precision text lands
             );
 
+            // 4. Subtitle fades in soothingly
+            tl.fromTo(
+                ".hero__subtitle-anim",
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" },
+                "-=0.5" // Start during the tail end of the dot shrinking
+            );
+
+            // 5. Left button flies in from the left with a bounce
+            tl.fromTo(
+                ".hero__btn-left",
+                { opacity: 0, x: -150 },
+                { opacity: 1, x: 0, duration: 1.2, ease: "bounce.out" },
+                "-=1.2" // Start while the subtitle is fading in
+            );
+
+            // 6. Right button smashes in from the right, bouncing against the first
+            tl.fromTo(
+                ".hero__btn-right",
+                { opacity: 0, x: 200 },
+                { opacity: 1, x: 0, duration: 1.4, ease: "bounce.out" },
+                "-=0.9" // Offset slightly so it hits right after the left one settles
+            );
+
         }, heroRef);
 
         return () => ctx.revert();
@@ -99,19 +123,20 @@ export default function Hero() {
                         <span className="hero__combining-text">meets</span>{' '}
                         <span className="hero__keyword-mono gs-text-glow">{splitWord("Precision.", "word-precision")}</span>
                     </h1>
-                    <p className="hero__subtitle gs-reveal">
-                        Every instrument is a unique creation — shaped by hand, tuned by ear,
-                        and built to inspire musicians who demand more from their craft.
+                    <p className="hero__subtitle hero__subtitle-anim" style={{ opacity: 0 }}>
+                        Shaped by hand, tuned by ear and built to inspire musicians who demand more from their instrument. Every instrument has a unique soul.
                     </p>
-                    <div className="hero__actions gs-reveal">
+                    <div className="hero__actions">
                         <button
-                            className="btn-pill btn-pill--dark"
+                            className="btn-pill btn-pill--dark hero__btn-left"
+                            style={{ opacity: 0 }}
                             onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
                         >
                             View Instruments
                         </button>
                         <button
-                            className="btn-pill btn-pill--outline"
+                            className="btn-pill btn-pill--outline hero__btn-right"
+                            style={{ opacity: 0 }}
                             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                         >
                             Commission a Build
