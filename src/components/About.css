@@ -8,18 +8,66 @@
     align-items: center;
 }
 
-/* Image */
+/* Image Carousel */
 .about__image-wrap {
     position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    /* Maintains consistent height */
+    overflow: hidden;
+    border-radius: var(--radius-lg);
 }
 
 .about__image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    border-radius: var(--radius-lg);
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    /* Hidden by default, GSAP handles showing them */
+}
+
+/* Content Container */
+.about.section {
+    position: relative;
+    overflow: hidden;
+    /* Prevent shapes from escaping section */
+}
+
+/* Background Shapes */
+.about__shapes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.about__shape {
+    position: absolute;
+    background-color: var(--color-text);
+    /* Black shapes */
+}
+
+.about__shape--dot {
+    width: 2500px;
+    height: 2500px;
+    border-radius: 50%;
+    top: 80%;
+    /* Raised so the upper curve overlaps the body text */
+    left: 0%;
 }
 
 /* Content */
 .about__content {
+    position: relative;
+    z-index: 1;
+    /* Keep above shapes */
     padding: var(--space-md) 0;
 }
 
@@ -75,4 +123,3 @@
         font-size: 1.8rem;
     }
 }
-
