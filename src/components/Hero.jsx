@@ -1,6 +1,9 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Hero.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const splitWord = (word, wordClass) => {
     return word.split('').map((char, index) => {
@@ -91,6 +94,27 @@ export default function Hero() {
                 { opacity: 1, scale: 1, y: 0, duration: 1.4, stagger: 0.15, ease: "elastic.out(1.2, 0.6)" },
                 "-=0.6" // Trigger dynamically as the dot shrinks
             );
+
+            // 5. Scroll animations for buttons (separate on scroll down proportionally to scroll via scrub)
+            gsap.to(".hero__btn-left", {
+                x: -300,
+                scrollTrigger: {
+                    trigger: heroRef.current,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true,
+                }
+            });
+
+            gsap.to(".hero__btn-right", {
+                x: 300,
+                scrollTrigger: {
+                    trigger: heroRef.current,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true,
+                }
+            });
 
         }, heroRef);
 
