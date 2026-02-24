@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './About.css';
 
 import craftImg1 from '../assets/about-workshop.jpg';
-import craftImg2 from '../assets/gallery-fretboard.jpg';
+import craftImg2 from '../assets/gallery-fretboard-new.jpg'; // Updated to use the new downloaded fretboard image
 import craftImg3 from '../assets/gallery-luthier-playing.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -64,6 +64,22 @@ export default function About() {
                 }
             });
 
+            // Subtle horizontal parallax for the Stat Numbers
+            // They start further left and slowly drift right until they hit the end of their box based on scroll
+            gsap.fromTo(".about__stat-number",
+                { x: "-20px" }, // Start 20px to the left per user
+                {
+                    x: "37.5px", // Increased rightward drift per user request
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: ".about__stats",
+                        start: "top bottom", // Start moving when the stats enter the screen
+                        end: "top 20%", // Finish when they are near the top
+                        scrub: 1 // Smooth movement tied to scroll
+                    }
+                }
+            );
+
         }, sectionRef);
 
         return () => ctx.revert();
@@ -105,12 +121,12 @@ export default function About() {
                             <span className="about__stat-label">Years of Craft</span>
                         </div>
                         <div className="about__stat gs-stagger-child">
-                            <span className="about__stat-number">100+</span>
-                            <span className="about__stat-label">Guitars Built</span>
+                            <span className="about__stat-number">1000+</span>
+                            <span className="about__stat-label">Guitars Serviced</span>
                         </div>
                         <div className="about__stat gs-stagger-child">
                             <span className="about__stat-number">100%</span>
-                            <span className="about__stat-label">Handmade</span>
+                            <span className="about__stat-label">Customer Satisfaction</span>
                         </div>
                     </div>
                 </div>

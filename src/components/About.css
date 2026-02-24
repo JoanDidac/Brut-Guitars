@@ -102,6 +102,8 @@
     font-size: 2.2rem;
     font-weight: 700;
     color: var(--color-text);
+    /* Pull the number slightly left to optically align the '1' with the letters below */
+    margin-left: -0.05em;
 }
 
 .about__stat-label {
@@ -111,6 +113,7 @@
     text-transform: uppercase;
     color: var(--color-text-dim);
     font-weight: 400;
+    white-space: nowrap;
 }
 
 /* Responsive */
