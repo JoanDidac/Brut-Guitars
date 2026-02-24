@@ -84,28 +84,20 @@ export default function Hero() {
                 "+=0.2" // Start a moment after Precision text lands
             );
 
-            // 4. Subtitle fades in soothingly
-            tl.fromTo(
-                ".hero__subtitle-anim",
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" },
-                "-=0.5" // Start during the tail end of the dot shrinking
-            );
-
-            // 5. Left button flies in from the left with a bounce
+            // 4. Left button comes from below discretely
             tl.fromTo(
                 ".hero__btn-left",
-                { opacity: 0, x: -150 },
-                { opacity: 1, x: 0, duration: 1.2, ease: "bounce.out" },
-                "-=1.2" // Start while the subtitle is fading in
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+                "-=0.3" // Trigger soon after dot finishes
             );
 
-            // 6. Right button smashes in from the right, bouncing against the first
+            // 5. Right button follows suit
             tl.fromTo(
                 ".hero__btn-right",
-                { opacity: 0, x: 200 },
-                { opacity: 1, x: 0, duration: 1.4, ease: "bounce.out" },
-                "-=0.9" // Offset slightly so it hits right after the left one settles
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+                "-=0.6" // Stagger right after the first button starts
             );
 
         }, heroRef);
@@ -123,8 +115,9 @@ export default function Hero() {
                         <span className="hero__combining-text">meets</span>{' '}
                         <span className="hero__keyword-mono gs-text-glow">{splitWord("Precision.", "word-precision")}</span>
                     </h1>
-                    <p className="hero__subtitle hero__subtitle-anim" style={{ opacity: 0 }}>
-                        Shaped by hand, tuned by ear and built to inspire musicians who demand more from their instrument. Every instrument has a unique soul.
+                    <p className="hero__subtitle">
+                        Shaped by hand, tuned by ear and built to inspire musicians who demand more from their instrument.<br />
+                        Every instrument has a unique soul.
                     </p>
                     <div className="hero__actions">
                         <button
