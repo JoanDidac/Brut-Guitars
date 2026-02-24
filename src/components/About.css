@@ -32,8 +32,13 @@
 /* Content Container */
 .about.section {
     position: relative;
-    overflow: hidden;
-    /* Prevent shapes from escaping section */
+    overflow-x: visible;
+    /* Allow dot to bleed horizontally */
+    overflow-y: visible;
+    /* Changed to visible to allow bleeding downwards into the Gallery */
+    /* Clip path drops the top edge exactly at 0 to hide upward bleed into Marquee/Hero, 
+       but extends far down/left/right so the dot freely overlaps the Gallery below */
+    clip-path: polygon(-200vw 0%, 200vw 0%, 200vw 200vw, -200vw 200vw);
 }
 
 /* Background Shapes */
@@ -45,7 +50,7 @@
     height: 100%;
     z-index: 0;
     pointer-events: none;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .about__shape {
@@ -55,10 +60,10 @@
 }
 
 .about__shape--dot {
-    width: 2500px;
-    height: 2500px;
+    width: 1250px;
+    height: 1250px;
     border-radius: 50%;
-    top: 80%;
+    top: 50%;
     /* Raised so the upper curve overlaps the body text */
     left: 0%;
 }

@@ -38,31 +38,32 @@ export default function About() {
 
             // Entrance animation for the massive dot: drift slowly from the left side towards the right.
             gsap.fromTo(".about__shape--dot",
-                { x: "-90vw" }, // Start far left, 10vw further to right than before
+                { x: "30vw" }, // Start slightly further right per user
                 {
-                    x: "-17vw", // Final tweak to -17vw per user
+                    x: "17vw", // Final tweak to exactly 17vw limit
                     duration: 4,
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: "top bottom", // Starts as soon as the section enters the viewport
+                        start: "top 80%", // Starts when the top of the section hits 80% down the viewport
                         toggleActions: "play none none none"
                     }
                 }
             );
 
-            // Parallax movement on scroll for shapes to give depth
-            // Dot: Moves on the Y axis, locked to scroll, while X drift happens independently
+            // Re-adding a cool, subtle scroll reaction (parallax effect) for the dot after it lands
+            // Moving the dot quickly back to the left so the H1 is fully visible, reacting immediately on scroll
             gsap.to(".about__shape--dot", {
-                y: 600, // Move it 600px down while scrolling past
+                x: "12.5vw", // Trialing +12.5vw per user
                 ease: "none",
                 scrollTrigger: {
                     trigger: sectionRef.current,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
+                    start: "top 80%", // Starts moving right as it becomes visible
+                    end: "top 20%", // Finishes moving relatively quickly over less scroll distance
+                    scrub: 0.5 // Reduced smoothing so it moves faster with the user's scroll
                 }
             });
+
         }, sectionRef);
 
         return () => ctx.revert();
