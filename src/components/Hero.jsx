@@ -81,23 +81,15 @@ export default function Hero() {
                     duration: 1.5,
                     ease: "power4.inOut"
                 },
-                "+=0.2" // Start a moment after Precision text lands
+                "+=0.1" // Decreased delay for faster triggering
             );
 
-            // 4. Left button comes from below discretely
+            // 4. Buttons pop in with a modern elastic stagger
             tl.fromTo(
-                ".hero__btn-left",
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-                "-=0.3" // Trigger soon after dot finishes
-            );
-
-            // 5. Right button follows suit
-            tl.fromTo(
-                ".hero__btn-right",
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-                "-=0.6" // Stagger right after the first button starts
+                ".hero__actions button",
+                { opacity: 0, scale: 0.7, y: 30 },
+                { opacity: 1, scale: 1, y: 0, duration: 1.4, stagger: 0.15, ease: "elastic.out(1.2, 0.6)" },
+                "-=0.6" // Trigger dynamically as the dot shrinks
             );
 
         }, heroRef);
