@@ -11,6 +11,7 @@ import img6 from '../assets/gallery-luthier-playing.jpg';
 import musicNote1 from '../assets/music-note-filled.png';
 import claveSol from '../assets/Clave-Sol.svg';
 import claveBajo from '../assets/Clave-Bajo.svg';
+import bgSvg from '../assets/background-eraser-svgrepo-com.svg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -117,6 +118,26 @@ export default function Gallery() {
                 );
             });
 
+            // Rotate and scale the background SVG based on scroll
+            const bgTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".gallery__grid",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1.5
+                }
+            });
+
+            // First half of scroll: gentle rotation
+            bgTl.fromTo(".gallery__bg-svg",
+                { rotation: -5, scale: 1 },
+                { rotation: 15, scale: 1, ease: "none", duration: 1 }
+            )
+                // Second half of scroll: dramatic rotation and scale increase
+                .to(".gallery__bg-svg",
+                    { rotation: 90, scale: 1.8, ease: "power2.in", duration: 1 }
+                );
+
         }, sectionRef);
 
         return () => ctx.revert();
@@ -128,7 +149,7 @@ export default function Gallery() {
                 <div className="gallery__header gs-reveal" style={{ position: 'relative' }}>
                     <span className="section-label">The Collection</span>
                     <div className="gallery__title-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <h2 className="section-title" style={{ marginBottom: 0 }}>Recent Builds</h2>
+                        <h2 className="section-title" style={{ marginBottom: 0 }}>Recent Works</h2>
                     </div>
 
                     {/* Floating musical notes positioned absolutely, spread across the space */}
@@ -194,7 +215,25 @@ export default function Gallery() {
                     </p>
                 </div>
 
-                <div className="gallery__grid gs-stagger">
+                <div className="gallery__grid gs-stagger" style={{ position: 'relative' }}>
+                    {/* Deep background SVG that covers the cards' area */}
+                    <img
+                        src={bgSvg}
+                        alt="Background Shape"
+                        className="gallery__bg-svg gs-reveal"
+                        style={{
+                            position: 'absolute',
+                            top: '50%', // Lowered to be directly behind the cards
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '140%',
+                            height: 'auto',
+                            maxWidth: '1200px',
+                            zIndex: -1,
+                            opacity: 0.5, // Increased to 50% opacity as requested
+                            pointerEvents: 'none'
+                        }}
+                    />
                     {guitars.map((guitar) => (
                         <div className="gallery__card gs-stagger-child" key={guitar.id}>
                             <div className="gallery__card-img-wrap">

@@ -7,6 +7,16 @@
 
 .process__header {
     margin-bottom: var(--space-3xl);
+    padding-top: 4rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.process__header .section-subtitle {
+    max-width: none;
+    text-align: center;
 }
 
 .process__steps {
