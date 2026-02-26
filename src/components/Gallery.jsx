@@ -8,6 +8,9 @@ import img3 from '../assets/gallery-bass-angle.jpg';
 import img4 from '../assets/gallery-headstock.jpg';
 import img5 from '../assets/gallery-fretboard-new.jpg'; // Updated to use the new downloaded fretboard image
 import img6 from '../assets/gallery-luthier-playing.jpg';
+import musicNote1 from '../assets/music-note-filled.png';
+import claveSol from '../assets/Clave-Sol.svg';
+import claveBajo from '../assets/Clave-Bajo.svg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +28,7 @@ export default function Gallery() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Apply a subtle parallax on scroll: start the header elements 10vh higher 
+            // Apply a subtle parallax on scroll: start the header elements 30vh higher 
             // and have them settle into their standard DOM position as we scroll
             gsap.fromTo(".gallery__header.gs-reveal",
                 { y: "-30vh" }, // Changed to -30vh per user
@@ -40,6 +43,80 @@ export default function Gallery() {
                     }
                 }
             );
+
+            // Music notes vertical scroll parallax
+            const notes = gsap.utils.toArray('.gallery__floating-note');
+
+            notes.forEach((note, index) => {
+                // Base dynamic settings (used for Note 1 - Top right area)
+                let startY = "120px";
+                let endY = "-200px";
+                let startX = "80px";
+                let endX = "-40px";
+                let startOpacity = 0;
+                let endOpacity = 0.85;
+                let startRot = -15;
+                let endRot = 25;
+                let scale = 1;
+
+                // Refinements based on element type to create depth and varied trajectories
+                if (note.alt === "Music Note 2") {
+                    // Small note, high up, drifts inward slowly
+                    startY = "60px";
+                    endY = "-100px";
+                    startX = "120px";
+                    endX = "-60px";
+                    startRot = 35;
+                    endRot = -15;
+                    scale = 0.7;
+                } else if (note.alt === "Treble Clef") {
+                    // Central feature, travels the furthest vertically and horizontally
+                    startY = "350px";
+                    endY = "-300px";
+                    startX = "0px";
+                    endX = "60px";
+                    startRot = -30;
+                    endRot = 10;
+                    scale = 1.25;
+                } else if (note.alt === "Bass Clef") {
+                    // Far left, lower down, heavy slow drift
+                    startY = "250px";
+                    endY = "-200px";
+                    startX = "-40px";
+                    endX = "50px";
+                    startOpacity = 0.1;
+                    endOpacity = 0.95;
+                    startRot = 15;
+                    endRot = -25;
+                    scale = 1.1;
+                }
+
+                gsap.fromTo(note,
+                    {
+                        y: startY,
+                        x: startX,
+                        opacity: startOpacity,
+                        rotation: startRot,
+                        scale: scale
+                    },
+                    {
+                        y: endY,
+                        x: endX,
+                        opacity: endOpacity,
+                        rotation: endRot,
+                        scale: scale,
+                        delay: index * 0.1, // Tighter stagger for a cohesive group feel
+                        ease: "power2.out", // Smoother ease-out for floating effect
+                        scrollTrigger: {
+                            trigger: sectionRef.current,
+                            start: "top 95%",
+                            end: "bottom top",
+                            scrub: 1.2 // Faster, more responsive scrub
+                        }
+                    }
+                );
+            });
+
         }, sectionRef);
 
         return () => ctx.revert();
@@ -48,10 +125,71 @@ export default function Gallery() {
     return (
         <section className="gallery section" id="gallery" ref={sectionRef}>
             <div className="container">
-                <div className="gallery__header gs-reveal">
+                <div className="gallery__header gs-reveal" style={{ position: 'relative' }}>
                     <span className="section-label">The Collection</span>
-                    <h2 className="section-title">Recent Builds</h2>
-                    <p className="section-subtitle">
+                    <div className="gallery__title-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        <h2 className="section-title" style={{ marginBottom: 0 }}>Recent Builds</h2>
+                    </div>
+
+                    {/* Floating musical notes positioned absolutely, spread across the space */}
+                    <img
+                        src={musicNote1}
+                        alt="Music Note 1"
+                        className="gallery__floating-note"
+                        style={{
+                            position: 'absolute',
+                            right: '5%', // Top right perimeter
+                            top: '40%',
+                            width: '100px',
+                            height: 'auto',
+                            zIndex: 0,
+                            opacity: 0 // handled by GSAP
+                        }}
+                    />
+                    <img
+                        src={musicNote1}
+                        alt="Music Note 2"
+                        className="gallery__floating-note"
+                        style={{
+                            position: 'absolute',
+                            right: '28%', // Far upper left of the cluster
+                            top: '25%',
+                            width: '80px',
+                            height: 'auto',
+                            zIndex: 0,
+                            opacity: 0
+                        }}
+                    />
+                    <img
+                        src={claveSol}
+                        alt="Treble Clef"
+                        className="gallery__floating-note"
+                        style={{
+                            position: 'absolute',
+                            right: '15%', // Centered lower
+                            top: '65%',
+                            width: '130px',
+                            height: 'auto',
+                            zIndex: 0,
+                            opacity: 0
+                        }}
+                    />
+                    <img
+                        src={claveBajo}
+                        alt="Bass Clef"
+                        className="gallery__floating-note"
+                        style={{
+                            position: 'absolute',
+                            right: '42%', // Far lower left perimeter
+                            top: '80%',
+                            width: '100px',
+                            height: 'auto',
+                            zIndex: 0,
+                            opacity: 0
+                        }}
+                    />
+
+                    <p className="section-subtitle" style={{ marginTop: '1rem', position: 'relative', zIndex: 1 }}>
                         Each guitar is a unique conversation between wood, wire, and the hands that shape them.
                     </p>
                 </div>

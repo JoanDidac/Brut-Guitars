@@ -36,32 +36,44 @@ export default function About() {
             // Set initial position of the dot so its center is aligned with the container edge
             gsap.set(".about__shape--dot", { xPercent: -50, yPercent: -50 });
 
-            // Entrance animation for the massive dot: drift slowly from the left side towards the right.
-            gsap.fromTo(".about__shape--dot",
-                { x: "30vw" }, // Start slightly further right per user
-                {
-                    x: "17vw", // Final tweak to exactly 17vw limit
-                    duration: 4,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top 80%", // Starts when the top of the section hits 80% down the viewport
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
+            let mm = gsap.matchMedia();
 
-            // Re-adding a cool, subtle scroll reaction (parallax effect) for the dot after it lands
-            // Moving the dot quickly back to the left so the H1 is fully visible, reacting immediately on scroll
-            gsap.to(".about__shape--dot", {
-                x: "12.5vw", // Trialing +12.5vw per user
-                ease: "none",
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 80%", // Starts moving right as it becomes visible
-                    end: "top 20%", // Finishes moving relatively quickly over less scroll distance
-                    scrub: 0.5 // Reduced smoothing so it moves faster with the user's scroll
-                }
+            mm.add("(min-width: 769px)", () => {
+                // Desktop: Dot starts covering the text, then scrubs exactly to the edge of the 'D'
+                // The left edge of the text is exactly at clientWidth / 2 + 64px.
+                // Circle radius is 625px. Target target distance is clientWidth / 2 - 570 to barely touch the text.
+                gsap.fromTo(".about__shape--dot",
+                    { x: () => document.documentElement.clientWidth / 2 - 300 }, // Start covering the text
+                    {
+                        x: () => document.documentElement.clientWidth / 2 - 570, // Exact landing spot to make H1 readable, colliding with 'D' without overlapping
+                        ease: "ease", // Smooth movement tied to scroll
+                        scrollTrigger: {
+                            trigger: sectionRef.current,
+                            start: "top 80%",
+                            end: "top 20%",
+                            scrub: 0.5,
+                            invalidateOnRefresh: true // Forces GSAP to recalculate functions on resize
+                        }
+                    }
+                );
+            });
+
+            mm.add("(max-width: 768px)", () => {
+                // Mobile: Dot is playfully off to the side, not covering central focused content
+                gsap.fromTo(".about__shape--dot",
+                    { x: () => -600 },
+                    {
+                        x: () => -650,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: sectionRef.current,
+                            start: "top 80%",
+                            end: "top 20%",
+                            scrub: 0.5,
+                            invalidateOnRefresh: true
+                        }
+                    }
+                );
             });
 
             // Subtle horizontal parallax for the Stat Numbers
