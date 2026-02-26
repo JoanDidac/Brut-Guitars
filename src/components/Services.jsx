@@ -22,12 +22,18 @@ export default function Services({ onNavigate }) {
             gsap.fromTo(headerElements,
                 {
                     y: "-30vh", // Exaggerated upward shift to bleed into previous section
-                    letterSpacing: "0.75em", // 3x wider letter spacing at the start
-                    opacity: 0
+                    letterSpacing: (i, el) => el.classList.contains('section-title') ? "15vw" : "0.75em", // Extremely wide at the start for the title
+                    scale: (i, el) => el.classList.contains('section-title') ? 3 : 1,     // Make it 3x as big at the start
+                    width: (i, el) => el.classList.contains('section-title') ? "200vw" : "auto", // Increase width drastically
+                    whiteSpace: (i, el) => el.classList.contains('section-title') ? "nowrap" : "normal", // Prevent wrapping
+                    opacity: 0.2 // Make it visible sooner
                 },
                 {
                     y: "0vh",
-                    letterSpacing: "normal",
+                    letterSpacing: "0px", // Use 0px instead of normal to fix GSAP interpolation
+                    scale: 1,
+                    width: "auto",
+                    whiteSpace: "normal",
                     opacity: 1,
                     stagger: 0.1, // Slight stagger so they don't move as one solid block
                     ease: "power1.out",
