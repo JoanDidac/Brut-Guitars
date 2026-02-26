@@ -1,3 +1,6 @@
+import { useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Services.css';
 import imgBuilds from '../assets/workshop-1.jpg';
 import imgSetups from '../assets/gallery-headstock.jpg';
@@ -6,8 +9,56 @@ import imgPaint from '../assets/guitar-showcase.png';
 import imgFretwork from '../assets/gallery-fretboard.jpg';
 import imgElectronics from '../assets/hero-workshop.png';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Services({ onNavigate }) {
+    const sectionRef = useRef(null);
+
+    useLayoutEffect(() => {
+        let ctx = gsap.context(() => {
+            const headerElements = gsap.utils.toArray('.services__header > *');
+
+            // Header text animation: start high and wide, scrub into position
+            gsap.fromTo(headerElements,
+                {
+                    y: "-30vh", // Exaggerated upward shift to bleed into previous section
+                    letterSpacing: "0.75em", // 3x wider letter spacing at the start
+                    opacity: 0
+                },
+                {
+                    y: "0vh",
+                    letterSpacing: "normal",
+                    opacity: 1,
+                    stagger: 0.1, // Slight stagger so they don't move as one solid block
+                    ease: "power1.out",
+                    scrollTrigger: {
+                        trigger: ".services__header",
+                        start: "top 85%", // Triggers slightly before the section comes into view
+                        end: "top 35%",   // Settles near the upper middle 
+                        scrub: 1 // Smooth scrub matched tight to user scroll
+                    }
+                }
+            );
+
+            // Simple stagger fade in for cards on all devices
+            gsap.fromTo('.services__card',
+                { y: 50, opacity: 0 },
+                {
+                    y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: ".services__grid",
+                        start: "top 80%"
+                    }
+                }
+            );
+
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     const services = [
+        // ... (services data array remains unmodified)
         {
             id: 'builds',
             title: "Custom Builds & Personalizations",
@@ -53,9 +104,9 @@ export default function Services({ onNavigate }) {
     ];
 
     return (
-        <section className="services section" id="services">
+        <section className="services section" id="services" ref={sectionRef}>
             <div className="container">
-                <div className="services__header gs-reveal">
+                <div className="services__header">
                     <h2 className="section-label">More Than Just Builds</h2>
                     <h3 className="section-title">The Full Service Treatment</h3>
                     <p className="section-subtitle">
@@ -65,11 +116,11 @@ export default function Services({ onNavigate }) {
                     </p>
                 </div>
 
-                <div className="services__grid gs-stagger">
+                <div className="services__grid">
                     {services.map((service) => (
                         <div
                             key={service.id}
-                            className="services__card gs-stagger-child"
+                            className="services__card"
                             style={{ '--bg-img': `url(${service.img})` }}
                             onClick={() => onNavigate && onNavigate('services', service.id)}
                         >

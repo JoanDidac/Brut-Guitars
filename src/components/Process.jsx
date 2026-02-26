@@ -67,6 +67,36 @@ export default function Process() {
                 duration: 2
             });
 
+            // Second timeline: Scatter the cards away when scrolling down to the next section
+            const scatterTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".process__steps", // Watch the specific container rather than the entire process section
+                    start: "top 20%", // Triggers just after the previous fan animation ends (which is at top 30%)
+                    end: "bottom top", // Ends when the bottom of the container hits the top of the viewport
+                    scrub: 1.5,
+                }
+            });
+
+            // Cards 0 and 1 (Left ones) go diagonal upper left
+            scatterTl.to([cards[0], cards[1]], {
+                x: (index) => -300 - (index * 150), // Move left
+                y: -400, // Move up
+                rotation: -45, // Spin out
+                opacity: 0,
+                scale: 0.6,
+                ease: "power2.in"
+            }, 0);
+
+            // Cards 2 and 3 (Right ones) go diagonal upper right
+            scatterTl.to([cards[2], cards[3]], {
+                x: (index) => 300 + (index * 150), // Move right
+                y: -400, // Move up // Note: index here is 0 and 1 for the selected array
+                rotation: 45, // Spin out
+                opacity: 0,
+                scale: 0.6,
+                ease: "power2.in"
+            }, 0);
+
         }, sectionRef);
 
         return () => ctx.revert();
@@ -74,16 +104,18 @@ export default function Process() {
 
     return (
         <section className="process section" id="process" ref={sectionRef}>
-            <div className="container">
+            <div className="container" style={{ position: 'relative' }}>
                 <div className="process__header gs-reveal">
                     <span className="section-label">The Process</span>
                     <h2 className="section-title">From Vision to Voice</h2>
-                    <p className="section-subtitle" style={{ whiteSpace: "nowrap", margin: 0 }}>
+
+                    {/* Second subtitle: normal dark color */}
+                    <p className="section-subtitle" style={{ whiteSpace: "nowrap", margin: 0, fontWeight: 400 }}>
                         Building a custom guitar is a journey. Here&apos;s how we bring your dream instrument to life.
                     </p>
                 </div>
 
-                <div className="process__steps" style={{ position: 'relative' }}>
+                <div className="process__steps" style={{ position: 'relative', zIndex: 4, marginTop: '4rem' }}>
                     {/* Background Blueprint Image */}
                     <img
                         src={bassBlueprint}
