@@ -13,7 +13,7 @@ import iconBuilds from '../assets/electric-guitar-svgrepo-com.svg';
 import iconSetups from '../assets/calipers-svgrepo-com.svg';
 import iconWoodworking from '../assets/saw-svgrepo-com.svg';
 import iconPaint from '../assets/paint-brush-svgrepo-com.svg';
-import iconFretwork from '../assets/fretboard-25-inch-scale.svg';
+import iconFretwork from '../assets/set-square-svgrepo-com.svg';
 import iconElectronics from '../assets/jack-svgrepo-com.svg';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -59,8 +59,8 @@ export default function Services({ onNavigate }) {
             const outTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: ".services__cabinet",
-                    start: "top 90%", // Trigger when top of grid enters bottom of viewport (screenshot state)
-                    end: "top -10%",  // Ends when grid mostly covers the area
+                    start: "top 120%", // Trigger much earlier
+                    end: "top 50%",  // Ends when grid covers the area (center)
                     scrub: 1
                 }
             });
@@ -92,8 +92,8 @@ export default function Services({ onNavigate }) {
                         ease: "power1.inOut",
                         scrollTrigger: {
                             trigger: ".services__cabinet",
-                            start: "top 30%", // Fade in starts after text has significantly disintegrated
-                            end: "top -20%",
+                            start: "top 80%", // Fade in starts after text has significantly disintegrated
+                            end: "top 50%",   // Fully visible when cabinet reaches the center
                             scrub: 1
                         }
                     }
@@ -122,6 +122,7 @@ export default function Services({ onNavigate }) {
         {
             id: 'builds',
             title: "Custom Builds & Personalizations",
+            shortTitle: "Custom Builds",
             desc: "Dreaming of a 7-string headless beast or a classic blues machine with a twist? I build instruments tailored to your exact sonic and ergonomic needs. If you can imagine it (and even if you can't), we can build it.",
             icon: iconBuilds,
             img: imgBuilds
@@ -129,6 +130,7 @@ export default function Services({ onNavigate }) {
         {
             id: 'setups',
             title: "Pro Setups & Adjustments",
+            shortTitle: "Adjustments",
             desc: "A guitar is only as good as its setup. From intonation to action, neck relief to pickup height—I'll make your instrument play like butter. Say goodbye to fret buzz and hello to effortless bending.",
             icon: iconSetups,
             img: imgSetups
@@ -136,6 +138,7 @@ export default function Services({ onNavigate }) {
         {
             id: 'woodworking',
             title: "Structural Repairs & Woodworking",
+            shortTitle: "Woodworking",
             desc: "Broken headstock? Cracks? Warped neck? Don't panic. Wood is alive, and sometimes it misbehaves. I specialize in bringing dead instruments back to life so they can shred another day.",
             icon: iconWoodworking,
             img: imgWoodworking
@@ -143,6 +146,7 @@ export default function Services({ onNavigate }) {
         {
             id: 'paint',
             title: "Custom Paint & Re-finishing",
+            shortTitle: "Painting",
             desc: "Whether you want a classy nitro burst, an eccentric modern art piece, or a relic job that looks like it survived a 70s stadium tour, I've got the paints, the patience, and the artistic eye to make it pop.",
             icon: iconPaint,
             img: imgPaint
@@ -150,6 +154,7 @@ export default function Services({ onNavigate }) {
         {
             id: 'fretwork',
             title: "Fretwork & Refretting",
+            shortTitle: "Fretwork",
             desc: "Leveling, crowning, polishing, or complete stainless steel refrets. I'll make sure every note rings true and clear across the entire board. Because dead notes are for amateurs.",
             icon: iconFretwork,
             img: imgFretwork
@@ -157,6 +162,7 @@ export default function Services({ onNavigate }) {
         {
             id: 'electronics',
             title: "Electronics & Wizardry",
+            shortTitle: "Electronics",
             desc: "Custom wiring schemes, pickup swaps, coil-splits, kill-switches, and fixing that mysterious hum that's been driving you crazy. I perform the dark arts of soldering.",
             icon: iconElectronics,
             img: imgElectronics
@@ -189,7 +195,7 @@ export default function Services({ onNavigate }) {
                         >
                             <div className="folder__tab">
                                 <span className="folder__icon"><img src={service.icon} alt="" className="folder-icon-img" /></span>
-                                <span className="folder__title">{service.title}</span>
+                                <span className="folder__title">{service.shortTitle}</span>
                             </div>
                             <div className="folder__jacket">
                             </div>

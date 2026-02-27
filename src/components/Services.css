@@ -148,33 +148,26 @@
     border-color: var(--color-text-dim);
 }
 
-/* Modal Overlay */
 .file-modal-backdrop {
     position: fixed;
     inset: 0;
-    background: transparent;
-    /* Remove dark overlay */
-    backdrop-filter: none;
-    /* Remove blur */
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
     pointer-events: none;
-    /* Allow clicks to pass through to folders */
     z-index: 1000;
     display: flex;
-    justify-content: flex-end;
-    /* Align right off-center */
+    justify-content: center;
     align-items: center;
-    padding: var(--space-md) calc(5% + var(--space-md));
+    padding: var(--space-md);
     opacity: 0;
     animation: fadeIn 0.3s forwards;
 }
 
 .file-modal {
     pointer-events: auto;
-    /* Catch clicks specifically on the modal */
     background: var(--color-bg);
     width: 100%;
-    max-width: 600px;
-    /* Reduced width for split view */
+    max-width: 800px;
     max-height: 85vh;
     border: 3px solid var(--color-border);
     /* Thicker border */
