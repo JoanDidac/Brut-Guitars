@@ -73,20 +73,19 @@
     align-items: center;
     width: 200px;
     margin: 0 auto;
-    gap: var(--space-sm);
+    gap: var(--space-xs);
     background: var(--color-bg-alt);
     padding: var(--space-xs) var(--space-md);
     border: 2px solid var(--color-border);
     border-bottom: none;
     border-radius: 12px 12px 0 0;
-    font-family: monospace;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 1.1rem;
-    /* Slightly smaller to fit caps monospace nicely */
+    font-family: var(--font-mono);
+    font-weight: 300;
+    font-size: 1.05rem;
     position: relative;
     z-index: 2;
     transition: background-color var(--transition-base);
+    text-transform: none;
 }
 
 .file-folder .folder__tab {
@@ -104,6 +103,15 @@
     height: 1.5rem;
     width: 1.5rem;
     object-fit: contain;
+    flex-shrink: 0;
+}
+
+.folder__title {
+    white-space: nowrap;
+}
+
+.folder-icon-img.icon-setups {
+    transform: scale(1.7);
 }
 
 .folder-icon-img.icon-woodworking {
