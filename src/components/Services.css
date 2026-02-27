@@ -63,7 +63,7 @@
 }
 
 .file-folder:hover {
-    transform: translateY(-15px);
+    transform: translateY(-20px);
     z-index: 10;
 }
 
@@ -149,7 +149,7 @@
     justify-content: flex-end;
     align-items: flex-end;
     padding: var(--space-md);
-    transition: border-color var(--transition-base), background-color var(--transition-base);
+    transition: border-color var(--transition-base), background-color var(--transition-base), box-shadow var(--transition-base);
 }
 
 .folder__jacket::before {
@@ -172,6 +172,10 @@
 .file-folder:hover .folder__tab,
 .file-folder:hover .folder__jacket {
     border-color: var(--color-text-dim);
+}
+
+.file-folder:hover .folder__jacket {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 10px 15px rgba(0, 0, 0, 0.05);
 }
 
 .file-modal-backdrop {
