@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Services.css';
 import imgBuilds from '../assets/Custom-Build-Brut.png';
-import imgSetups from '../assets/gallery-headstock.jpg';
+import imgSetups from '../assets/Adjustments-Brut.jpg';
 import imgWoodworking from '../assets/workshop-1.jpg';
 import imgPaint from '../assets/guitar-showcase.png';
 import imgFretwork from '../assets/gallery-fretboard.jpg';
