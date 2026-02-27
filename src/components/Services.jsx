@@ -9,6 +9,12 @@ import imgPaint from '../assets/guitar-showcase.png';
 import imgFretwork from '../assets/gallery-fretboard.jpg';
 import imgElectronics from '../assets/hero-workshop.png';
 import patternSvg from '../assets/circle-with-dots-pattern-svgrepo-com.svg';
+import iconBuilds from '../assets/electric-guitar-svgrepo-com.svg';
+import iconSetups from '../assets/calipers-svgrepo-com.svg';
+import iconWoodworking from '../assets/saw-svgrepo-com.svg';
+import iconPaint from '../assets/paint-brush-svgrepo-com.svg';
+import iconFretwork from '../assets/fretboard-25-inch-scale.svg';
+import iconElectronics from '../assets/jack-svgrepo-com.svg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,16 +71,16 @@ export default function Services({ onNavigate }) {
                 ease: "none",
                 duration: 1 // Relative duration in timeline
             })
-            // Phase 2b: Move further down AND disintegrate
-            .to(headerElements, {
-                y: "80vh", 
-                letterSpacing: (i, el) => el.classList.contains('section-title') ? "15vw" : "0.75em",
-                scale: (i, el) => el.classList.contains('section-title') ? 3 : 1,
-                width: (i, el) => el.classList.contains('section-title') ? "200vw" : el.tagName.toLowerCase() === 'p' ? "66vw" : "auto",
-                opacity: 0,
-                ease: "power2.in",
-                duration: 1
-            });
+                // Phase 2b: Move further down AND disintegrate
+                .to(headerElements, {
+                    y: "80vh",
+                    letterSpacing: (i, el) => el.classList.contains('section-title') ? "15vw" : "0.75em",
+                    scale: (i, el) => el.classList.contains('section-title') ? 3 : 1,
+                    width: (i, el) => el.classList.contains('section-title') ? "200vw" : el.tagName.toLowerCase() === 'p' ? "66vw" : "auto",
+                    opacity: 0,
+                    ease: "power2.in",
+                    duration: 1
+                });
 
             // 3. Header replacement SVG animation IN: fade in behind cards as text fades out
             if (bgSvg) {
@@ -117,42 +123,42 @@ export default function Services({ onNavigate }) {
             id: 'builds',
             title: "Custom Builds & Personalizations",
             desc: "Dreaming of a 7-string headless beast or a classic blues machine with a twist? I build instruments tailored to your exact sonic and ergonomic needs. If you can imagine it (and even if you can't), we can build it.",
-            icon: "🎸",
+            icon: iconBuilds,
             img: imgBuilds
         },
         {
             id: 'setups',
             title: "Pro Setups & Adjustments",
             desc: "A guitar is only as good as its setup. From intonation to action, neck relief to pickup height—I'll make your instrument play like butter. Say goodbye to fret buzz and hello to effortless bending.",
-            icon: "🔧",
+            icon: iconSetups,
             img: imgSetups
         },
         {
             id: 'woodworking',
             title: "Structural Repairs & Woodworking",
             desc: "Broken headstock? Cracks? Warped neck? Don't panic. Wood is alive, and sometimes it misbehaves. I specialize in bringing dead instruments back to life so they can shred another day.",
-            icon: "🪚",
+            icon: iconWoodworking,
             img: imgWoodworking
         },
         {
             id: 'paint',
             title: "Custom Paint & Re-finishing",
             desc: "Whether you want a classy nitro burst, an eccentric modern art piece, or a relic job that looks like it survived a 70s stadium tour, I've got the paints, the patience, and the artistic eye to make it pop.",
-            icon: "🎨",
+            icon: iconPaint,
             img: imgPaint
         },
         {
             id: 'fretwork',
             title: "Fretwork & Refretting",
             desc: "Leveling, crowning, polishing, or complete stainless steel refrets. I'll make sure every note rings true and clear across the entire board. Because dead notes are for amateurs.",
-            icon: "📏",
+            icon: iconFretwork,
             img: imgFretwork
         },
         {
             id: 'electronics',
             title: "Electronics & Wizardry",
             desc: "Custom wiring schemes, pickup swaps, coil-splits, kill-switches, and fixing that mysterious hum that's been driving you crazy. I perform the dark arts of soldering.",
-            icon: "⚡",
+            icon: iconElectronics,
             img: imgElectronics
         }
     ];
@@ -182,11 +188,10 @@ export default function Services({ onNavigate }) {
                             onClick={() => setActiveFolder(service)}
                         >
                             <div className="folder__tab">
-                                <span className="folder__icon">{service.icon}</span>
+                                <span className="folder__icon"><img src={service.icon} alt="" className="folder-icon-img" /></span>
                                 <span className="folder__title">{service.title}</span>
                             </div>
                             <div className="folder__jacket">
-                                <span className="folder__hint">Open File &rarr;</span>
                             </div>
                         </div>
                     ))}
@@ -199,7 +204,7 @@ export default function Services({ onNavigate }) {
                     <div className="file-modal" onClick={e => e.stopPropagation()}>
                         <div className="file-modal__header">
                             <h3 className="file-modal__title">
-                                <span>{activeFolder.icon}</span> {activeFolder.title}
+                                <span><img src={activeFolder.icon} alt="" className="modal-icon-img" /></span> {activeFolder.title}
                             </h3>
                             <button className="file-modal__close" onClick={() => setActiveFolder(null)}>&times;</button>
                         </div>
