@@ -71,7 +71,7 @@
 .file-folder:nth-of-type(2),
 .file-folder:nth-of-type(3) {
     position: relative;
-    top: 10vh;
+    top: -10vh;
 }
 
 .folder__tab {
