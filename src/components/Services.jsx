@@ -8,6 +8,7 @@ import imgWoodworking from '../assets/craftsmanship-detail.png';
 import imgPaint from '../assets/guitar-showcase.png';
 import imgFretwork from '../assets/gallery-fretboard.jpg';
 import imgElectronics from '../assets/hero-workshop.png';
+import patternSvg from '../assets/circle-with-dots-pattern-svgrepo-com.svg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,15 +17,16 @@ export default function Services({ onNavigate }) {
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
-            const headerElements = gsap.utils.toArray('.services__header > *');
+            const headerElements = gsap.utils.toArray('.header-anim');
+            const bgSvg = document.querySelector('.grid-background-svg');
 
-            // Header text animation: start high and wide, scrub into position
+            // 1. Header text animation IN: start high and wide, scrub into position
             gsap.fromTo(headerElements,
                 {
-                    y: "-30vh", // Exaggerated upward shift to bleed into previous section
+                    y: "-50vh", // Exaggerated upward shift to bleed into previous section
                     letterSpacing: (i, el) => el.classList.contains('section-title') ? "15vw" : "0.75em", // Extremely wide at the start for the title
                     scale: (i, el) => el.classList.contains('section-title') ? 3 : 1,     // Make it 3x as big at the start
-                    width: (i, el) => el.classList.contains('section-title') ? "200vw" : "auto", // Increase width drastically
+                    width: (i, el) => el.classList.contains('section-title') ? "200vw" : el.tagName.toLowerCase() === 'p' ? "66vw" : "auto", // Increase width drastically, p tag is 66vw
                     whiteSpace: (i, el) => el.classList.contains('section-title') ? "nowrap" : "normal", // Prevent wrapping
                     opacity: 0.2 // Make it visible sooner
                 },
@@ -45,6 +47,51 @@ export default function Services({ onNavigate }) {
                     }
                 }
             );
+
+            // 2. Header text animation OUT timeline
+            const outTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".services__grid",
+                    start: "top 90%", // Trigger when top of grid enters bottom of viewport (screenshot state)
+                    end: "top -10%",  // Ends when grid mostly covers the area
+                    scrub: 1
+                }
+            });
+
+            // Phase 2a: Move down without changing shape (sneaking down)
+            outTl.to(headerElements, {
+                y: "40vh", // Move down
+                ease: "none",
+                duration: 1 // Relative duration in timeline
+            })
+            // Phase 2b: Move further down AND disintegrate
+            .to(headerElements, {
+                y: "80vh", 
+                letterSpacing: (i, el) => el.classList.contains('section-title') ? "15vw" : "0.75em",
+                scale: (i, el) => el.classList.contains('section-title') ? 3 : 1,
+                width: (i, el) => el.classList.contains('section-title') ? "200vw" : el.tagName.toLowerCase() === 'p' ? "66vw" : "auto",
+                opacity: 0,
+                ease: "power2.in",
+                duration: 1
+            });
+
+            // 3. Header replacement SVG animation IN: fade in behind cards as text fades out
+            if (bgSvg) {
+                gsap.fromTo(bgSvg,
+                    { opacity: 0, scale: 0.8 },
+                    {
+                        opacity: 1,
+                        scale: 1,
+                        ease: "power1.inOut",
+                        scrollTrigger: {
+                            trigger: ".services__grid",
+                            start: "top 30%", // Fade in starts after text has significantly disintegrated
+                            end: "top -20%",
+                            scrub: 1
+                        }
+                    }
+                );
+            }
 
             // Simple stagger fade in for cards on all devices
             gsap.fromTo('.services__card',
@@ -113,9 +160,9 @@ export default function Services({ onNavigate }) {
         <section className="services section" id="services" ref={sectionRef}>
             <div className="container">
                 <div className="services__header">
-                    <h2 className="section-label">More Than Just Builds</h2>
-                    <h3 className="section-title">The Full Service Treatment</h3>
-                    <p className="section-subtitle">
+                    <h2 className="section-label header-anim">More Than Just Builds</h2>
+                    <h3 className="section-title header-anim">The Full Service Treatment</h3>
+                    <p className="section-subtitle header-anim">
                         Building guitars is an art, but maintaining, repairing, and upgrading them is a downright necessity.
                         As a gigging bluesman and prog-rocker, I know exactly what it takes to make an instrument stage-ready and bulletproof.
                         Whether it needs a simple tweak, a fresh coat of paint, or a full resurrection—I've got you covered.
@@ -123,6 +170,9 @@ export default function Services({ onNavigate }) {
                 </div>
 
                 <div className="services__grid">
+                    <div className="grid-background-svg">
+                        <img src={patternSvg} alt="Decorative pattern" />
+                    </div>
                     {services.map((service) => (
                         <div
                             key={service.id}
