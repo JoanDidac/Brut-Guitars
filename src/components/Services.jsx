@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Services.css';
@@ -14,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Services({ onNavigate }) {
     const sectionRef = useRef(null);
+    const [activeFolder, setActiveFolder] = useState(null);
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -51,7 +52,7 @@ export default function Services({ onNavigate }) {
             // 2. Header text animation OUT timeline
             const outTl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: ".services__grid",
+                    trigger: ".services__cabinet",
                     start: "top 90%", // Trigger when top of grid enters bottom of viewport (screenshot state)
                     end: "top -10%",  // Ends when grid mostly covers the area
                     scrub: 1
@@ -84,7 +85,7 @@ export default function Services({ onNavigate }) {
                         scale: 1,
                         ease: "power1.inOut",
                         scrollTrigger: {
-                            trigger: ".services__grid",
+                            trigger: ".services__cabinet",
                             start: "top 30%", // Fade in starts after text has significantly disintegrated
                             end: "top -20%",
                             scrub: 1
@@ -94,12 +95,12 @@ export default function Services({ onNavigate }) {
             }
 
             // Simple stagger fade in for cards on all devices
-            gsap.fromTo('.services__card',
+            gsap.fromTo('.file-folder',
                 { y: 50, opacity: 0 },
                 {
                     y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: "power2.out",
                     scrollTrigger: {
-                        trigger: ".services__grid",
+                        trigger: ".services__cabinet",
                         start: "top 80%"
                     }
                 }
@@ -169,24 +170,54 @@ export default function Services({ onNavigate }) {
                     </p>
                 </div>
 
-                <div className="services__grid">
+                <div className="services__cabinet">
                     <div className="grid-background-svg">
                         <img src={patternSvg} alt="Decorative pattern" />
                     </div>
-                    {services.map((service) => (
+                    {services.map((service, index) => (
                         <div
                             key={service.id}
-                            className="services__card"
-                            style={{ '--bg-img': `url(${service.img})` }}
-                            onClick={() => onNavigate && onNavigate('services', service.id)}
+                            className={`file-folder ${activeFolder?.id === service.id ? 'active' : ''}`}
+                            style={{ '--bg-img': `url(${service.img})`, zIndex: index }}
+                            onClick={() => setActiveFolder(service)}
                         >
-                            <div className="services__icon">{service.icon}</div>
-                            <h4 className="services__card-title">{service.title}</h4>
-                            <p className="services__card-desc">{service.desc}</p>
+                            <div className="folder__tab">
+                                <span className="folder__icon">{service.icon}</span>
+                                <span className="folder__title">{service.title}</span>
+                            </div>
+                            <div className="folder__jacket">
+                                <span className="folder__hint">Open File &rarr;</span>
+                            </div>
                         </div>
                     ))}
                 </div>
             </div>
+
+            {/* Folder Modal */}
+            {activeFolder && (
+                <div className="file-modal-backdrop" onClick={() => setActiveFolder(null)}>
+                    <div className="file-modal" onClick={e => e.stopPropagation()}>
+                        <div className="file-modal__header">
+                            <h3 className="file-modal__title">
+                                <span>{activeFolder.icon}</span> {activeFolder.title}
+                            </h3>
+                            <button className="file-modal__close" onClick={() => setActiveFolder(null)}>&times;</button>
+                        </div>
+                        <div className="file-modal__content">
+                            <div className="file-modal__desc">
+                                <p>{activeFolder.desc}</p>
+                                <button
+                                    className="btn-pill btn-pill--dark mt-md"
+                                    onClick={() => onNavigate && onNavigate('services', activeFolder.id)}
+                                >
+                                    View Service Page
+                                </button>
+                            </div>
+                            <img src={activeFolder.img} alt={activeFolder.title} className="file-modal__image" />
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }

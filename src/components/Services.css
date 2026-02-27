@@ -43,86 +43,241 @@
     /* Subtle presence */
 }
 
-.services__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: calc(var(--space-lg) * 0.67);
-    position: relative;
-    z-index: 2;
-    /* Ensure it stays above the moving header text */
-}
-
-
-.services__card {
-    background: var(--color-bg-card);
-    padding: calc(var(--space-xl) * 0.67) calc(var(--space-lg) * 0.67);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-border-light);
-    transition: box-shadow var(--transition-base), border-color var(--transition-base);
+.services__cabinet {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: var(--space-xl);
     position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    z-index: 1;
-    /* Above vinyl */
+    z-index: 2;
 }
 
-.services__card::before {
+.file-folder {
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin-top: -60px;
+    /* Overlap folders */
+}
+
+.file-folder:first-child {
+    margin-top: 0;
+}
+
+.file-folder:hover {
+    transform: translateY(-30px);
+}
+
+.file-folder:hover~.file-folder {
+    transform: translateY(20px);
+    /* Push lower folders down */
+}
+
+/* The tab */
+.folder__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--color-bg-alt);
+    padding: var(--space-xs) var(--space-md);
+    border: 2px solid var(--color-border);
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: relative;
+    z-index: 2;
+    transition: background-color var(--transition-base);
+}
+
+/* To make tabs staggered (left, middle, right), we can use nth-child */
+.file-folder:nth-child(3n+1) .folder__tab {
+    margin-left: 5%;
+}
+
+.file-folder:nth-child(3n+2) .folder__tab {
+    margin-left: 35%;
+}
+
+.file-folder:nth-child(3n+3) .folder__tab {
+    margin-left: 65%;
+}
+
+.folder__icon {
+    font-size: 1.5rem;
+}
+
+/* The jacket */
+.folder__jacket {
+    background: var(--color-bg-card);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    height: 120px;
+    /* Fixed height for the closed folder */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.03);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: var(--space-md);
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+}
+
+.folder__jacket::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background-image: var(--bg-img);
     background-size: cover;
     background-position: center;
-    opacity: 0.08;
-    /* Low opacity like hero */
-    transition: opacity var(--transition-base), transform var(--transition-slow);
+    opacity: 0.1;
     z-index: 0;
+    transition: opacity var(--transition-base), transform var(--transition-slow);
 }
 
-.services__card:hover::before {
+.file-folder:hover .folder__jacket::before {
     opacity: 0.15;
     transform: scale(1.05);
-    /* Slight zoom on hover */
 }
 
-.services__card>* {
-    position: relative;
-    z-index: 1;
-    /* Keep text above the background */
-}
-
-.services__card:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+.file-folder:hover .folder__tab,
+.file-folder:hover .folder__jacket {
     border-color: var(--color-text-dim);
 }
 
-.services__icon {
-    font-size: calc(2.5rem * 0.67);
-    line-height: 1;
-    margin-bottom: calc(var(--space-md) * 0.67);
-    background: var(--color-bg-alt);
-    padding: calc(var(--space-sm) * 0.67);
-    border-radius: var(--radius-md);
-}
-
-.services__card-title {
-    font-family: var(--font-display);
-    font-size: calc(1.4rem * 0.67);
-    font-weight: 700;
-    margin-bottom: calc(var(--space-sm) * 0.67);
-    color: var(--color-text);
-}
-
-.services__card-desc {
-    font-size: calc(1rem * 0.67);
+.folder__hint {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
     color: var(--color-text-muted);
+    z-index: 1;
+    background: var(--color-bg-alt);
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--color-border-light);
+}
+
+/* Modal Overlay */
+.file-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-md);
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+
+.file-modal {
+    background: var(--color-bg);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 20px 20px 0 rgba(0, 0, 0, 0.1);
+    /* Brutalist shadow */
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    transform: translateY(50px);
+    animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.file-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 2px solid var(--color-border);
+    background: var(--color-bg-alt);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.file-modal__title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin: 0;
+}
+
+.file-modal__close {
+    font-size: 2.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 var(--space-xs);
+    color: var(--color-text);
+    transition: transform var(--transition-fast);
+}
+
+.file-modal__close:hover {
+    transform: scale(1.1);
+}
+
+.file-modal__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+}
+
+.file-modal__desc {
+    font-size: 1.1rem;
     line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+.file-modal__desc p {
+    margin-bottom: var(--space-md);
+}
+
+.file-modal__image {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .file-modal__content {
+        grid-template-columns: 1fr;
+    }
+
+    .file-modal__image {
+        min-height: 200px;
+    }
+
+    .file-folder:nth-child(n) .folder__tab {
+        margin-left: var(--space-sm);
+    }
 }
 
 /* Abstract modern art background shapes */
@@ -145,11 +300,9 @@
 }
 
 @media (max-width: 1023px) {
-    .services__grid {
-        grid-template-columns: 1fr;
-    }
-
     .services__header {
         margin-bottom: var(--space-xl);
     }
 }
+
+@media (max-width: 600px) {}
