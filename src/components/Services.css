@@ -67,10 +67,12 @@
     z-index: 10;
 }
 
-/* The tab */
 .folder__tab {
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    width: 200px;
+    margin: 0 auto;
     gap: var(--space-sm);
     background: var(--color-bg-alt);
     padding: var(--space-xs) var(--space-md);
@@ -86,7 +88,8 @@
 }
 
 .file-folder .folder__tab {
-    margin-left: var(--space-md);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .folder__icon {
