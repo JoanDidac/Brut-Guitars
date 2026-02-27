@@ -85,7 +85,8 @@
     position: relative;
     z-index: 2;
     transition: background-color var(--transition-base);
-    text-transform: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .file-folder .folder__tab {
@@ -214,10 +215,12 @@
 .file-modal__title {
     font-family: var(--font-display);
     font-size: 2rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
     gap: var(--space-sm);
     margin: 0;
+    text-transform: none;
 }
 
 .file-modal__close {
