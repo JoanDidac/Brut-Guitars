@@ -159,13 +159,13 @@
     background-image: var(--bg-img);
     background-size: cover;
     background-position: center;
-    opacity: 0.35;
+    opacity: 0.5;
     z-index: 0;
     transition: opacity var(--transition-base), transform var(--transition-slow);
 }
 
 .file-folder:hover .folder__jacket::before {
-    opacity: 0.5;
+    opacity: 0.66;
     transform: scale(1.05);
 }
 
