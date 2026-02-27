@@ -67,6 +67,13 @@
     z-index: 10;
 }
 
+.file-folder:nth-of-type(1),
+.file-folder:nth-of-type(2),
+.file-folder:nth-of-type(3) {
+    position: relative;
+    top: 10vh;
+}
+
 .folder__tab {
     display: flex;
     justify-content: center;
