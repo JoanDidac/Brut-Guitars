@@ -157,7 +157,7 @@ button {
   font-size: 0.78rem;
   font-weight: 300;
   letter-spacing: 0.05em;
-  text-transform: none;
+  text-transform: uppercase;
   border-radius: var(--radius-pill);
   transition: all var(--transition-base);
   cursor: pointer;
