@@ -122,7 +122,7 @@ export default function Services({ onNavigate }) {
         {
             id: 'builds',
             title: "Custom Builds & Personalizations",
-            shortTitle: "Custom Builds",
+            shortTitle: "Custom Build",
             desc: "Dreaming of a 7-string headless beast or a classic blues machine with a twist? I build instruments tailored to your exact sonic and ergonomic needs. If you can imagine it (and even if you can't), we can build it.",
             icon: iconBuilds,
             img: imgBuilds
@@ -194,7 +194,7 @@ export default function Services({ onNavigate }) {
                             onClick={() => setActiveFolder(service)}
                         >
                             <div className="folder__tab">
-                                <span className="folder__icon"><img src={service.icon} alt="" className="folder-icon-img" /></span>
+                                <span className="folder__icon"><img src={service.icon} alt="" className={`folder-icon-img icon-${service.id}`} /></span>
                                 <span className="folder__title">{service.shortTitle}</span>
                             </div>
                             <div className="folder__jacket">
@@ -210,7 +210,7 @@ export default function Services({ onNavigate }) {
                     <div className="file-modal" onClick={e => e.stopPropagation()}>
                         <div className="file-modal__header">
                             <h3 className="file-modal__title">
-                                <span><img src={activeFolder.icon} alt="" className="modal-icon-img" /></span> {activeFolder.title}
+                                <span><img src={activeFolder.icon} alt="" className={`modal-icon-img icon-${activeFolder.id}`} /></span> {activeFolder.title}
                             </h3>
                             <button className="file-modal__close" onClick={() => setActiveFolder(null)}>&times;</button>
                         </div>

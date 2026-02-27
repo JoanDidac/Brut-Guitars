@@ -104,6 +104,11 @@
     object-fit: contain;
 }
 
+.folder-icon-img.icon-woodworking {
+    transform: scale(1.35);
+    /* Make it look as big as the others */
+}
+
 .modal-icon-img {
     height: 2rem;
     width: 2rem;
