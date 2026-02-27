@@ -79,9 +79,11 @@
     border: 2px solid var(--color-border);
     border-bottom: none;
     border-radius: 12px 12px 0 0;
-    font-family: var(--font-display);
+    font-family: monospace;
+    text-transform: uppercase;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    /* Slightly smaller to fit caps monospace nicely */
     position: relative;
     z-index: 2;
     transition: background-color var(--transition-base);
@@ -105,8 +107,8 @@
 }
 
 .folder-icon-img.icon-woodworking {
-    transform: scale(1.35);
-    /* Make it look as big as the others */
+    transform: scale(1.75);
+    /* Increased by 30% */
 }
 
 .modal-icon-img {
