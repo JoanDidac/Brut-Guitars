@@ -7,7 +7,7 @@ import imgSetups from '../assets/gallery-headstock.jpg';
 import imgWoodworking from '../assets/craftsmanship-detail.png';
 import imgPaint from '../assets/guitar-showcase.png';
 import imgFretwork from '../assets/gallery-fretboard.jpg';
-import imgElectronics from '../assets/hero-workshop.png';
+import imgElectronics from '../assets/Electronics-Brut.jpg';
 import patternSvg from '../assets/circle-with-dots-pattern-svgrepo-com.svg';
 import iconBuilds from '../assets/electric-guitar-svgrepo-com.svg';
 import iconSetups from '../assets/calipers-svgrepo-com.svg';
