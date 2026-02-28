@@ -219,6 +219,10 @@
     /* Increased by 30% */
 }
 
+.folder-icon-img.icon-paint {
+    transform: scale(1.55);
+}
+
 .modal-icon-img {
     height: 2rem;
     width: 2rem;
