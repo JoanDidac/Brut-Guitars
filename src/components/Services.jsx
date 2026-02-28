@@ -55,32 +55,41 @@ export default function Services({ onNavigate }) {
                 }
             );
 
-            // 2. Header text animation OUT timeline
-            const outTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".services__cabinet",
-                    start: "top 120%", // Trigger much earlier
-                    end: "top 50%",  // Ends when grid covers the area (center)
-                    scrub: 1
+            // 2a. Move entire header block down to meet folders
+            gsap.fromTo(headerElements,
+                { y: "0vh" }, // Explicitly start from 0vh so it doesn't jump back to -50vh
+                {
+                    y: "43vh", // Move down further to sit closer to folders (increased by 8vh)
+                    ease: "none",
+                    immediateRender: false, // Wait until triggered to sample start values
+                    scrollTrigger: {
+                        trigger: ".services__cabinet",
+                        start: "top 95%", // Start moving as the folders scroll up into view
+                        end: "top 45%",   // Arrive exactly when folders reach final resting point
+                        scrub: 1
+                    }
                 }
-            });
+            );
 
-            // Phase 2a: Move down without changing shape (sneaking down)
-            outTl.to(headerElements, {
-                y: "40vh", // Move down
-                ease: "none",
-                duration: 1 // Relative duration in timeline
-            })
-                // Phase 2b: Move further down AND disintegrate
-                .to(headerElements, {
-                    y: "80vh",
-                    letterSpacing: (i, el) => el.classList.contains('section-title') ? "15vw" : "0.75em",
-                    scale: (i, el) => el.classList.contains('section-title') ? 3 : 1,
-                    width: (i, el) => el.classList.contains('section-title') ? "200vw" : el.tagName.toLowerCase() === 'p' ? "66vw" : "auto",
-                    opacity: 0,
-                    ease: "power2.in",
-                    duration: 1
-                });
+            // 2b. Paragraph text animation OUT: only fade out the p element smoothly in the last 10%
+            const pEl = document.querySelector('.services__header .section-subtitle');
+
+            if (pEl) {
+                gsap.fromTo(pEl,
+                    { opacity: 1 },
+                    {
+                        opacity: 0,
+                        ease: "power2.inOut",
+                        immediateRender: false,
+                        scrollTrigger: {
+                            trigger: ".services__cabinet",
+                            start: "top 55%", // Wait to fade out until the very end
+                            end: "top 45%",   // Fully transparent precisely when the h2/h3 arrive at final destination
+                            scrub: 1
+                        }
+                    }
+                );
+            }
 
             // 3. Header replacement SVG animation IN: fade in behind cards as text fades out
             if (bgSvg) {
@@ -178,7 +187,7 @@ export default function Services({ onNavigate }) {
                     <p className="section-subtitle header-anim">
                         Building guitars is an art, but maintaining, repairing, and upgrading them is a downright necessity.
                         As a gigging bluesman and prog-rocker, I know exactly what it takes to make an instrument stage-ready and bulletproof.
-                        Whether it needs a simple tweak, a fresh coat of paint, or a full resurrection—I've got you covered.
+                        Whether it needs a simple tweak, a fresh coat of paint, or a full resurrection I've got you covered.
                     </p>
                 </div>
 
