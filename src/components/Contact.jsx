@@ -44,7 +44,7 @@ export default function Contact() {
 
                 // The falling part (takes the full 1.5s)
                 tl.to(vinylWrap, {
-                    y: "-1.5%", // Drops to slightly above center
+                    y: "calc(-1.5% + 5px)", // Drops to slightly above center + 5px offset to match turntable
                     duration: 1.5,
                     ease: "power2.out", // Smoothly decelerates as it falls
                     onComplete: () => {

@@ -9,7 +9,7 @@
 
 .contact-turntable-wrap {
     position: absolute;
-    top: 60%;
+    top: calc(60% + 5px);
     left: 50%;
     transform: translate(-50%, -50%) scale(1.36);
     width: 90%;
