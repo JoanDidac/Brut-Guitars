@@ -230,6 +230,10 @@
     transform: scale(1.1);
 }
 
+.folder-icon-img.icon-fretwork {
+    transform: scale(1.2);
+}
+
 .modal-icon-img {
     height: 2rem;
     width: 2rem;
