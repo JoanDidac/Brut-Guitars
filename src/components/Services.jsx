@@ -119,29 +119,7 @@ export default function Services({ onNavigate }) {
                         duration: 15, // Slow 15-second rotation for a soothing background effect
                         transformOrigin: "center center"
                     });
-                    // 5. Pin and Scrub! Follow user to the contact section
-                    // We calculate how far the user has to scroll to reach the contact section
-                    gsap.to(bgSvg, {
-                        y: () => {
-                            const contactEl = document.getElementById('contact');
-                            const servicesEl = document.getElementById('services');
-                            if (contactEl && servicesEl) {
-                                return contactEl.offsetTop - servicesEl.offsetTop + (contactEl.offsetHeight / 2) - (servicesEl.offsetHeight / 2);
-                            }
-                            return "100vh"; // Fallback
-                        },
-                        rotation: 1080, // Spin it 3 full times based on scroll
-                        ease: "none",
-                        scrollTrigger: {
-                            trigger: ".services",
-                            start: "bottom 85%", // Wait until the bottom of the services section is almost completely leaving the screen
-                            endTrigger: "#contact", // Keep going until the contact section
-                            end: "center center",
-                            scrub: 1 // Smooth scrubbing
-                        }
-                    });
                 }
-
             }
             // Simple stagger fade in for cards on all devices
             gsap.fromTo('.file-folder',
