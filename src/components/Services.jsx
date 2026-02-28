@@ -59,7 +59,7 @@ export default function Services({ onNavigate }) {
             gsap.fromTo(headerElements,
                 { y: "0vh" }, // Explicitly start from 0vh so it doesn't jump back to -50vh
                 {
-                    y: "43vh", // Move down further to sit closer to folders (increased by 8vh)
+                    y: "41vh", // Move down further to sit closer to folders
                     ease: "none",
                     immediateRender: false, // Wait until triggered to sample start values
                     scrollTrigger: {
