@@ -69,38 +69,38 @@
 
 @keyframes guitarPaintCycle {
     0% {
-        filter: invert(25%) sepia(85%) saturate(500%) hue-rotate(335deg) brightness(95%) contrast(110%);
-        opacity: 0.75;
+        filter: invert(25%) sepia(85%) saturate(300%) hue-rotate(335deg) brightness(85%) contrast(100%);
+        opacity: 0.60;
     }
 
     /* Candy Apple Red */
     20% {
-        filter: invert(80%) sepia(30%) saturate(700%) hue-rotate(35deg) brightness(110%) contrast(100%);
-        opacity: 0.75;
+        filter: invert(80%) sepia(30%) saturate(400%) hue-rotate(35deg) brightness(100%) contrast(90%);
+        opacity: 0.60;
     }
 
     /* Butterscotch */
     40% {
-        filter: invert(65%) sepia(40%) saturate(400%) hue-rotate(115deg) brightness(95%) contrast(105%);
-        opacity: 0.75;
+        filter: invert(65%) sepia(40%) saturate(250%) hue-rotate(115deg) brightness(90%) contrast(100%);
+        opacity: 0.60;
     }
 
     /* Surf Green */
     60% {
-        filter: invert(60%) sepia(50%) saturate(400%) hue-rotate(190deg) brightness(105%) contrast(110%);
-        opacity: 0.75;
+        filter: invert(60%) sepia(50%) saturate(250%) hue-rotate(190deg) brightness(95%) contrast(105%);
+        opacity: 0.60;
     }
 
     /* Daphne Blue */
     80% {
-        filter: invert(50%) sepia(30%) saturate(300%) hue-rotate(280deg) brightness(90%) contrast(120%);
-        opacity: 0.75;
+        filter: invert(50%) sepia(30%) saturate(200%) hue-rotate(280deg) brightness(85%) contrast(110%);
+        opacity: 0.60;
     }
 
     /* Plum / Vintage Purple */
     100% {
-        filter: invert(25%) sepia(85%) saturate(500%) hue-rotate(335deg) brightness(95%) contrast(110%);
-        opacity: 0.75;
+        filter: invert(25%) sepia(85%) saturate(300%) hue-rotate(335deg) brightness(85%) contrast(100%);
+        opacity: 0.60;
     }
 }
 
