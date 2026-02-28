@@ -1,7 +1,6 @@
 .services {
     background-color: var(--color-bg-alt);
     position: relative;
-    overflow: hidden;
 }
 
 .services__header {
