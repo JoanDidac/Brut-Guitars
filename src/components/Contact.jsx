@@ -48,11 +48,11 @@ export default function Contact() {
                     duration: 1.5,
                     ease: "power2.out", // Smoothly decelerates as it falls
                     onComplete: () => {
-                        // Start endless true vinyl rotation ~11 RPM (5.4s per rev, visually relaxed)
+                        // Start endless true vinyl rotation matching the Services section speed (15s per rev)
                         spinTween = gsap.to(vinylWrap, {
                             rotation: "+=360",
                             repeat: -1,
-                            duration: 5.4,
+                            duration: 15,
                             ease: "none"
                         });
                     }

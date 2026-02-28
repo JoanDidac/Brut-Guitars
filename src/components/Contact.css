@@ -11,9 +11,12 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.3);
+    transform: translate(-50%, -50%) scale(1.15);
     width: 90%;
     height: 90%;
+    max-width: 90vh;
+    /* Keeps the circle fully visible even on ultra-wide screens */
+    max-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,6 +39,9 @@
     transform: translate(-50%, -50%);
     width: 90%;
     height: 90%;
+    max-width: 90vh;
+    /* Matches turntable constraint to keep the ratio perfect */
+    max-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
