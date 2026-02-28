@@ -32,22 +32,31 @@ export default function Contact() {
                 });
 
                 // Phase 1: drop in, scale up, fade in 
+                // We split this so it finishes growing (75%) BEFORE it finishes falling (100%)
+
+                // The growing and fading part (takes 1.125s, which is 75% of 1.5s)
                 tl.to(vinylWrap, {
-                    y: "0%", // Bring exactly to its centered starting position
                     scale: 1,
                     opacity: 0.15,
+                    duration: 1.125,
+                    ease: "power2.out"
+                }, 0);
+
+                // The falling part (takes the full 1.5s)
+                tl.to(vinylWrap, {
+                    y: "0%", // Bring exactly to its centered starting position
                     duration: 1.5,
                     ease: "power2.out", // Smoothly decelerates as it falls
                     onComplete: () => {
-                        // Start endless true vinyl rotation ~33RPM (1.8s per rev)
+                        // Start endless true vinyl rotation ~11 RPM (5.4s per rev, visually relaxed)
                         spinTween = gsap.to(vinylWrap, {
                             rotation: "+=360",
                             repeat: -1,
-                            duration: 1.8,
+                            duration: 5.4,
                             ease: "none"
                         });
                     }
-                });
+                }, 0);
             }
         }, sectionRef);
 
