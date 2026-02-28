@@ -120,6 +120,22 @@ export default function Services({ onNavigate }) {
                         transformOrigin: "center center"
                     });
                 }
+
+                // 5. Pin and Scrub! Follow user to the contact section
+                ScrollTrigger.create({
+                    trigger: bgSvg,
+                    start: "center 40%", // Wait until the vinyl is almost leaving the top of the view
+                    endTrigger: "#contact", // Keep going until the contact section
+                    end: "center center",
+                    pin: true,
+                    pinReparent: true, // Escape the overflow: hidden of .services
+                    pinSpacing: false, // Don't snap the layout when pinning
+                    animation: gsap.to(bgSvg, {
+                        rotation: 1080, // Spin it 3 full times based on scroll
+                        ease: "none"
+                    }),
+                    scrub: 1 // Smooth scrubbing
+                });
             }
 
             // Simple stagger fade in for cards on all devices
