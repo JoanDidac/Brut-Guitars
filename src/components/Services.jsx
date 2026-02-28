@@ -196,7 +196,7 @@ export default function Services({ onNavigate }) {
             <div className="container">
                 <div className="services__header">
                     <h2 className="section-label header-anim">More Than Just Builds</h2>
-                    <h3 className="section-title header-anim">The Full Service Treatment</h3>
+                    <h3 className="section-title header-anim">Our Full Service Catalogue :</h3>
                     <p className="section-subtitle header-anim">
                         Building guitars is an art, but maintaining, repairing, and upgrading them is a downright necessity.
                         As a gigging bluesman and prog-rocker, I know exactly what it takes to make an instrument stage-ready and bulletproof.
