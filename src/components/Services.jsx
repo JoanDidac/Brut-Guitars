@@ -8,7 +8,7 @@ import imgWoodworking from '../assets/workshop-1.jpg';
 import imgPaint from '../assets/guitar-showcase.png';
 import imgFretwork from '../assets/gallery-fretboard.jpg';
 import imgElectronics from '../assets/Electronics-Brut.jpg';
-import patternSvg from '../assets/circle-with-dots-pattern-svgrepo-com.svg';
+import patternSvg from '../assets/vinyl-svgrepo-com.svg';
 import iconBuilds from '../assets/electric-guitar-svgrepo-com.svg';
 import iconSetups from '../assets/calipers-svgrepo-com.svg';
 import iconWoodworking from '../assets/saw-svgrepo-com.svg';
@@ -193,7 +193,7 @@ export default function Services({ onNavigate }) {
 
                 <div className="services__cabinet">
                     <div className="grid-background-svg">
-                        <img src={patternSvg} alt="Decorative pattern" />
+                        <img src={patternSvg} alt="Vinyl record graphic" />
                     </div>
                     {services.map((service, index) => (
                         <div
