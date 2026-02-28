@@ -1,9 +1,53 @@
-import { useState } from 'react';
+import { useState, useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import patternSvg from '../assets/vinyl-svgrepo-com.svg';
 import './Contact.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [submitted, setSubmitted] = useState(false);
+    const sectionRef = useRef(null);
+
+    useLayoutEffect(() => {
+        let ctx = gsap.context(() => {
+            const vinylWrap = sectionRef.current.querySelector('.contact-vinyl-wrap');
+            if (vinylWrap) {
+                // Emulate coming from the previous section
+                gsap.set(vinylWrap, { y: "-60vh", scale: 0.2, opacity: 0, rotation: 0 });
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top bottom", // Starts as soon as Contact enters the viewport
+                        end: "bottom center", // Ends when the bottom of Contact hits the middle of the screen
+                        scrub: 1
+                    }
+                });
+
+                // Phase 1: drop in, scale up, fade in, and rotate into the center
+                tl.to(vinylWrap, {
+                    y: "20%", // Bring into the body of the contact form
+                    scale: 1,
+                    opacity: 0.15,
+                    rotation: 360,
+                    duration: 1,
+                    ease: "power1.out"
+                })
+                    // Phase 2: just keep rotating as the user finishes scrolling the section
+                    .to(vinylWrap, {
+                        rotation: 720, // Keep scrubbing the rotation
+                        y: "30%", // Slight parallax drift
+                        duration: 1,
+                        ease: "none"
+                    });
+            }
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,8 +60,11 @@ export default function Contact() {
     };
 
     return (
-        <section className="contact section" id="contact">
-            <div className="container">
+        <section className="contact section" id="contact" ref={sectionRef}>
+            <div className="contact-vinyl-wrap">
+                <img src={patternSvg} alt="" />
+            </div>
+            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="contact__grid">
                     <div className="contact__info gs-reveal-left">
                         <span className="section-label">Get in Touch</span>

@@ -1,6 +1,33 @@
 /* =============================================
    Contact Section — Graza-inspired
    ============================================= */
+.contact {
+    position: relative;
+    overflow: hidden;
+    /* Contains the vinyl inside this section */
+}
+
+.contact-vinyl-wrap {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.contact-vinyl-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Opacity handled by GSAP */
+}
+
 .contact__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
