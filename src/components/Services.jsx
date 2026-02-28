@@ -55,41 +55,21 @@ export default function Services({ onNavigate }) {
                 }
             );
 
-            // 2a. Move header block down to meet folders (split to control resting spots independently)
-            const sectionLabel = document.querySelector('.services__header .section-label');
-            const sectionTitle = document.querySelector('.services__header .section-title');
-
-            if (sectionLabel && sectionTitle) {
-                gsap.fromTo(sectionLabel,
-                    { y: "0vh" },
-                    {
-                        y: "46vh", // Move down further by 6% (40vh base + 6vh)
-                        ease: "none",
-                        immediateRender: false,
-                        scrollTrigger: {
-                            trigger: ".services__cabinet",
-                            start: "top 95%",
-                            end: "top 45%",
-                            scrub: 1
-                        }
+            // 2a. Move entire header block down to meet folders
+            gsap.fromTo(headerElements,
+                { y: "0vh" }, // Explicitly start from 0vh so it doesn't jump back to -50vh
+                {
+                    y: (i, el) => el.classList.contains('section-label') ? "43vh" : "40vh", // Move label down 3vh further relative to title
+                    ease: "none",
+                    immediateRender: false, // Wait until triggered to sample start values
+                    scrollTrigger: {
+                        trigger: ".services__cabinet",
+                        start: "top 95%", // Start moving as the folders scroll up into view
+                        end: "top 45%",   // Arrive exactly when folders reach final resting point
+                        scrub: 1
                     }
-                );
-
-                gsap.fromTo(sectionTitle,
-                    { y: "0vh" },
-                    {
-                        y: "40vh", // Maintain 40vh relative position
-                        ease: "none",
-                        immediateRender: false,
-                        scrollTrigger: {
-                            trigger: ".services__cabinet",
-                            start: "top 95%",
-                            end: "top 45%",
-                            scrub: 1
-                        }
-                    }
-                );
-            }
+                }
+            );
 
             // 2b. Paragraph text animation OUT: only fade out the p element smoothly in the last 10%
             const pEl = document.querySelector('.services__header .section-subtitle');
