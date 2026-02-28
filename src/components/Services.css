@@ -60,9 +60,9 @@
     opacity: 0.25;
 }
 
-/* Cream/sand tone matching folder labels for Woodworking */
+/* Dark, warm cream-tinted grey matching the folder hover tab background for Woodworking */
 .services__cabinet[data-hovered-folder="woodworking"] .grid-background-svg img {
-    filter: invert(90%) sepia(10%) saturate(300%) hue-rotate(330deg) brightness(100%) contrast(90%);
+    filter: invert(15%) sepia(20%) saturate(100%) hue-rotate(330deg) brightness(85%) contrast(110%);
     opacity: 0.25;
 }
 
@@ -72,9 +72,9 @@
     opacity: 0.25;
 }
 
-/* Distinct rust/terracotta tone for Fretwork */
+/* Vintage denim / cool slate blue for Fretwork to completely distinguish it from Adjustments */
 .services__cabinet[data-hovered-folder="fretwork"] .grid-background-svg img {
-    filter: invert(35%) sepia(70%) saturate(600%) hue-rotate(345deg) brightness(85%) contrast(110%);
+    filter: invert(30%) sepia(40%) saturate(400%) hue-rotate(190deg) brightness(100%) contrast(115%);
     opacity: 0.25;
 }
 
