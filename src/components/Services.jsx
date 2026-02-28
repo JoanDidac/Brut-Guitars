@@ -107,6 +107,18 @@ export default function Services({ onNavigate }) {
                         }
                     }
                 );
+
+                // 4. Subtle, continuous rotation for the vinyl record
+                const vinylImg = bgSvg.querySelector('img');
+                if (vinylImg) {
+                    gsap.to(vinylImg, {
+                        rotation: 360,
+                        repeat: -1,
+                        ease: "none",
+                        duration: 15, // Slow 15-second rotation for a soothing background effect
+                        transformOrigin: "center center"
+                    });
+                }
             }
 
             // Simple stagger fade in for cards on all devices
