@@ -36,7 +36,7 @@ export default function Contact() {
 
                 // The growing and fading part (takes 1.125s, which is 75% of 1.5s)
                 tl.to(vinylWrap, {
-                    scale: 0.60,
+                    scale: 0.61,
                     opacity: 0.15,
                     duration: 1.125,
                     ease: "power2.out"
