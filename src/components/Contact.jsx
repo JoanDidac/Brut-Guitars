@@ -21,7 +21,7 @@ export default function Contact() {
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: "top bottom", // Starts as soon as Contact enters the viewport
+                        start: "top 25%", // Starts only when the top of the Contact section is near the top of the viewport (mostly in view)
                         end: "bottom center", // Ends when the bottom of Contact hits the middle of the screen
                         scrub: 1
                     }
