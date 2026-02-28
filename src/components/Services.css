@@ -48,9 +48,9 @@
    Dynamic Vinyl Color Shifts on Folder Hover 
    ========================================= */
 
-/* Base warm/dark hue for Custom Builds */
+/* Faded turquoise for Custom Builds */
 .services__cabinet[data-hovered-folder="builds"] .grid-background-svg img {
-    filter: invert(15%) sepia(85%) saturate(300%) hue-rotate(345deg) brightness(80%) contrast(110%);
+    filter: invert(45%) sepia(40%) saturate(600%) hue-rotate(135deg) brightness(95%) contrast(105%);
     opacity: 0.25;
 }
 
@@ -72,10 +72,10 @@
     opacity: 0.25;
 }
 
-/* Cool steel/silver tone for Fretwork */
+/* Aged brass/gold tone for Fretwork (Reused from Adjustments) */
 .services__cabinet[data-hovered-folder="fretwork"] .grid-background-svg img {
-    filter: invert(50%) sepia(10%) saturate(100%) hue-rotate(180deg) brightness(120%) contrast(100%);
-    opacity: 0.20;
+    filter: invert(40%) sepia(60%) saturate(700%) hue-rotate(5deg) brightness(95%) contrast(120%);
+    opacity: 0.25;
 }
 
 /* Electric purple/magenta vibe for Electronics */
