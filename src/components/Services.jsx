@@ -133,8 +133,8 @@ export default function Services({ onNavigate }) {
                         rotation: 1080, // Spin it 3 full times based on scroll
                         ease: "none",
                         scrollTrigger: {
-                            trigger: ".services__cabinet",
-                            start: "top center", // Start moving down as the user scrolls past the middle of the cabinet
+                            trigger: ".services",
+                            start: "bottom 85%", // Wait until the bottom of the services section is almost completely leaving the screen
                             endTrigger: "#contact", // Keep going until the contact section
                             end: "center center",
                             scrub: 1 // Smooth scrubbing
@@ -142,20 +142,20 @@ export default function Services({ onNavigate }) {
                     });
                 }
 
-                }
-                // Simple stagger fade in for cards on all devices
-                gsap.fromTo('.file-folder',
-                    { y: 50, opacity: 0 },
-                    {
-                        y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: ".services__cabinet",
-                            start: "top 80%"
-                        }
+            }
+            // Simple stagger fade in for cards on all devices
+            gsap.fromTo('.file-folder',
+                { y: 50, opacity: 0 },
+                {
+                    y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: ".services__cabinet",
+                        start: "top 80%"
                     }
-                );
+                }
+            );
 
-            }, sectionRef);
+        }, sectionRef);
 
         return () => ctx.revert();
     }, []);
