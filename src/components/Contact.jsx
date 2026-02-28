@@ -21,8 +21,8 @@ export default function Contact() {
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: "top 25%", // Starts only when the top of the Contact section is near the top of the viewport (mostly in view)
-                        end: "bottom center", // Ends when the bottom of Contact hits the middle of the screen
+                        start: "top 60%", // Starts when the contact section is somewhat visible
+                        end: "top top", // Ends exactly when the section aligns with the top of the screen (navbar landing)
                         scrub: 1
                     }
                 });
