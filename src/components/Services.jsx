@@ -21,6 +21,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Services({ onNavigate }) {
     const sectionRef = useRef(null);
     const [activeFolder, setActiveFolder] = useState(null);
+    const [hoveredFolderId, setHoveredFolderId] = useState(null);
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -203,7 +204,7 @@ export default function Services({ onNavigate }) {
                     </p>
                 </div>
 
-                <div className="services__cabinet">
+                <div className="services__cabinet" data-hovered-folder={hoveredFolderId || ''}>
                     <div className="grid-background-svg">
                         <img src={patternSvg} alt="Vinyl record graphic" />
                     </div>
@@ -213,6 +214,8 @@ export default function Services({ onNavigate }) {
                             className={`file-folder ${activeFolder?.id === service.id ? 'active' : ''}`}
                             style={{ '--bg-img': `url(${service.img})`, zIndex: index }}
                             onClick={() => setActiveFolder(service)}
+                            onMouseEnter={() => setHoveredFolderId(service.id)}
+                            onMouseLeave={() => setHoveredFolderId(null)}
                         >
                             <div className="folder__tab">
                                 <span className="folder__icon"><img src={service.icon} alt="" className={`folder-icon-img icon-${service.id}`} /></span>

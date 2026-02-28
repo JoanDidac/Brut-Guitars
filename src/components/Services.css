@@ -41,6 +41,47 @@
     object-fit: contain;
     opacity: 0.15;
     /* Subtle presence */
+    transition: filter var(--transition-slow), opacity var(--transition-slow);
+}
+
+/* =========================================
+   Dynamic Vinyl Color Shifts on Folder Hover 
+   ========================================= */
+
+/* Base warm/dark hue for Custom Builds */
+.services__cabinet[data-hovered-folder="builds"] .grid-background-svg img {
+    filter: invert(15%) sepia(85%) saturate(300%) hue-rotate(345deg) brightness(80%) contrast(110%);
+    opacity: 0.25;
+}
+
+/* Aged brass/gold tone for Adjustments */
+.services__cabinet[data-hovered-folder="setups"] .grid-background-svg img {
+    filter: invert(40%) sepia(60%) saturate(700%) hue-rotate(5deg) brightness(95%) contrast(120%);
+    opacity: 0.25;
+}
+
+/* Deep organic mahogany/wood tone for Woodworking */
+.services__cabinet[data-hovered-folder="woodworking"] .grid-background-svg img {
+    filter: invert(20%) sepia(90%) saturate(400%) hue-rotate(350deg) brightness(70%) contrast(130%);
+    opacity: 0.25;
+}
+
+/* Vibrant cerulean/seafoam pop for Custom Paint */
+.services__cabinet[data-hovered-folder="paint"] .grid-background-svg img {
+    filter: invert(30%) sepia(50%) saturate(600%) hue-rotate(150deg) brightness(110%) contrast(110%);
+    opacity: 0.25;
+}
+
+/* Cool steel/silver tone for Fretwork */
+.services__cabinet[data-hovered-folder="fretwork"] .grid-background-svg img {
+    filter: invert(50%) sepia(10%) saturate(100%) hue-rotate(180deg) brightness(120%) contrast(100%);
+    opacity: 0.20;
+}
+
+/* Electric purple/magenta vibe for Electronics */
+.services__cabinet[data-hovered-folder="electronics"] .grid-background-svg img {
+    filter: invert(30%) sepia(70%) saturate(500%) hue-rotate(270deg) brightness(90%) contrast(115%);
+    opacity: 0.20;
 }
 
 .services__cabinet {
