@@ -63,7 +63,8 @@
 /* Dark gray with warm brand undertone (#2a2826) matching the folder hover tab background for Woodworking */
 .services__cabinet[data-hovered-folder="woodworking"] .grid-background-svg img {
     filter: invert(14%) sepia(8%) saturate(301%) hue-rotate(344deg) brightness(94%) contrast(90%);
-    opacity: 0.25;
+    opacity: 0.75;
+    /* Increased significantly to show raw color */
 }
 
 /* Vibrant cerulean/seafoam pop for Custom Paint */
@@ -72,10 +73,11 @@
     opacity: 0.25;
 }
 
-/* Warm white tone for Fretwork */
+/* User chosen #967259 tone for Fretwork */
 .services__cabinet[data-hovered-folder="fretwork"] .grid-background-svg img {
-    filter: invert(95%) sepia(3%) saturate(150%) hue-rotate(350deg) brightness(105%) contrast(95%);
-    opacity: 0.25;
+    filter: invert(49%) sepia(21%) saturate(913%) hue-rotate(338deg) brightness(89%) contrast(85%);
+    opacity: 0.55;
+    /* Boosted opacity so color is prominent */
 }
 
 /* Electric purple/magenta vibe for Electronics */
