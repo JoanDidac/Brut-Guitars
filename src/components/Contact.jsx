@@ -29,7 +29,7 @@ export default function Contact() {
 
                 // Phase 1: drop in, scale up, fade in, and rotate into the center
                 tl.to(vinylWrap, {
-                    y: "20%", // Bring into the body of the contact form
+                    y: "0%", // Bring exactly to its centered starting position
                     scale: 1,
                     opacity: 0.15,
                     rotation: 360,
@@ -39,7 +39,7 @@ export default function Contact() {
                     // Phase 2: just keep rotating as the user finishes scrolling the section
                     .to(vinylWrap, {
                         rotation: 720, // Keep scrubbing the rotation
-                        y: "30%", // Slight parallax drift
+                        y: "0%", // Stop the downward parallax drift
                         duration: 1,
                         ease: "none"
                     });
