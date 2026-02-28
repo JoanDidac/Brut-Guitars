@@ -210,8 +210,12 @@
     white-space: nowrap;
 }
 
+.folder-icon-img.icon-builds {
+    transform: scale(1.2);
+}
+
 .folder-icon-img.icon-setups {
-    transform: scale(1.7);
+    transform: scale(1.5);
 }
 
 .folder-icon-img.icon-woodworking {
@@ -220,7 +224,7 @@
 }
 
 .folder-icon-img.icon-paint {
-    transform: scale(1.55);
+    transform: scale(1.45);
 }
 
 .modal-icon-img {
