@@ -119,38 +119,43 @@ export default function Services({ onNavigate }) {
                         duration: 15, // Slow 15-second rotation for a soothing background effect
                         transformOrigin: "center center"
                     });
-                }
-
-                // 5. Pin and Scrub! Follow user to the contact section
-                ScrollTrigger.create({
-                    trigger: bgSvg,
-                    start: "center 40%", // Wait until the vinyl is almost leaving the top of the view
-                    endTrigger: "#contact", // Keep going until the contact section
-                    end: "center center",
-                    pin: true,
-                    pinReparent: true, // Escape the overflow: hidden of .services
-                    pinSpacing: false, // Don't snap the layout when pinning
-                    animation: gsap.to(bgSvg, {
+                    // 5. Pin and Scrub! Follow user to the contact section
+                    // We calculate how far the user has to scroll to reach the contact section
+                    gsap.to(bgSvg, {
+                        y: () => {
+                            const contactEl = document.getElementById('contact');
+                            const servicesEl = document.getElementById('services');
+                            if (contactEl && servicesEl) {
+                                return contactEl.offsetTop - servicesEl.offsetTop + (contactEl.offsetHeight / 2) - (servicesEl.offsetHeight / 2);
+                            }
+                            return "100vh"; // Fallback
+                        },
                         rotation: 1080, // Spin it 3 full times based on scroll
-                        ease: "none"
-                    }),
-                    scrub: 1 // Smooth scrubbing
-                });
-            }
-
-            // Simple stagger fade in for cards on all devices
-            gsap.fromTo('.file-folder',
-                { y: 50, opacity: 0 },
-                {
-                    y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: ".services__cabinet",
-                        start: "top 80%"
-                    }
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: ".services__cabinet",
+                            start: "top center", // Start moving down as the user scrolls past the middle of the cabinet
+                            endTrigger: "#contact", // Keep going until the contact section
+                            end: "center center",
+                            scrub: 1 // Smooth scrubbing
+                        }
+                    });
                 }
-            );
 
-        }, sectionRef);
+                }
+                // Simple stagger fade in for cards on all devices
+                gsap.fromTo('.file-folder',
+                    { y: 50, opacity: 0 },
+                    {
+                        y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: ".services__cabinet",
+                            start: "top 80%"
+                        }
+                    }
+                );
+
+            }, sectionRef);
 
         return () => ctx.revert();
     }, []);
