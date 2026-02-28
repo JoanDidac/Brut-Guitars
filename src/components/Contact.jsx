@@ -19,31 +19,35 @@ export default function Contact() {
                 // Emulate coming from the previous section
                 gsap.set(vinylWrap, { y: "-60vh", scale: 0.2, opacity: 0, rotation: 0 });
 
+                let spinTween;
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: "top 60%", // Starts when the contact section is somewhat visible
-                        end: "top top", // Ends exactly when the section aligns with the top of the screen (navbar landing)
-                        scrub: 1
+                        toggleActions: "play none none reverse", // Trigger once, reverse when scrolling back up
+                        onReverseComplete: () => {
+                            if (spinTween) spinTween.kill();
+                        }
                     }
                 });
 
-                // Phase 1: drop in, scale up, fade in, and rotate into the center
+                // Phase 1: drop in, scale up, fade in 
                 tl.to(vinylWrap, {
                     y: "0%", // Bring exactly to its centered starting position
                     scale: 1,
                     opacity: 0.15,
-                    rotation: 360,
-                    duration: 1,
-                    ease: "power1.out"
-                })
-                    // Phase 2: just keep rotating as the user finishes scrolling the section
-                    .to(vinylWrap, {
-                        rotation: 720, // Keep scrubbing the rotation
-                        y: "0%", // Stop the downward parallax drift
-                        duration: 1,
-                        ease: "none"
-                    });
+                    duration: 1.5,
+                    ease: "power2.out", // Smoothly decelerates as it falls
+                    onComplete: () => {
+                        // Start endless true vinyl rotation ~33RPM (1.8s per rev)
+                        spinTween = gsap.to(vinylWrap, {
+                            rotation: "+=360",
+                            repeat: -1,
+                            duration: 1.8,
+                            ease: "none"
+                        });
+                    }
+                });
             }
         }, sectionRef);
 
