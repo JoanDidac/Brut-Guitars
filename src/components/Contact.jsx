@@ -44,7 +44,7 @@ export default function Contact() {
 
                 // The falling part (takes the full 1.5s)
                 tl.to(vinylWrap, {
-                    y: "0%", // Reverted back to 0% as requested
+                    y: "-3%", // Drops to slightly above center
                     duration: 1.5,
                     ease: "power2.out", // Smoothly decelerates as it falls
                     onComplete: () => {
