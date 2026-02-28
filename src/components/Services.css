@@ -226,6 +226,10 @@
     transform: scale(1.45);
 }
 
+.folder-icon-img.icon-electronics {
+    transform: scale(1.0);
+}
+
 .modal-icon-img {
     height: 2rem;
     width: 2rem;
