@@ -2,6 +2,7 @@ import { useState, useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import patternSvg from '../assets/vinyl-svgrepo-com.svg';
+import turntableSvg from '../assets/turntable-svgrepo-com.svg';
 import './Contact.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -61,8 +62,11 @@ export default function Contact() {
 
     return (
         <section className="contact section" id="contact" ref={sectionRef}>
+            <div className="contact-turntable-wrap">
+                <img src={turntableSvg} alt="Turntable background" />
+            </div>
             <div className="contact-vinyl-wrap">
-                <img src={patternSvg} alt="" />
+                <img src={patternSvg} alt="Vinyl record dropping" />
             </div>
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="contact__grid">
