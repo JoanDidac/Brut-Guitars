@@ -12,7 +12,7 @@ import patternSvg from '../assets/vinyl-svgrepo-com.svg';
 import iconBuilds from '../assets/electric-guitar-svgrepo-com.svg';
 import iconSetups from '../assets/calipers-svgrepo-com.svg';
 import iconWoodworking from '../assets/saw-svgrepo-com.svg';
-import iconPaint from '../assets/paint-brush-svgrepo-com.svg';
+import iconPaint from '../assets/paint-spray-graffiti-svgrepo-com.svg';
 import iconFretwork from '../assets/set-square-svgrepo-com.svg';
 import iconElectronics from '../assets/jack-svgrepo-com.svg';
 
