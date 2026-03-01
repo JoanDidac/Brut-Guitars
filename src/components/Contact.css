@@ -36,7 +36,6 @@
     position: absolute;
     top: calc(60% + 5px);
     left: 50%;
-    transform: translate(-50%, -50%);
     width: 90vw;
     height: 90vw;
     max-width: 90vh;
