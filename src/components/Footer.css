@@ -1,8 +1,38 @@
 /* =============================================
+   Pre-Footer — Giant Logo
+   ============================================= */
+.pre-footer {
+    padding: var(--space-3xl) 0 0;
+    /* Gradient starts at typical background color and fades to footer color cleanly */
+    background: linear-gradient(to bottom, var(--color-bg) 0%, var(--color-bg) 30%, var(--color-text) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.pre-footer__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.pre-footer__logo {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.25;
+    /* Let it sit subtly in the background */
+    pointer-events: none;
+}
+
+/* =============================================
    Footer — Graza-inspired
    ============================================= */
 .footer {
-    padding: var(--space-3xl) 0 var(--space-lg);
+    padding: var(--space-xl) 0 var(--space-lg);
     background-color: var(--color-text);
     /* Matching the animated Hero dot */
     color: var(--color-text-light);
