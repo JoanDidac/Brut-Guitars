@@ -15,10 +15,13 @@ export default function Contact() {
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
             const vinylWrap = sectionRef.current.querySelector('.contact-vinyl-wrap');
-            if (vinylWrap) {
+            const contactForm = sectionRef.current.querySelector('.contact__form');
+            if (vinylWrap && contactForm) {
                 // Emulate coming from the previous section
                 // Initialize tracking securely with xPercent/yPercent and drop from an absolute pixel height
                 gsap.set(vinylWrap, { xPercent: -50, yPercent: -50, y: -window.innerHeight * 0.7, scale: 0.61, opacity: 0, rotation: 0 });
+                // Hide the form initially so it can fade in later
+                gsap.set(contactForm, { opacity: 0, x: 50 });
 
                 let spinTween;
                 const tl = gsap.timeline({
@@ -58,6 +61,15 @@ export default function Contact() {
                         });
                     }
                 }, 0);
+
+                // Phase 2: Form Reveal
+                // Executes exactly when the vinyl concludes its 1.5s drop and starts spinning
+                tl.to(contactForm, {
+                    opacity: 1,
+                    x: 0, // Slide into original place
+                    duration: 0.9,
+                    ease: "power3.out"
+                }, 1.5);
             }
         }, sectionRef);
 
@@ -108,7 +120,7 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    <form className="contact__form gs-reveal-right" onSubmit={handleSubmit}>
+                    <form className="contact__form" onSubmit={handleSubmit}>
                         <div className="contact__field">
                             <label className="contact__label" htmlFor="name">Full Name</label>
                             <input
