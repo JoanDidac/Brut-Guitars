@@ -17,7 +17,8 @@ export default function Contact() {
             const vinylWrap = sectionRef.current.querySelector('.contact-vinyl-wrap');
             if (vinylWrap) {
                 // Emulate coming from the previous section
-                gsap.set(vinylWrap, { y: "-60vh", scale: 0.2, opacity: 0, rotation: 0 });
+                // Initialize tracking securely with xPercent/yPercent and drop from an absolute pixel height
+                gsap.set(vinylWrap, { xPercent: -50, yPercent: -50, y: -window.innerHeight * 0.7, scale: 0.2, opacity: 0, rotation: 0 });
 
                 let spinTween;
                 const tl = gsap.timeline({
@@ -44,7 +45,7 @@ export default function Contact() {
 
                 // The falling part (takes the full 1.5s)
                 tl.to(vinylWrap, {
-                    y: "0%", // Drops to the exact CSS anchor origin shared with the turntable
+                    y: 0, // Drops to the exact CSS anchor origin shared with the turntable
                     duration: 1.5,
                     ease: "power2.out", // Smoothly decelerates as it falls
                     onComplete: () => {
