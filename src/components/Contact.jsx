@@ -18,13 +18,13 @@ export default function Contact() {
             if (vinylWrap) {
                 // Emulate coming from the previous section
                 // Initialize tracking securely with xPercent/yPercent and drop from an absolute pixel height
-                gsap.set(vinylWrap, { xPercent: -50, yPercent: -50, y: -window.innerHeight * 0.7, scale: 0.2, opacity: 0, rotation: 0 });
+                gsap.set(vinylWrap, { xPercent: -50, yPercent: -50, y: -window.innerHeight * 0.7, scale: 0.61, opacity: 0, rotation: 0 });
 
                 let spinTween;
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: "top 60%", // Starts when the contact section is somewhat visible
+                        start: "top 15%", // Starts later when the contact section is fully visible
                         toggleActions: "play none none reverse", // Trigger once, reverse when scrolling back up
                         onReverseComplete: () => {
                             if (spinTween) spinTween.kill();
