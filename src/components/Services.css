@@ -157,26 +157,63 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
+    width: 64.5%;
     margin: 0 auto;
+    margin-bottom: -15px;
+    /* Sink behind jacket */
     gap: var(--space-xs);
     background: var(--color-bg-alt);
-    padding: var(--space-xs) var(--space-md);
-    border: 2px solid var(--color-border);
+    padding: var(--space-xs) var(--space-md) calc(var(--space-xs) + 15px) var(--space-md);
+    border-top: 2px solid var(--color-border);
+    border-left: 2px solid var(--color-border);
+    border-right: none;
     border-bottom: none;
-    border-radius: 12px 12px 0 0;
+    border-radius: 8px 0 0 0;
     font-family: var(--font-mono);
     font-weight: 300;
     font-size: 1.05rem;
     position: relative;
-    z-index: 2;
+    z-index: 1;
+    /* Underneath the jacket layer */
     transition: background-color var(--transition-base);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
+/* Make sure text and icon stay above background layers */
+.folder__tab>* {
+    position: relative;
+    z-index: 10;
+}
+
+/* Border Layer: The diagonal slanted right edge */
+.folder__tab::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -36px;
+    height: calc(100% + 2px);
+    /* Normal height down to the bottom */
+    width: 36px;
+    background: inherit;
+    border-top: 2px solid var(--color-border);
+    border-right: 2px solid var(--color-border);
+    border-bottom: none;
+    border-radius: 0 12px 0 0;
+    transform-origin: bottom left;
+    transform: skewX(25deg);
+    z-index: -1;
+    /* Goes behind the text */
+}
+
+/* Ensure border color changes on hover for the pseudo-element too */
+.file-folder:hover .folder__tab::after {
+    border-color: #2a2826;
+}
+
 .file-folder .folder__tab {
-    margin-left: auto;
+    margin-left: var(--space-md);
+    /* Start with an offset from the jacket's rounded corner */
     margin-right: auto;
 }
 
@@ -245,11 +282,12 @@
 .folder__jacket {
     background: var(--color-bg-card);
     border: 2px solid var(--color-border);
-    border-radius: var(--radius-lg);
+    border-radius: 8px var(--radius-lg) var(--radius-lg) var(--radius-lg);
     height: 185px;
     /* Fill remaining height roughly */
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    /* Sits IN FRONT OF the tab */
     overflow: hidden;
     box-shadow: 0 -4px 10px rgba(90, 83, 71, 0.04);
     display: flex;
