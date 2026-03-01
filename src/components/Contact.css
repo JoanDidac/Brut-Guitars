@@ -102,7 +102,14 @@
     flex-direction: column;
     gap: var(--space-md);
     padding: var(--space-xl);
-    background: var(--color-bg-alt);
+
+    /* Simple transparency */
+    background: rgba(235, 227, 216, 0.54);
+    /* 54% opacity of --color-bg-alt */
+
+    /* Translated down approx 10px calculated in vh */
+    transform: translateY(1vh);
+
     border: 2px dashed var(--color-border-light);
     border-radius: var(--radius-xl);
 }
