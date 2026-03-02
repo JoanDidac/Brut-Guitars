@@ -89,6 +89,9 @@
     object-fit: contain;
     display: block;
     margin-bottom: var(--space-sm);
+    /* Invert the black devil horns SVG to off-white */
+    filter: invert(90%) sepia(5%) hue-rotate(340deg) brightness(100%) contrast(90%);
+    opacity: 0.8;
 }
 
 .footer__tagline {
@@ -127,6 +130,42 @@
 
 .footer__links a:hover {
     color: var(--color-text-light);
+}
+
+/* Social link hover transformation */
+.footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    height: 1.2rem;
+    vertical-align: middle;
+}
+
+.footer__social-link .social-text {
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.footer__social-link .social-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    width: 16px;
+    height: 16px;
+}
+
+.footer__social-link:hover .social-text {
+    transform: translateY(-150%);
+    opacity: 0;
+}
+
+.footer__social-link:hover .social-icon {
+    transform: translateY(-50%);
+    opacity: 1;
 }
 
 /* Bottom */
