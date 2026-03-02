@@ -2,9 +2,9 @@
    Pre-Footer — Giant Logo
    ============================================= */
 .pre-footer {
-    padding: var(--space-3xl) 0 0;
-    /* Gradient starts at typical background color and fades to footer color cleanly */
-    background: linear-gradient(to bottom, var(--color-bg) 0%, var(--color-bg) 30%, var(--color-text) 100%);
+    padding: var(--space-xl) 0 0;
+    /* Back to cream */
+    background-color: var(--color-bg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,16 +16,41 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 400px;
+    /* Fixed window height for parallax */
+    position: relative;
+    /* Anchor absolute children */
 }
 
-.pre-footer__logo {
+/* Base style for all 4 slices of the single image */
+.pre-footer__logo-slice {
+    position: absolute;
     width: 100%;
-    max-width: 900px;
+    max-width: 1200px;
     height: auto;
     object-fit: contain;
-    opacity: 0.25;
+    opacity: 0.15;
     /* Let it sit subtly in the background */
     pointer-events: none;
+    /* GSAP will control the Y transform */
+}
+
+/* Slicing the single PNG into 4 equal quarters vertically */
+/* inset(top right bottom left) */
+.slice-b {
+    clip-path: inset(0 75% 0 0);
+}
+
+.slice-r {
+    clip-path: inset(0 50% 0 25%);
+}
+
+.slice-u {
+    clip-path: inset(0 25% 0 50%);
+}
+
+.slice-t {
+    clip-path: inset(0 0 0 75%);
 }
 
 /* =============================================
