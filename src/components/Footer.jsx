@@ -58,6 +58,11 @@ export default function Footer({ onNavigate }) {
                     <img src={brandLogoLarge} alt="Letter U" className="pre-footer__logo-slice slice-u" />
                     <img src={brandLogoLarge} alt="Letter T" className="pre-footer__logo-slice slice-t" />
                 </div>
+
+                {/* SVG S-Curve overlapping the letters inside pre-footer */}
+                <svg className="pre-footer__wave" viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <path d="M 0 40 A 50 20 0 0 1 50 20 A 50 20 0 0 0 100 0 L 100 40 Z" />
+                </svg>
             </section>
 
             <footer className="footer">

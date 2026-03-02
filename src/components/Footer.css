@@ -5,10 +5,22 @@
     padding: var(--space-xl) 0 0;
     /* Back to cream */
     background-color: var(--color-bg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
     overflow: hidden;
+}
+
+.pre-footer__wave {
+    position: absolute;
+    bottom: -1px;
+    /* overlap slightly to prevent background bleed gap */
+    left: 0;
+    width: 100%;
+    height: calc(12vw - 40px);
+    /* Intensity of the swoop, lowered by 40px total */
+    fill: var(--color-text);
+    z-index: 5;
+    /* Cover the staggered letters while they animate */
+    pointer-events: none;
 }
 
 .pre-footer__container {
