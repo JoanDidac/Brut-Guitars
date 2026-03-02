@@ -3,6 +3,10 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Process.css';
 import bassBlueprint from '../assets/bass-blueprint.jpg';
+import process1 from '../assets/process_1.png';
+import process2 from '../assets/process_2.png';
+import process3 from '../assets/workshop-1.jpg'; // Placeholder
+import process4 from '../assets/process_4.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,21 +15,25 @@ const steps = [
         number: '01',
         title: 'Consultation',
         description: 'We discuss your playing style, tonal preferences, and the music that moves you.',
+        image: process1
     },
     {
         number: '02',
         title: 'Wood Selection',
         description: 'Hand-picked tonewoods chosen for their acoustic properties and grain character.',
+        image: process2
     },
     {
         number: '03',
         title: 'Shaping & Carving',
         description: 'Each body and neck is hand-shaped using traditional tools and refined techniques.',
+        image: process3
     },
     {
         number: '04',
         title: 'Finishing & Setup',
         description: 'Meticulous finishing, fretwork, electronics, and a professional setup.',
+        image: process4
     },
 ];
 
@@ -135,9 +143,18 @@ export default function Process() {
                     />
                     {steps.map((step) => (
                         <div className="process__step" key={step.number} style={{ position: 'relative', zIndex: 1 }}>
-                            <div className="process__step-number">{step.number}</div>
-                            <h3 className="process__step-title">{step.title}</h3>
-                            <p className="process__step-desc">{step.description}</p>
+                            <div className="process__step-inner">
+                                {/* Front of Card */}
+                                <div className="process__step-front">
+                                    <div className="process__step-number">{step.number}</div>
+                                    <h3 className="process__step-title">{step.title}</h3>
+                                    <p className="process__step-desc">{step.description}</p>
+                                </div>
+                                {/* Back of Card: Image */}
+                                <div className="process__step-back">
+                                    <img src={step.image} alt={step.title} className="process__step-back-img" />
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>

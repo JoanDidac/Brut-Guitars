@@ -27,16 +27,61 @@
 
 .process__step {
     position: relative;
-    padding: var(--space-lg);
-    background: var(--color-bg);
-    border: 2px dashed var(--color-border-light);
-    border-radius: var(--radius-lg);
-    transition: all var(--transition-base);
+    /* Move padding/background/borders to front and back layers */
+    perspective: 1500px;
+    z-index: 1;
+    /* For stacking order */
 }
 
-.process__step:hover {
-    border-color: var(--color-text);
-    transform: translateY(-4px);
+/* Hovering flips the 3D inner container */
+.process__step:hover .process__step-inner {
+    transform: rotateY(180deg);
+}
+
+.process__step-inner {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+/* Both sides stack on exactly the same grid cell */
+.process__step-front,
+.process__step-back {
+    grid-area: 1 / 1;
+    backface-visibility: hidden;
+    border-radius: var(--radius-lg);
+    /* Bring over original step styles here */
+    padding: var(--space-lg);
+    background: var(--color-bg);
+}
+
+.process__step-front {
+    border: 2px dashed var(--color-border-light);
+    display: flex;
+    flex-direction: column;
+}
+
+.process__step-back {
+    transform: rotateY(180deg);
+    padding: 0;
+    /* Let image fill */
+    border: 2px dashed var(--color-text);
+    /* Dark dashed border on hover */
+    overflow: hidden;
+    background-color: var(--color-bg);
+    /* Cream background for the overlay effect */
+}
+
+.process__step-back-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.66;
+    /* Fades the image into the cream background */
+    transition: opacity var(--transition-base);
 }
 
 .process__step-number {
