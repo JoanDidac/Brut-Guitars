@@ -25,7 +25,15 @@ export default function Navbar({ currentPage, onNavigate }) {
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__inner container">
         <a className="navbar__logo" href="#" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>
-          <img src={brandLogo} alt="Brut Guitars Logo" className="navbar__logo-img" />
+          <img src={brandLogo} alt="Brut Guitars Logo" className={`navbar__logo-img ${mobileOpen ? 'hidden-opacity' : ''}`} />
+
+          {/* Animated Mobile Logo Slices */}
+          <div className={`navbar__animated-logo ${mobileOpen ? 'navbar__animated-logo--open' : ''}`}>
+            <img src={brandLogo} className="nav-slice slice-b" alt="" />
+            <img src={brandLogo} className="nav-slice slice-r" alt="" />
+            <img src={brandLogo} className="nav-slice slice-u" alt="" />
+            <img src={brandLogo} className="nav-slice slice-t" alt="" />
+          </div>
         </a>
 
         <ul className={`navbar__links ${mobileOpen ? 'navbar__links--open' : ''}`}>

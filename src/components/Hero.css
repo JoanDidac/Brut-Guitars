@@ -7,6 +7,8 @@
     align-items: center;
     padding-top: 100px;
     position: relative;
+    overflow: hidden;
+    /* Prevent dot scale from expanding layout */
 }
 
 .hero::before {

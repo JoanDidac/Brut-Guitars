@@ -60,6 +60,12 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -71,7 +77,6 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
 h1,

@@ -129,7 +129,10 @@ export default function Hero() {
                         <span className="hero__combining-text">where</span>{' '}
                         <span className="hero__keyword-mono gs-text-glow">{splitWord("Passion", "word-passion")}</span><br />
                         <span className="hero__combining-text">meets</span>{' '}
-                        <span className="hero__keyword-mono gs-text-glow">{splitWord("Precision.", "word-precision")}</span>
+                        <span className="hero__keyword-mono gs-text-glow">{splitWord("Precision", "word-precision")}</span>
+                        <span style={{ display: 'block', width: '100%', textAlign: 'center', marginTop: '-0.1em' }}>
+                            <span className="hero__char hero__dot hero__keyword-mono gs-text-glow" style={{ display: 'inline-block', transformOrigin: 'center center' }}>.</span>
+                        </span>
                     </h1>
                     <p className="hero__subtitle">
                         Shaped by hand, tuned by ear and built to inspire musicians who demand more from their instrument.<br />
