@@ -58,8 +58,8 @@
         object-fit: cover;
         object-position: center center;
         /* Assumed to be naturally centered as requested */
-        transform: translate(-50%, -50%) rotate(0deg) scale(0.66);
-        /* Requested 0.66 scale */
+        transform: translate(-50%, -50%) rotate(0deg) scale(0.76);
+        /* Requested 0.76 scale */
     }
 }
 
