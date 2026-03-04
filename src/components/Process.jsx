@@ -137,12 +137,12 @@ export default function Process() {
                         position: 'absolute',
                         top: '50%',
                         left: '50%',
-                        transform: 'translate(-50%, -50%) rotate(90deg)', // Rotated 90 right as requested
-                        width: '150vw', // Extra large width to ensure it covers
-                        height: '150vh', // Extra large height to ensure it covers
-                        minWidth: '1200px',
-                        minHeight: '1200px',
-                        objectFit: 'cover', // Ensures the image fills the space without distortion
+                        transform: 'translate(-50%, -50%) rotate(0deg)', // 0deg ensures the vertical image stays vertical
+                        width: '100vw',
+                        height: '100%',
+                        minWidth: '1000px',
+                        minHeight: '1000px',
+                        objectFit: 'cover',
                         zIndex: 0,
                         opacity: 0.15,
                         pointerEvents: 'none'
