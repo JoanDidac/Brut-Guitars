@@ -3,6 +3,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Process.css';
 import bassBlueprint from '../assets/bass-blueprint.jpg';
+import bassBlueprintMobile from '../assets/Blueprint-Brut.png';
+
 import process1 from '../assets/process_1.png';
 import process2 from '../assets/process_2.png';
 import process3 from '../assets/workshop-1.jpg'; // Placeholder
@@ -140,11 +142,17 @@ export default function Process() {
                 </div>
 
                 <div className="process__steps" style={{ position: 'relative', zIndex: 4, marginTop: '4rem' }}>
-                    {/* Background Blueprint Image */}
+                    {/* Background Blueprint Image (Desktop Only) */}
                     <img
                         src={bassBlueprint}
-                        alt="Bass Blueprint Background"
-                        className="process__bg-img"
+                        alt="Bass Blueprint Background Desktop"
+                        className="process__bg-img desktop-only"
+                    />
+                    {/* Background Blueprint Image Optimized Version (Mobile Only) */}
+                    <img
+                        src={bassBlueprintMobile}
+                        alt="Bass Blueprint Background Mobile"
+                        className="process__bg-img mobile-only"
                     />
                     {steps.map((step) => (
                         <div className="process__step" key={step.number} style={{ position: 'relative', zIndex: 1 }}>

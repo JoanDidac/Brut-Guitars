@@ -34,8 +34,21 @@
     pointer-events: none;
 }
 
+/* Hide mobile-optimized image on desktop */
+.process__bg-img.mobile-only {
+    display: none;
+}
+
 @media (max-width: 768px) {
-    .process__bg-img {
+
+    /* Hide desktop version on mobile */
+    .process__bg-img.desktop-only {
+        display: none;
+    }
+
+    /* Style the new centered, optimized mobile image */
+    .process__bg-img.mobile-only {
+        display: block;
         top: 50%;
         left: 50%;
         /* Center against the viewport */
@@ -43,10 +56,10 @@
         height: 100%;
         /* Spans the full height of the mobile grid */
         object-fit: cover;
-        object-position: left center;
-        /* Focus on guitar body */
-        transform: translate(-50%, -50%) rotate(0deg) scale(0.5);
-        /* Vertical mobile trial */
+        object-position: center center;
+        /* Assumed to be naturally centered as requested */
+        transform: translate(-50%, -50%) rotate(0deg) scale(0.66);
+        /* Requested 0.66 scale */
     }
 }
 
