@@ -128,7 +128,7 @@ export default function Process() {
 
     return (
         <section className="process section" id="process" ref={sectionRef}>
-            <div className="container" style={{ position: 'relative' }}>
+            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 {/* Background Blueprint Image */}
                 <img
                     src={bassBlueprint}
@@ -141,13 +141,13 @@ export default function Process() {
                         width: '246.4%',
                         height: '246.4%',
                         objectFit: 'contain',
-                        zIndex: -1, // Pushed entirely behind the P elements and Gallery SVG
+                        zIndex: 0, // Guarantees it sits above section background but securely beneath text layers
                         opacity: 0.15,
                         pointerEvents: 'none'
                     }}
                 />
 
-                <div className="process__header gs-reveal">
+                <div className="process__header gs-reveal" style={{ position: 'relative', zIndex: 2 }}>
                     <span className="section-label">The Process</span>
                     <h2 className="section-title">From Vision to Voice</h2>
 
