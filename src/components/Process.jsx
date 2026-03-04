@@ -105,6 +105,22 @@ export default function Process() {
                 ease: "power2.in"
             }, 0);
 
+            // Responsive GSAP animations for text readability over the overlapping Gallery SVG
+            let mm = gsap.matchMedia();
+            mm.add("(max-width: 768px)", () => {
+                // The massive dark Gallery background flows into this section on mobile.
+                // Shift the paragraph text to cream so it's easily readable against the dark background.
+                gsap.to(".process__subtitle", {
+                    color: "var(--color-bg)",
+                    scrollTrigger: {
+                        trigger: ".process__header",
+                        start: "top 55%", // When header hits middle of screen, start turning cream
+                        end: "top 30%",   // Fully cream by the time it reaches upper third
+                        scrub: true
+                    }
+                });
+            });
+
         }, sectionRef);
 
         return () => ctx.revert();
@@ -117,8 +133,8 @@ export default function Process() {
                     <span className="section-label">The Process</span>
                     <h2 className="section-title">From Vision to Voice</h2>
 
-                    {/* Second subtitle: normal dark color */}
-                    <p className="section-subtitle" style={{ whiteSpace: "nowrap", margin: 0, fontWeight: 400 }}>
+                    {/* Second subtitle: animates to creamy color on mobile for contrast with overlapping background */}
+                    <p className="section-subtitle process__subtitle" style={{ margin: 0, fontWeight: 400 }}>
                         Building a custom guitar is a journey. Here&apos;s how we bring your dream instrument to life.
                     </p>
                 </div>
