@@ -128,15 +128,8 @@ export default function Process() {
 
     return (
         <section className="process section" id="process" ref={sectionRef}>
-            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                {/* Background Blueprint Image */}
-                <img
-                    src={bassBlueprint}
-                    alt="Bass Blueprint Background"
-                    className="process__bg-img"
-                />
-
-                <div className="process__header gs-reveal" style={{ position: 'relative', zIndex: 2 }}>
+            <div className="container" style={{ position: 'relative' }}>
+                <div className="process__header gs-reveal">
                     <span className="section-label">The Process</span>
                     <h2 className="section-title">From Vision to Voice</h2>
 
@@ -147,6 +140,12 @@ export default function Process() {
                 </div>
 
                 <div className="process__steps" style={{ position: 'relative', zIndex: 4, marginTop: '4rem' }}>
+                    {/* Background Blueprint Image */}
+                    <img
+                        src={bassBlueprint}
+                        alt="Bass Blueprint Background"
+                        className="process__bg-img"
+                    />
                     {steps.map((step) => (
                         <div className="process__step" key={step.number} style={{ position: 'relative', zIndex: 1 }}>
                             <div className="process__step-inner">
