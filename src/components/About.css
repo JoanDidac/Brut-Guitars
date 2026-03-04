@@ -132,12 +132,23 @@
     }
 
     .about__stats {
-        gap: var(--space-md);
-        flex-wrap: wrap;
-        /* Fix horizontal overflow stretching making text cropped */
+        gap: var(--space-xs);
+        /* Reduce gap to fit on one line */
+        justify-content: space-between;
+        /* Removed flex-wrap to keep on one line */
     }
 
     .about__stat-number {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+        /* Slightly smaller for mobile */
+    }
+
+    .about__stat-label {
+        font-size: 0.6rem;
+        /* Smaller label text */
+        white-space: normal;
+        /* Allow label text to wrap to prevent horizontal stretching */
+        letter-spacing: 0.02em;
+        /* Less tracking for space */
     }
 }
