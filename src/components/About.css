@@ -37,8 +37,8 @@
     overflow-y: visible;
     /* Changed to visible to allow bleeding downwards into the Gallery */
     /* Clip path drops the top edge exactly at 0 to hide upward bleed into Marquee/Hero, 
-       but extends far down/left/right so the dot freely overlaps the Gallery below */
-    clip-path: polygon(-200vw 0%, 200vw 0%, 200vw 200vw, -200vw 200vw);
+       but extends infinitely down/left/right so the dot freely overlaps the Gallery below */
+    clip-path: polygon(-200vw 0%, 200vw 0%, 200vw 500%, -200vw 500%);
 }
 
 /* Background Shapes */
@@ -123,8 +123,18 @@
         gap: var(--space-xl);
     }
 
+    .about__shape--dot {
+        top: 20%;
+        /* Move up behind the carousel */
+        width: 800px;
+        height: 800px;
+        /* Scale down dot for smaller screens */
+    }
+
     .about__stats {
-        gap: var(--space-lg);
+        gap: var(--space-md);
+        flex-wrap: wrap;
+        /* Fix horizontal overflow stretching making text cropped */
     }
 
     .about__stat-number {

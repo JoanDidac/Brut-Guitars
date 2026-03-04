@@ -59,11 +59,11 @@ export default function About() {
             });
 
             mm.add("(max-width: 768px)", () => {
-                // Mobile: Dot is playfully off to the side, not covering central focused content
+                // Mobile: Dot sits slightly behind the carousel at the top, subtly translating horizontally
                 gsap.fromTo(".about__shape--dot",
-                    { x: () => -600 },
+                    { x: () => -500 }, // Started far left
                     {
-                        x: () => -650,
+                        x: () => -200, // Move into center view, filling background behind image
                         ease: "none",
                         scrollTrigger: {
                             trigger: sectionRef.current,
