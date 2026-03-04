@@ -161,11 +161,27 @@ export default function Gallery() {
                     }
                 });
 
-                // As it stays pinned on screen, it heavily rotates and scales up
+                // Convert the SVG color to dark NOT BLACK (#1a1a1a) using CSS filters because it's an <img> tag.
+                // An invert(1) with brightness/contrast adjustments usually gets close to #1a1a1a (graphite black).
+                // Base filter is empty/none, end filter is for #1a1a1a.
+
+                // First 50% of the pinned animation: just rotate and scale, keep original color
                 bgTl.fromTo(".gallery__bg-svg",
-                    { rotation: 0, scale: 1 },
-                    { rotation: 180, scale: 2.2, ease: "none" }
-                );
+                    { rotation: 0, scale: 1, filter: "brightness(1) invert(0)" },
+                    { rotation: 90, scale: 1.6, filter: "brightness(1) invert(0)", ease: "none", duration: 1 }
+                )
+                    // Second 50% of the pinned animation: continue rotating/scaling, AND shift to dark theme black
+                    .to(".gallery__bg-svg",
+                        {
+                            rotation: 180,
+                            scale: 2.2,
+                            // CSS Filter approximating #1a1a1a (Dark charcoal/not pure black) from a grayish SVG
+                            filter: "brightness(0.12) invert(0) sepia(0)",
+                            opacity: 0.8, // Slightly more opaque as it gets darker for contrast
+                            ease: "none",
+                            duration: 1
+                        }
+                    );
 
                 // Mobile: Add a toggle class to individual cards when they reach the center of the screen
                 // This simulates the desktop "hover" state dynamically as the user scrolls
