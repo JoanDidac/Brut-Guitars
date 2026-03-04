@@ -137,7 +137,7 @@ export default function Process() {
                         position: 'absolute',
                         top: '50%',
                         left: '0', // Anchor to left edge instead of 50%
-                        transform: 'translate(0, -50%) rotate(0deg)', // Remove X-axis centering translation
+                        transform: 'translate(0, -50%) rotate(0deg) scale(0.8)', // Scale down by 20%
                         width: '100vw',
                         height: '100%',
                         minWidth: '1000px',
