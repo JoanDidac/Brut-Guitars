@@ -136,13 +136,14 @@ export default function Process() {
                     style={{
                         position: 'absolute',
                         top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%) rotate(0deg)', // 0deg ensures the vertical image stays vertical
+                        left: '0', // Anchor to left edge instead of 50%
+                        transform: 'translate(0, -50%) rotate(0deg)', // Remove X-axis centering translation
                         width: '100vw',
                         height: '100%',
                         minWidth: '1000px',
                         minHeight: '1000px',
                         objectFit: 'cover',
+                        objectPosition: 'left center', // Force the browser to display the left chunk of the cover image
                         zIndex: 0,
                         opacity: 0.15,
                         pointerEvents: 'none'
