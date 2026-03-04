@@ -118,25 +118,55 @@ export default function Gallery() {
                 );
             });
 
-            // Rotate and scale the background SVG based on scroll
-            const bgTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".gallery__grid",
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 1.5
-                }
+            // Responsive background SVG animation
+            let mm = gsap.matchMedia();
+
+            mm.add("(min-width: 769px)", () => {
+                // Desktop: Gentle rotation then dramatic scale
+                gsap.set(".gallery__bg-svg", { xPercent: -50, yPercent: -50 });
+
+                const bgTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".gallery__grid",
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1.5
+                    }
+                });
+
+                // First half of scroll: gentle rotation
+                bgTl.fromTo(".gallery__bg-svg",
+                    { rotation: -5, scale: 1 },
+                    { rotation: 15, scale: 1, ease: "none", duration: 1 }
+                )
+                    // Second half of scroll: dramatic rotation and scale increase
+                    .to(".gallery__bg-svg",
+                        { rotation: 90, scale: 1.8, ease: "power2.in", duration: 1 }
+                    );
             });
 
-            // First half of scroll: gentle rotation
-            bgTl.fromTo(".gallery__bg-svg",
-                { rotation: -5, scale: 1 },
-                { rotation: 15, scale: 1, ease: "none", duration: 1 }
-            )
-                // Second half of scroll: dramatic rotation and scale increase
-                .to(".gallery__bg-svg",
-                    { rotation: 90, scale: 1.8, ease: "power2.in", duration: 1 }
+            mm.add("(max-width: 768px)", () => {
+                // Mobile: SVG starts at the top, pins to the viewport, and rotates/scales 
+                // as the user scrolls down the very long vertical list of images.
+                gsap.set(".gallery__bg-svg", { xPercent: -50, yPercent: 0 }); // Anchor to top center for pinning
+
+                const bgTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".gallery__grid",
+                        start: "top 35%", // Start pinning when grid reaches upper third
+                        end: "bottom 65%", // Release pin before the end of the grid
+                        scrub: 1.5,
+                        pin: ".gallery__bg-svg", // Pin the SVG to chase the user down
+                        pinSpacing: false // Prevent GSAP from injecting extra padding to the grid
+                    }
+                });
+
+                // As it stays pinned on screen, it heavily rotates and scales up
+                bgTl.fromTo(".gallery__bg-svg",
+                    { rotation: 0, scale: 1 },
+                    { rotation: 180, scale: 2.2, ease: "none" }
                 );
+            });
 
         }, sectionRef);
 
@@ -220,19 +250,7 @@ export default function Gallery() {
                     <img
                         src={bgSvg}
                         alt="Background Shape"
-                        className="gallery__bg-svg gs-reveal"
-                        style={{
-                            position: 'absolute',
-                            top: '50%', // Lowered to be directly behind the cards
-                            left: '50%',
-                            transform: 'translate(-50%, -50%)',
-                            width: '140%',
-                            height: 'auto',
-                            maxWidth: '1200px',
-                            zIndex: -1,
-                            opacity: 0.5, // Increased to 50% opacity as requested
-                            pointerEvents: 'none'
-                        }}
+                        className="gallery__bg-svg"
                     />
                     {guitars.map((guitar) => (
                         <div className="gallery__card gs-stagger-child" key={guitar.id}>

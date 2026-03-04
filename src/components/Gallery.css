@@ -65,6 +65,19 @@
     letter-spacing: 0.04em;
 }
 
+/* Background SVG */
+.gallery__bg-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 140%;
+    height: auto;
+    max-width: 1200px;
+    z-index: -1;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .gallery__grid {
@@ -76,5 +89,14 @@
     .gallery__grid {
         grid-template-columns: 1fr;
         gap: var(--space-md);
+    }
+
+    .gallery__bg-svg {
+        top: 5%;
+        /* Start near the top of the grid on mobile */
+        width: 150%;
+        /* Slightly wider baseline */
+        opacity: 0.35;
+        /* Subtler opacity for text readability */
     }
 }
