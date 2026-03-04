@@ -146,14 +146,17 @@ export default function Process() {
                         alt="Bass Blueprint Background"
                         style={{
                             position: 'absolute',
-                            top: '60%', // Lowered by 10%
+                            top: '50%',
                             left: '50%',
-                            transform: 'translate(-50%, -50%) rotate(90deg)', // Rotated 90deg to the right
-                            width: '246.4%', // Decreased by 20%
-                            height: '246.4%',
-                            objectFit: 'contain',
+                            // Rotate 90deg to sit vertically, and scale up for significant zoom
+                            transform: 'translate(-50%, -50%) rotate(90deg) scale(1.5)',
+                            width: '120vw', // Ensure it is large enough to span across both desktop and mobile heights when rotated
+                            height: '120vh',
+                            minWidth: '1200px',
+                            minHeight: '1200px',
+                            objectFit: 'cover',
                             zIndex: 0,
-                            opacity: 0.15, // Subtle background effect
+                            opacity: 0.15,
                             pointerEvents: 'none'
                         }}
                     />
