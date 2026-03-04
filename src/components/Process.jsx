@@ -133,21 +133,7 @@ export default function Process() {
                 <img
                     src={bassBlueprint}
                     alt="Bass Blueprint Background"
-                    style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '0', // Anchor to left edge instead of 50%
-                        transform: 'translate(0, -50%) rotate(0deg) scale(0.8)', // Scale down by 20%
-                        width: '100vw',
-                        height: '100%',
-                        minWidth: '1000px',
-                        minHeight: '1000px',
-                        objectFit: 'cover',
-                        objectPosition: 'left center', // Force the browser to display the left chunk of the cover image
-                        zIndex: 0,
-                        opacity: 0.15,
-                        pointerEvents: 'none'
-                    }}
+                    className="process__bg-img"
                 />
 
                 <div className="process__header gs-reveal" style={{ position: 'relative', zIndex: 2 }}>
