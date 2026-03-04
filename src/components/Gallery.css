@@ -21,7 +21,8 @@
     cursor: pointer;
 }
 
-.gallery__card:hover {
+.gallery__card:hover,
+.gallery__card--active {
     border-color: var(--color-text);
     transform: translateY(-4px);
 }
@@ -39,7 +40,8 @@
     transition: transform var(--transition-slow);
 }
 
-.gallery__card:hover .gallery__card-img {
+.gallery__card:hover .gallery__card-img,
+.gallery__card--active .gallery__card-img {
     transform: scale(1.05);
 }
 

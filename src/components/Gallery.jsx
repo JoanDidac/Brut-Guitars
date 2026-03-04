@@ -166,6 +166,18 @@ export default function Gallery() {
                     { rotation: 0, scale: 1 },
                     { rotation: 180, scale: 2.2, ease: "none" }
                 );
+
+                // Mobile: Add a toggle class to individual cards when they reach the center of the screen
+                // This simulates the desktop "hover" state dynamically as the user scrolls
+                const cards = gsap.utils.toArray('.gallery__card');
+                cards.forEach((card) => {
+                    ScrollTrigger.create({
+                        trigger: card,
+                        start: "top 60%", // Activate when the top of the card reaches 60% down the screen
+                        end: "bottom 40%", // Deactivate when the bottom of the card leaves the 40% threshold
+                        toggleClass: "gallery__card--active", // Applies our CSS hover-replica class
+                    });
+                });
             });
 
         }, sectionRef);
