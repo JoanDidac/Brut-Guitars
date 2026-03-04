@@ -129,6 +129,24 @@ export default function Process() {
     return (
         <section className="process section" id="process" ref={sectionRef}>
             <div className="container" style={{ position: 'relative' }}>
+                {/* Background Blueprint Image */}
+                <img
+                    src={bassBlueprint}
+                    alt="Bass Blueprint Background"
+                    style={{
+                        position: 'absolute',
+                        top: '60%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%) rotate(-90deg)', // Rotated 90 left
+                        width: '246.4%',
+                        height: '246.4%',
+                        objectFit: 'contain',
+                        zIndex: -1, // Pushed entirely behind the P elements and Gallery SVG
+                        opacity: 0.15,
+                        pointerEvents: 'none'
+                    }}
+                />
+
                 <div className="process__header gs-reveal">
                     <span className="section-label">The Process</span>
                     <h2 className="section-title">From Vision to Voice</h2>
@@ -140,26 +158,6 @@ export default function Process() {
                 </div>
 
                 <div className="process__steps" style={{ position: 'relative', zIndex: 4, marginTop: '4rem' }}>
-                    {/* Background Blueprint Image */}
-                    <img
-                        src={bassBlueprint}
-                        alt="Bass Blueprint Background"
-                        style={{
-                            position: 'absolute',
-                            top: '50%',
-                            left: '50%',
-                            // Rotate 90deg to sit vertically, and scale up for significant zoom
-                            transform: 'translate(-50%, -50%) rotate(90deg) scale(1.5)',
-                            width: '120vw', // Ensure it is large enough to span across both desktop and mobile heights when rotated
-                            height: '120vh',
-                            minWidth: '1200px',
-                            minHeight: '1200px',
-                            objectFit: 'cover',
-                            zIndex: 0,
-                            opacity: 0.15,
-                            pointerEvents: 'none'
-                        }}
-                    />
                     {steps.map((step) => (
                         <div className="process__step" key={step.number} style={{ position: 'relative', zIndex: 1 }}>
                             <div className="process__step-inner">
