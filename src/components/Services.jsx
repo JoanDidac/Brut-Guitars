@@ -59,27 +59,34 @@ export default function Services({ onNavigate }) {
 
             // 2a. Move entire header block down to meet folders
             const isMobileMatches = window.matchMedia("(max-width: 768px)").matches;
-            const yBonus = isMobileMatches ? 12 : 0; // Provide exactly 12vh of extra travel distance strictly on mobile
+
+            // For mobile, we introduce a distinct behavior: 
+            // The text locks in place vertically earlier, and then only gets "pushed" down 
+            // when the folders physically collide with it.
+            const mobilePushDistance = isMobileMatches ? 12 : 0;
 
             gsap.fromTo(headerElements,
-                { y: "0vh" }, // Explicitly start from 0vh so it doesn't jump back to -50vh
+                { y: "0vh" },
                 {
                     y: (i, el) => {
                         const baseOffset = el.classList.contains('section-label') ? 43 : 40;
-                        return `${baseOffset + yBonus}vh`; // Inject the extended travel
+                        return `${baseOffset + mobilePushDistance}vh`;
                     },
-                    ease: "none",
-                    immediateRender: false, // Wait until triggered to sample start values
+                    // We change ease to power2.in on mobile so it stays locked longer and accelerates 
+                    // downwards right as the folders collide with it, simulating a physical push.
+                    ease: isMobileMatches ? "power2.in" : "none",
+                    immediateRender: false,
                     scrollTrigger: {
                         trigger: ".services__cabinet",
-                        start: "top 95%", // Start moving as the folders scroll up into view
-                        end: `top ${45 - yBonus}%`, // Extend travel boundary by identical amount to perfectly preserve animation speed ratio
+                        // On mobile, delay the start of the "push" so it stays locked longer
+                        start: isMobileMatches ? "top 75%" : "top 95%",
+                        end: isMobileMatches ? "top 33%" : "top 45%", // Extend end trigger to map the push
                         scrub: 1
                     }
                 }
             );
 
-            // 2b. Paragraph text animation OUT: only fade out the p element smoothly in the last 10%
+            // 2b. Paragraph text animation OUT: fade out the p element smoothly before collision
             const pEl = document.querySelector('.services__header .section-subtitle');
 
             if (pEl) {
@@ -91,8 +98,10 @@ export default function Services({ onNavigate }) {
                         immediateRender: false,
                         scrollTrigger: {
                             trigger: ".services__cabinet",
-                            start: `top ${55 - yBonus}%`, // Push fade-out window so it correctly lands at the very end of the extended travel
-                            end: `top ${45 - yBonus}%`,
+                            // Fade out starts earlier on mobile so the paragraph vanishes 
+                            // before the ascending folders can step on it.
+                            start: isMobileMatches ? "top 85%" : "top 55%",
+                            end: isMobileMatches ? "top 65%" : "top 45%",
                             scrub: 1
                         }
                     }
