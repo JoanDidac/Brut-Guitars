@@ -134,6 +134,27 @@ export default function Services({ onNavigate }) {
                 }
             );
 
+            // 5. Half-circle "emerging" animation from the ceiling
+            gsap.fromTo('.services__top-arch',
+                {
+                    xPercent: -50,
+                    yPercent: -70, // Start ~75% hidden above the overflow ceiling boundary, leaving just the tip visible
+                    rotation: -90
+                },
+                {
+                    xPercent: -50,
+                    yPercent: -35, // Settle at the exact flush position dialed in earlier
+                    rotation: -90,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: ".services",
+                        start: "top 95%", // Start dropping in as soon as the ceiling is visible
+                        end: "top 25%",   // Settle exactly when the section header text starts to lock in
+                        scrub: 1
+                    }
+                }
+            );
+
         }, sectionRef);
 
         return () => ctx.revert();
