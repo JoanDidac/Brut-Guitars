@@ -15,6 +15,7 @@ import iconWoodworking from '../assets/saw-svgrepo-com.svg';
 import iconPaint from '../assets/paint-spray-graffiti-svgrepo-com.svg';
 import iconFretwork from '../assets/set-square-svgrepo-com.svg';
 import iconElectronics from '../assets/jack-svgrepo-com.svg';
+import halfCircleIcon from '../assets/solid-circle-half.svg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -192,6 +193,7 @@ export default function Services({ onNavigate }) {
 
     return (
         <section className="services section" id="services" ref={sectionRef}>
+            <img src={halfCircleIcon} alt="Decorative Half Circle" className="services__top-arch" />
             <div className="container">
                 <div className="services__header">
                     <h2 className="section-label header-anim">More Than Just Builds</h2>

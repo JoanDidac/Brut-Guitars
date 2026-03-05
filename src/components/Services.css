@@ -8,7 +8,8 @@
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) rotate(-90deg);
+    /* Rotate to flatten straight edge against ceiling */
     width: 18rem;
     /* Scaled up 300% from 6rem */
     height: auto;
