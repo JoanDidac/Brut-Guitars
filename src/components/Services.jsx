@@ -59,7 +59,7 @@ export default function Services({ onNavigate }) {
 
             // 2a. Move entire header block down to meet folders
             const isMobileMatches = window.matchMedia("(max-width: 768px)").matches;
-            const yBonus = isMobileMatches ? 15 : 0; // Provide exactly 15vh of extra travel distance strictly on mobile
+            const yBonus = isMobileMatches ? 12 : 0; // Provide exactly 12vh of extra travel distance strictly on mobile
 
             gsap.fromTo(headerElements,
                 { y: "0vh" }, // Explicitly start from 0vh so it doesn't jump back to -50vh

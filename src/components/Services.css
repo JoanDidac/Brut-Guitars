@@ -35,8 +35,8 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    z-index: 1;
-    /* Below the grid later when moving */
+    z-index: 100;
+    /* Elevated above cabinet folders so extended animations don't slip behind */
 }
 
 .grid-background-svg {
