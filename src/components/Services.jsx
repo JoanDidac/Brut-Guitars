@@ -58,16 +58,22 @@ export default function Services({ onNavigate }) {
             );
 
             // 2a. Move entire header block down to meet folders
+            const isMobileMatches = window.matchMedia("(max-width: 768px)").matches;
+            const yBonus = isMobileMatches ? 15 : 0; // Provide exactly 15vh of extra travel distance strictly on mobile
+
             gsap.fromTo(headerElements,
                 { y: "0vh" }, // Explicitly start from 0vh so it doesn't jump back to -50vh
                 {
-                    y: (i, el) => el.classList.contains('section-label') ? "43vh" : "40vh", // Move label down 3vh further relative to title
+                    y: (i, el) => {
+                        const baseOffset = el.classList.contains('section-label') ? 43 : 40;
+                        return `${baseOffset + yBonus}vh`; // Inject the extended travel
+                    },
                     ease: "none",
                     immediateRender: false, // Wait until triggered to sample start values
                     scrollTrigger: {
                         trigger: ".services__cabinet",
                         start: "top 95%", // Start moving as the folders scroll up into view
-                        end: "top 45%",   // Arrive exactly when folders reach final resting point
+                        end: `top ${45 - yBonus}%`, // Extend travel boundary by identical amount to perfectly preserve animation speed ratio
                         scrub: 1
                     }
                 }
@@ -85,8 +91,8 @@ export default function Services({ onNavigate }) {
                         immediateRender: false,
                         scrollTrigger: {
                             trigger: ".services__cabinet",
-                            start: "top 55%", // Wait to fade out until the very end
-                            end: "top 45%",   // Fully transparent precisely when the h2/h3 arrive at final destination
+                            start: `top ${55 - yBonus}%`, // Push fade-out window so it correctly lands at the very end of the extended travel
+                            end: `top ${45 - yBonus}%`,
                             scrub: 1
                         }
                     }
