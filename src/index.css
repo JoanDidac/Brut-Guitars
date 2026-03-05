@@ -253,7 +253,9 @@ button {
   width: 100%;
   height: 0;
   /* Zero height prevents adding unwanted padding between sections */
-  display: flex;
+
+  /* PRIME DIRECTIVE: Hide entirely on desktop */
+  display: none;
   justify-content: center;
   z-index: 10;
   /* Float high enough to sit above backgrounds/borders */
@@ -271,12 +273,20 @@ button {
   /* Pull the image halfway up across the literal seam. 
        Adjust this translate value visually if it needs to go higher or lower. */
   transform: translateY(-50%);
+  opacity: 0.3;
+  /* Lower opacity so it blends softly like the blueprints */
 }
 
-/* Slight scale reduction on mobiles so it doesn't overcrowd the cards */
+/* Enable visibility and adjust scale specifically for mobile */
 @media (max-width: 768px) {
+  .section-transition-pick {
+    display: flex;
+    /* Reveal on mobile only */
+  }
+
   .section-transition-pick__img {
-    width: 11rem;
+    width: 13.2rem;
+    /* Scaled up exactly 20% from the previous 11rem trial */
     transform: translateY(-40%);
   }
 }
