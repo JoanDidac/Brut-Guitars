@@ -19,10 +19,12 @@ export default function PickGraphic() {
                         {
                             rotation: -90, // Start horizontal (pointing right, as drawn in point A)
                             yPercent: -50, // Start center exactly on the juncture
+                            y: 0,
                         },
                         {
                             rotation: 0, // End completely vertical (point B)
                             yPercent: 0, // Drop down completely so the top edge rests on the juncture
+                            y: -15, // Explicitly land 15px higher than the flush 0% mark
                             ease: "none",
                             scrollTrigger: {
                                 trigger: containerRef.current,
