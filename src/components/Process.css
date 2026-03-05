@@ -53,14 +53,14 @@
         left: 50%;
         /* Center against the viewport */
         width: 135vw;
-        /* Increased to compensate for scale(0.76) so edges aren't visible */
-        height: 135%;
-        /* Increased to compensate for scale(0.76) */
-        /* Spans the full height of the mobile grid */
-        object-fit: cover;
+        /* Ensures the final scaled width covers the screen horizontally (135 * 0.76 = ~102vw) */
+        height: auto;
+        /* Let the height resolve naturally so none of the image is chopped */
+        /* Lock in full visibility without CSS cropping */
+        object-fit: contain;
         object-position: center center;
         /* Assumed to be naturally centered as requested */
-        transform: translate(-50%, -50%) rotate(0deg) scale(0.76);
+        transform: translate(-50%, -50%) scale(0.76);
         /* Requested 0.76 scale */
     }
 }
