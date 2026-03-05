@@ -17,12 +17,12 @@ export default function PickGraphic() {
                 "(max-width: 768px)": () => {
                     gsap.fromTo(pickRef.current,
                         {
-                            rotation: 90, // Start horizontal (90 degrees right)
-                            yPercent: -50, // Start exactly on the visual seam
+                            rotation: -90, // Start horizontal (pointing right, as drawn in the user's mockup Point A)
+                            yPercent: -50, // Start centerline exactly on the juncture
                         },
                         {
-                            rotation: 0, // End vertical (current position)
-                            yPercent: 0, // Drop down completely as it rotates (restores the previous unconstrained animation behavior)
+                            rotation: 0, // End completely vertical
+                            yPercent: -47, // Land perfectly at the -47% position (matching the original first trial state)
                             ease: "none",
                             scrollTrigger: {
                                 trigger: containerRef.current,
