@@ -18,11 +18,11 @@ export default function PickGraphic() {
                     gsap.fromTo(pickRef.current,
                         {
                             rotation: 90, // Start horizontal (90 degrees right)
-                            yPercent: -47, // Restore the CSS translateY(-47%) base offset
+                            yPercent: -50, // Start exactly on the visual seam
                         },
                         {
                             rotation: 0, // End vertical (current position)
-                            yPercent: -47, // Maintain vertical offset throughout rotation
+                            yPercent: 0, // Drop down completely as it rotates (restores the previous unconstrained animation behavior)
                             ease: "none",
                             scrollTrigger: {
                                 trigger: containerRef.current,
