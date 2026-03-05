@@ -14,10 +14,10 @@
        3. rotate(-90deg): Face the flat edge up 
     */
     transform: translateX(-50%) translateY(-35%) rotate(-90deg);
-    width: 40rem;
+    width: 33rem;
     max-width: none;
     /* Override global img max-width: 100% */
-    /* Scaled down explicitly to 40rem as requested */
+    /* Scaled explicitly to 33rem as requested */
     height: auto;
     z-index: 10;
     opacity: 0.95;
