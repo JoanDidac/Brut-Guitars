@@ -268,13 +268,14 @@ button {
   top: 0;
   width: 15rem;
   /* Base width */
-  max-width: 60vw;
+  max-width: 90vw;
+  /* Increased max-width to allow the massive 25rem size to fulfill its trial */
   height: auto;
   /* Pull the image halfway up across the literal seam. 
        Adjust this translate value visually if it needs to go higher or lower. */
   transform: translateY(-50%);
-  opacity: 0.3;
-  /* Lower opacity so it blends softly like the blueprints */
+  opacity: 0.5;
+  /* User requested increase to 0.5 */
 }
 
 /* Enable visibility and adjust scale specifically for mobile */
@@ -285,8 +286,8 @@ button {
   }
 
   .section-transition-pick__img {
-    width: 13.2rem;
-    /* Scaled up exactly 20% from the previous 11rem trial */
+    width: 25rem;
+    /* Massive 25rem trial scale */
     transform: translateY(-40%);
   }
 }
