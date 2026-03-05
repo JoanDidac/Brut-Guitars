@@ -138,16 +138,16 @@ export default function Services({ onNavigate }) {
             gsap.fromTo('.services__top-arch',
                 {
                     xPercent: -50,
-                    yPercent: -70, // Start ~75% hidden above the overflow ceiling boundary, leaving just the tip visible
+                    yPercent: -75, // Start ~80% hidden above the overflow ceiling boundary
                     rotation: -90
                 },
                 {
                     xPercent: -50,
-                    yPercent: -35, // Settle at the exact flush position dialed in earlier
+                    yPercent: -35, // Settle exactly at the flush 33rem resting plane
                     rotation: -90,
                     ease: "none",
                     scrollTrigger: {
-                        trigger: ".services",
+                        trigger: sectionRef.current, // Use the raw DOM node so gsap.context() doesn't fail finding itself
                         start: "top 95%", // Start dropping in as soon as the ceiling is visible
                         end: "top 25%",   // Settle exactly when the section header text starts to lock in
                         scrub: 1
