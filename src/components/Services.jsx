@@ -57,36 +57,40 @@ export default function Services({ onNavigate }) {
                 }
             );
 
-            // 2a. Move entire header block down to meet folders
+            // 2a. Desktop: Move entire header block down to meet folders
             const isMobileMatches = window.matchMedia("(max-width: 768px)").matches;
 
-            // For mobile, we introduce a distinct behavior: 
-            // The text locks in place vertically earlier, and then only gets "pushed" down 
-            // when the folders physically collide with it.
-            const mobilePushDistance = isMobileMatches ? 12 : 0;
-
-            gsap.fromTo(headerElements,
-                { y: "0vh" },
-                {
-                    y: (i, el) => {
-                        const baseOffset = el.classList.contains('section-label') ? 43 : 40;
-                        return `${baseOffset + mobilePushDistance}vh`;
-                    },
-                    // We change ease to power2.in on mobile so it stays locked longer and accelerates 
-                    // downwards right as the folders collide with it, simulating a physical push.
-                    ease: isMobileMatches ? "power2.in" : "none",
-                    immediateRender: false,
-                    scrollTrigger: {
-                        trigger: ".services__cabinet",
-                        // On mobile, delay the start of the "push" so it stays locked longer
-                        start: isMobileMatches ? "top 75%" : "top 95%",
-                        end: isMobileMatches ? "top 33%" : "top 45%", // Extend end trigger to map the push
-                        scrub: 1
+            if (!isMobileMatches) {
+                // Desktop Behavior: Smoothly slide text down 40-43vh to meet ascending cabinet
+                gsap.fromTo(headerElements,
+                    { y: "0vh" },
+                    {
+                        y: (i, el) => el.classList.contains('section-label') ? "43vh" : "40vh",
+                        ease: "none",
+                        immediateRender: false,
+                        scrollTrigger: {
+                            trigger: ".services__cabinet",
+                            start: "top 95%",
+                            end: "top 45%",
+                            scrub: 1
+                        }
                     }
-                }
-            );
+                );
+            } else {
+                // Mobile Behavior: "Lock and Push"
+                // Pin the entire header container in place so it stays centered in the viewport
+                // while the user scrolls down. Unpin it when the cabinet touches the bottom of the header.
+                ScrollTrigger.create({
+                    trigger: ".services__header",
+                    start: "center center", // Lock when the header is exactly in the middle of the screen
+                    endTrigger: ".services__cabinet",
+                    end: "top center", // Unlock when the top of the cabinet reaches the center (colliding with the text)
+                    pin: true,
+                    pinSpacing: false, // Don't add artificial padding, let the cabinet slide up naturally over the background
+                });
+            }
 
-            // 2b. Paragraph text animation OUT: fade out the p element smoothly before collision
+            // 2b. Paragraph text animation OUT
             const pEl = document.querySelector('.services__header .section-subtitle');
 
             if (pEl) {
@@ -98,10 +102,9 @@ export default function Services({ onNavigate }) {
                         immediateRender: false,
                         scrollTrigger: {
                             trigger: ".services__cabinet",
-                            // Fade out starts earlier on mobile so the paragraph vanishes 
-                            // before the ascending folders can step on it.
-                            start: isMobileMatches ? "top 85%" : "top 55%",
-                            end: isMobileMatches ? "top 65%" : "top 45%",
+                            // On mobile, fade out before the cabinet hits the pinned text. On desktop, standard fade.
+                            start: isMobileMatches ? "top 80%" : "top 55%",
+                            end: isMobileMatches ? "top 60%" : "top 45%",
                             scrub: 1
                         }
                     }
