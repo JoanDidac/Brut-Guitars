@@ -139,17 +139,19 @@ export default function Services({ onNavigate }) {
                 {
                     xPercent: -50,
                     yPercent: -75, // Start ~80% hidden above the overflow ceiling boundary
+                    y: "30px", // Translate the entire path 30px lower globally
                     rotation: -90
                 },
                 {
                     xPercent: -50,
                     yPercent: -35, // Settle exactly at the flush 33rem resting plane
+                    y: "30px", // Maintain 30px lower offset at the resting point
                     rotation: -90,
                     ease: "none",
                     scrollTrigger: {
                         trigger: sectionRef.current, // Use the raw DOM node so gsap.context() doesn't fail finding itself
                         start: "top 95%", // Start dropping in as soon as the ceiling is visible
-                        end: "top 25%",   // Settle exactly when the section header text starts to lock in
+                        end: "top 49%",   // Settle exactly when 49% of the vh has been reached
                         scrub: 1
                     }
                 }
