@@ -14,8 +14,8 @@
        3. rotate(-90deg): Face the flat edge up 
     */
     transform: translateX(-50%) translateY(-35%) rotate(-90deg);
-    width: 23rem;
-    /* Scaled up explicitly to 23rem as requested */
+    width: 26rem;
+    /* Scaled up explicitly to 26rem as requested */
     height: auto;
     z-index: 10;
     opacity: 0.95;
