@@ -288,8 +288,8 @@ button {
   .section-transition-pick__img {
     width: 25rem;
     /* Massive 25rem trial scale */
-    top: 4vh;
-    /* Shifts the entire GSAP coordinate foundation down by roughly ~30px relative to screen height */
+    top: 20px;
+    /* Shifts the entire GSAP coordinate foundation down by 20px as requested */
     transform: translateY(-47%);
     /* Moved up 7% from -40% */
   }
