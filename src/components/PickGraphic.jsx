@@ -17,12 +17,12 @@ export default function PickGraphic() {
                 "(max-width: 768px)": () => {
                     gsap.fromTo(pickRef.current,
                         {
-                            rotation: -90, // Start horizontal (pointing right, as drawn in the user's mockup Point A)
-                            yPercent: -50, // Start centerline exactly on the juncture
+                            rotation: -90, // Start horizontal (pointing right, as drawn in point A)
+                            yPercent: -50, // Start center exactly on the juncture
                         },
                         {
-                            rotation: 0, // End completely vertical
-                            yPercent: -47, // Land perfectly at the -47% position (matching the original first trial state)
+                            rotation: 0, // End completely vertical (point B)
+                            yPercent: 0, // Drop down completely so the top edge rests on the juncture
                             ease: "none",
                             scrollTrigger: {
                                 trigger: containerRef.current,
