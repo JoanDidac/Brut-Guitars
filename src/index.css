@@ -274,8 +274,8 @@ button {
   /* Pull the image halfway up across the literal seam. 
        Adjust this translate value visually if it needs to go higher or lower. */
   transform: translateY(-50%);
-  opacity: 0.5;
-  /* User requested increase to 0.5 */
+  opacity: 0.4;
+  /* Tweaked opacity down to 0.4 */
 }
 
 /* Enable visibility and adjust scale specifically for mobile */
@@ -288,8 +288,6 @@ button {
   .section-transition-pick__img {
     width: 25rem;
     /* Massive 25rem trial scale */
-    top: 20px;
-    /* Shifts the entire GSAP coordinate foundation down by 20px as requested */
     transform: translateY(-47%);
     /* Moved up 7% from -40% */
   }
