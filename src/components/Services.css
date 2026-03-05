@@ -37,6 +37,13 @@
     position: relative;
     z-index: 100;
     /* Elevated above cabinet folders so extended animations don't slip behind */
+    pointer-events: none;
+    /* Let clicks pass through the pinned container so folder tabs are interactive */
+}
+
+.services__header .header-anim {
+    pointer-events: auto;
+    /* Restore pointer events strictly on the text elements so they can be selected */
 }
 
 .grid-background-svg {
