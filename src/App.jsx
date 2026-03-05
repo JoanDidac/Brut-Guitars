@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ServicesPage from './components/ServicesPage'; // Creating this component next
 import useGsapAnimations from './hooks/useGsapAnimations';
+import guitarPick from './assets/Brut-Guitars_Pick_soundhole.png';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -53,6 +54,12 @@ function App() {
             <Marquee />
             <About />
             <Gallery />
+
+            {/* Guitar Pick Transition Graphic */}
+            <div className="section-transition-pick">
+              <img src={guitarPick} alt="Brut Guitars Highlight" className="section-transition-pick__img" />
+            </div>
+
             <Process />
             <Services onNavigate={navigateTo} />
             <Contact />

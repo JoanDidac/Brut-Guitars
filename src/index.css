@@ -244,3 +244,39 @@ button {
   transform: scale(0.9);
   will-change: opacity, transform;
 }
+
+/* =============================================
+   Guitar Pick Section Transition
+   ============================================= */
+.section-transition-pick {
+  position: relative;
+  width: 100%;
+  height: 0;
+  /* Zero height prevents adding unwanted padding between sections */
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  /* Float high enough to sit above backgrounds/borders */
+  pointer-events: none;
+  /* Let users click/scroll through it safely */
+}
+
+.section-transition-pick__img {
+  position: absolute;
+  top: 0;
+  width: 15rem;
+  /* Base width */
+  max-width: 60vw;
+  height: auto;
+  /* Pull the image halfway up across the literal seam. 
+       Adjust this translate value visually if it needs to go higher or lower. */
+  transform: translateY(-50%);
+}
+
+/* Slight scale reduction on mobiles so it doesn't overcrowd the cards */
+@media (max-width: 768px) {
+  .section-transition-pick__img {
+    width: 11rem;
+    transform: translateY(-40%);
+  }
+}
