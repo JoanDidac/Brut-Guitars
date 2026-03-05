@@ -10,12 +10,12 @@
     left: 50%;
     /* 
        1. translateX(-50%): Centering before rotation
-       2. translateY(-25%): After rotation, the square viewBox means half the SVG is empty space. This pulls the flat edge perfectly flush against the ceiling.
+       2. translateY(-35%): Pulls the flat edge higher past the geometric flush limit into the ceiling.
        3. rotate(-90deg): Face the flat edge up 
     */
-    transform: translateX(-50%) translateY(-25%) rotate(-90deg);
-    width: 21.6rem;
-    /* Scaled up 20% from 18rem */
+    transform: translateX(-50%) translateY(-35%) rotate(-90deg);
+    width: 23rem;
+    /* Scaled up explicitly to 23rem as requested */
     height: auto;
     z-index: 10;
     opacity: 0.95;
