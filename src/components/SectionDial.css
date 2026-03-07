@@ -21,7 +21,7 @@
 }
 
 .section-dial-wrapper--idle {
-    opacity: 0.15;
+    opacity: 0.4;
     transform: translateY(33%);
 }
 
@@ -182,22 +182,18 @@
     width: 8px;
     height: 1px;
     background-color: var(--color-bg);
-    /* Restored the notch line, matched to the creamy color */
     transform: translate(-50%) rotate(calc((var(--n) - 1) * 60deg)) translateX(38px);
+    counter-reset: section;
 }
 
-.notch-icon {
+.notch::before {
+    content: counter(section);
     position: absolute;
-    width: 28px;
-    height: 28px;
-    /* Cancel the rotation so icons stand upright, push out slightly more due to larger size */
-    transform: translate(16px, -50%) rotate(calc((var(--n) - 1) * -60deg));
-    /* Ensure the SVG displays in the creamy palette color */
-    /* Using standard invert trick, or applying CSS filter to make it var(--color-bg) */
-    /* For black SVGs to become creamy: invert it to white, then sepia/hue-rotate if needed. 
-     Since SVGs are black but we want creamy. var(--color-bg) is #f4ebd8.
-     A simple brightness(100) and invert(1) makes them white, opacity makes them creamish over dark.
-     Or just use invert(1) to make them white if the background is dark. */
-    filter: invert(1) sepia(0.2) saturate(0.5);
-    pointer-events: none;
+    counter-set: section var(--n);
+    color: var(--color-bg);
+    transform: translate(12px, -50%) rotate(calc((var(--n) - 1) * -60deg));
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 16px;
+    /* Bumped up from the original 11px to make numbers legible */
 }
