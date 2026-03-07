@@ -177,7 +177,9 @@
     .contact__form {
         padding: var(--space-md);
     }
-}/* Modal specific overrides */
+}
+
+/* Modal specific overrides */
 .contact--modal {
     position: relative;
     width: 100%;
@@ -189,8 +191,9 @@
 }
 
 .contact--modal .container {
-    width: 66%;
-    max-width: 800px;
+    width: 100%;
+    max-width: none;
+    padding: 0 var(--space-xl);
     margin: 0 auto;
 }
 
@@ -226,8 +229,25 @@
     object-fit: contain;
 }
 
+.contact-modal-bg--builds {
+    height: 100vh;
+    max-height: 100vh;
+    top: 0;
+    transform: translateX(-50%);
+    align-items: flex-start;
+}
+
+.contact-modal-bg--builds img {
+    height: 100%;
+    width: auto;
+}
+
+.contact-modal-bg--paint img {
+    transform: scale(1.2);
+}
+
 @media (max-width: 768px) {
     .contact--modal .container {
-        width: 90%;
+        padding: 0 var(--space-md);
     }
 }

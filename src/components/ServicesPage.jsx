@@ -8,7 +8,7 @@ import imgSetups from '../assets/gallery-headstock.jpg';
 import imgWoodworking from '../assets/craftsmanship-detail.png';
 import imgPaint from '../assets/guitar-showcase.png';
 import imgFretwork from '../assets/gallery-fretboard.jpg';
-import imgElectronics from '../assets/hero-workshop.png';
+import imgElectronics from '../assets/Electronics-Brut.jpg';
 
 import iconBuilds from '../assets/electric-guitar-svgrepo-com.svg';
 import iconSetups from '../assets/calipers-svgrepo-com.svg';
@@ -19,7 +19,18 @@ import iconElectronics from '../assets/jack-svgrepo-com.svg';
 
 export default function ServicesPage({ selectedCategory, onNavigate }) {
     const pageRef = useRef(null);
-    const [contactModalService, setContactModalService] = useState(null);
+    const [contactModalService, setContactModalService] = useState(() => {
+        const stored = sessionStorage.getItem('brut_contactModalService');
+        return stored ? JSON.parse(stored) : null;
+    });
+
+    useEffect(() => {
+        if (contactModalService) {
+            sessionStorage.setItem('brut_contactModalService', JSON.stringify(contactModalService));
+        } else {
+            sessionStorage.removeItem('brut_contactModalService');
+        }
+    }, [contactModalService]);
 
     useEffect(() => {
         if (selectedCategory) {
@@ -114,11 +125,11 @@ export default function ServicesPage({ selectedCategory, onNavigate }) {
                                     <h3 className="services-page__item-subtitle">{service.subtitle}</h3>
                                     <p className="services-page__item-desc">{service.desc}</p>
                                     <div className="services-page__actions">
-                                        <a href="https://calendar.google.com/" target="_blank" rel="noopener noreferrer" className="btn-pill btn-pill--dark mt-4">
+                                        <a href="https://calendar.google.com/" target="_blank" rel="noopener noreferrer" className="btn-pill btn-pill--dark">
                                             Book a Date!
                                         </a>
-                                        <button className="btn-pill btn-pill--outline mt-4" onClick={() => setContactModalService(service)}>
-                                            More Questions? Book a call!
+                                        <button className="btn-pill btn-pill--outline" onClick={() => setContactModalService(service)}>
+                                            Questions? Book a call!
                                         </button>
                                     </div>
                                 </div>
@@ -147,7 +158,7 @@ export default function ServicesPage({ selectedCategory, onNavigate }) {
             </section>
 
             {contactModalService && (
-                <Contact isModal={true} modalBgSvg={contactModalService.icon} onCloseModal={() => setContactModalService(null)} />
+                <Contact isModal={true} modalBgSvg={contactModalService.icon} modalCategoryId={contactModalService.id} onCloseModal={() => setContactModalService(null)} />
             )}
         </div>
     );

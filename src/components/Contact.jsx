@@ -7,7 +7,7 @@ import './Contact.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Contact({ isModal = false, modalBgSvg = null, onCloseModal }) {
+export default function Contact({ isModal = false, modalBgSvg = null, modalCategoryId = null, onCloseModal }) {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [submitted, setSubmitted] = useState(false);
     const sectionRef = useRef(null);
@@ -106,7 +106,7 @@ export default function Contact({ isModal = false, modalBgSvg = null, onCloseMod
     const contactContent = (
         <section className={`contact section ${isModal ? 'contact--modal' : ''}`} id="contact" ref={sectionRef}>
             {isModal && modalBgSvg ? (
-                <div className="contact-modal-bg">
+                <div className={`contact-modal-bg contact-modal-bg--${modalCategoryId || 'general'}`}>
                     <img src={modalBgSvg} alt="Service icon background" />
                 </div>
             ) : (

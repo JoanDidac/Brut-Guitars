@@ -13,17 +13,27 @@ import useGsapAnimations from './hooks/useGsapAnimations';
 import PickGraphic from './components/PickGraphic';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-  const [selectedService, setSelectedService] = useState(null);
+  const [currentPage, setCurrentPage] = useState(() => {
+    return sessionStorage.getItem('brut_currentPage') || 'home';
+  });
+  const [selectedService, setSelectedService] = useState(() => {
+    return sessionStorage.getItem('brut_selectedService') || null;
+  });
   const [pendingScroll, setPendingScroll] = useState(null);
 
   useGsapAnimations([currentPage]);
 
   const navigateTo = (page, data = null) => {
     setCurrentPage(page);
+    sessionStorage.setItem('brut_currentPage', page);
 
     if (page === 'services') {
       setSelectedService(data);
+      if (data) {
+        sessionStorage.setItem('brut_selectedService', data);
+      } else {
+        sessionStorage.removeItem('brut_selectedService');
+      }
       window.scrollTo(0, 0);
     } else if (page === 'home') {
       if (data) {
