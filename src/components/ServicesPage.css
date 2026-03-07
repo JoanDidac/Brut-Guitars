@@ -98,9 +98,17 @@
 
 .services-page__actions {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-md);
+    flex-wrap: nowrap;
+    gap: var(--space-xs);
     align-items: center;
+    justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+    .services-page__actions .btn-pill {
+        padding: 0.85rem 1rem;
+        font-size: 0.65rem;
+    }
 }
 
 .services-page__image-wrap {
