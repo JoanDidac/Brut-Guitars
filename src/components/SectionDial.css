@@ -1,5 +1,8 @@
 .section-dial-wrapper {
-    position: relative;
+    position: fixed;
+    /* Keep it sticky at the bottom */
+    bottom: 0;
+    left: 0;
     width: 100%;
     /* Container height designed to sit flush at the bottom */
     height: 120px;
@@ -9,8 +12,16 @@
     align-items: flex-end;
     overflow: hidden;
     /* Hide the lower half of the SVG arc */
-    margin-top: var(--space-2xl);
     padding-bottom: 20px;
+    z-index: 99;
+    /* ensure it is above other elements */
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    /* Let clicks pass through the invisible parts */
+}
+
+.section-dial-wrapper--idle {
+    opacity: 0.15;
 }
 
 /* Base mobile visibility */
@@ -44,6 +55,8 @@
 .section-dial-container {
     position: relative;
     z-index: 10;
+    pointer-events: auto;
+    /* Restores clicking on just the dial component */
     /* Move up slightly to sit nicely inside the dome */
     transform: translateY(-10px);
 }
@@ -167,18 +180,23 @@
     left: 50%;
     width: 8px;
     height: 1px;
-    background-color: var(--color-text);
+    background-color: transparent;
+    /* Used to be var(--color-text), but now we use images */
     transform: translate(-50%) rotate(calc((var(--n) - 1) * 60deg)) translateX(38px);
-    counter-reset: section;
 }
 
-.notch::before {
-    content: counter(section);
+.notch-icon {
     position: absolute;
-    counter-set: section var(--n);
-    color: var(--color-text);
+    width: 14px;
+    height: 14px;
+    /* Cancel the rotation so icons stand upright */
     transform: translate(12px, -50%) rotate(calc((var(--n) - 1) * -60deg));
-    font-family: var(--font-mono);
-    font-weight: 500;
-    font-size: 11px;
+    /* Ensure the SVG displays in the creamy palette color */
+    /* Using standard invert trick, or applying CSS filter to make it var(--color-bg) */
+    /* For black SVGs to become creamy: invert it to white, then sepia/hue-rotate if needed. 
+     Since SVGs are black but we want creamy. var(--color-bg) is #f4ebd8.
+     A simple brightness(100) and invert(1) makes them white, opacity makes them creamish over dark.
+     Or just use invert(1) to make them white if the background is dark. */
+    filter: invert(1) sepia(0.2) saturate(0.5);
+    pointer-events: none;
 }
