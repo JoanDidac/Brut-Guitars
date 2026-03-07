@@ -96,6 +96,13 @@
     margin-bottom: var(--space-lg);
 }
 
+.services-page__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    align-items: center;
+}
+
 .services-page__image-wrap {
     border-radius: var(--radius-lg);
     overflow: hidden;

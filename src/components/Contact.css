@@ -177,4 +177,57 @@
     .contact__form {
         padding: var(--space-md);
     }
+}/* Modal specific overrides */
+.contact--modal {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.contact--modal .container {
+    width: 66%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact--modal .contact__grid {
+    grid-template-columns: 1fr;
+}
+
+.contact--modal .contact__info {
+    display: none;
+}
+
+.contact-modal-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    height: 90vw;
+    max-width: 90vh;
+    max-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    /* GSAP reveals it */
+}
+
+.contact-modal-bg img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .contact--modal .container {
+        width: 90%;
+    }
 }

@@ -7,7 +7,7 @@ import './Contact.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Contact() {
+export default function Contact({ isModal = false, modalBgSvg = null, onCloseModal }) {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [submitted, setSubmitted] = useState(false);
     const sectionRef = useRef(null);
@@ -16,7 +16,24 @@ export default function Contact() {
         let ctx = gsap.context(() => {
             const vinylWrap = sectionRef.current.querySelector('.contact-vinyl-wrap');
             const contactForm = sectionRef.current.querySelector('.contact__form');
+
+            if (isModal) {
+                if (contactForm) {
+                    gsap.set(contactForm, { opacity: 1, x: 0 });
+                }
+                if (vinylWrap) {
+                    gsap.set(vinylWrap, { opacity: 0.15, scale: 0.61, xPercent: -50, yPercent: -50, y: 0 });
+                    gsap.to(vinylWrap, { rotation: "+=360", repeat: -1, duration: 15, ease: "none" });
+                }
+                const modalBg = sectionRef.current.querySelector('.contact-modal-bg');
+                if (modalBg) {
+                    gsap.set(modalBg, { opacity: 0.1, scale: 1, xPercent: -50, yPercent: -50 });
+                }
+                return; // exit early
+            }
+
             if (vinylWrap && contactForm) {
+                // Normal Page Scroll Behavior
                 // Emulate coming from the previous section
                 // Initialize tracking securely with xPercent/yPercent and drop from an absolute pixel height
                 gsap.set(vinylWrap, { xPercent: -50, yPercent: -50, y: -window.innerHeight * 0.7, scale: 0.61, opacity: 0, rotation: 0 });
@@ -86,14 +103,22 @@ export default function Contact() {
         setTimeout(() => setSubmitted(false), 4000);
     };
 
-    return (
-        <section className="contact section" id="contact" ref={sectionRef}>
-            <div className="contact-turntable-wrap">
-                <img src={turntableSvg} alt="Turntable background" />
-            </div>
-            <div className="contact-vinyl-wrap">
-                <img src={patternSvg} alt="Vinyl record dropping" />
-            </div>
+    const contactContent = (
+        <section className={`contact section ${isModal ? 'contact--modal' : ''}`} id="contact" ref={sectionRef}>
+            {isModal && modalBgSvg ? (
+                <div className="contact-modal-bg">
+                    <img src={modalBgSvg} alt="Service icon background" />
+                </div>
+            ) : (
+                <>
+                    <div className="contact-turntable-wrap">
+                        <img src={turntableSvg} alt="Turntable background" />
+                    </div>
+                    <div className="contact-vinyl-wrap">
+                        <img src={patternSvg} alt="Vinyl record dropping" />
+                    </div>
+                </>
+            )}
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="contact__grid">
                     <div className="contact__info gs-reveal-left">
@@ -171,4 +196,17 @@ export default function Contact() {
             </div>
         </section>
     );
+
+    if (isModal) {
+        return (
+            <div className="file-modal-backdrop" onClick={onCloseModal}>
+                <div className="file-modal file-modal--contact" onClick={(e) => e.stopPropagation()}>
+                    <button className="file-modal__close" onClick={onCloseModal}>&times;</button>
+                    {contactContent}
+                </div>
+            </div>
+        );
+    }
+
+    return contactContent;
 }
