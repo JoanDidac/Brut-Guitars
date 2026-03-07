@@ -59,7 +59,8 @@ export default function SectionDial() {
     return (
         <div className={`section-dial-wrapper ${isIdle ? 'section-dial-wrapper--idle' : ''}`}>
             <div className="section-dial-bg">
-                <img src={halfCircleSvg} alt="Half circle background" />
+                <div className="dial-stadium dial-stadium--outer"></div>
+                <div className="dial-stadium dial-stadium--inner"></div>
             </div>
 
             <div className="section-dial-container">
