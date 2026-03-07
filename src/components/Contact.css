@@ -187,7 +187,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0;
+    padding: 3.5rem 0;
 }
 
 .contact--modal .container {
@@ -206,7 +206,7 @@
 }
 
 .contact--modal .contact__form {
-    padding-bottom: 33px;
+    padding-bottom: 0;
 }
 
 .contact-modal-bg {

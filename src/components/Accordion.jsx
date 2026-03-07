@@ -22,7 +22,10 @@ export default function Accordion({ items }) {
                             onClick={() => toggleItem(index)}
                             aria-expanded={isOpen}
                         >
-                            <span className="accordion-title">{item.service}</span>
+                            <span className="accordion-title">
+                                <span className="accordion-number">{(index + 1).toString().padStart(2, '0')} </span>
+                                {item.service}
+                            </span>
                             <span className="accordion-icon">
                                 {isOpen ? '−' : '+'}
                             </span>
