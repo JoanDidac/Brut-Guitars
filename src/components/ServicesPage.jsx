@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import './ServicesPage.css';
 import Contact from './Contact';
+import Accordion from './Accordion';
 
 import imgBuilds from '../assets/workshop-1.jpg';
 import imgSetups from '../assets/gallery-headstock.jpg';
@@ -54,7 +55,12 @@ export default function ServicesPage({ selectedCategory, onNavigate }) {
             subtitle: "Dreams turned into wood and wire.",
             desc: "Whether you're dreaming of a 7-string headless beast, a classic blues machine with a modern twist, or something completely outlandish, I build instruments tailored to your exact sonic and ergonomic needs. We'll consult on tonewoods, neck profiles, fret sizes, and electronics to ensure the final product is an extension of your hands. If you can imagine it (and even if you can't), we can build it.",
             img: imgBuilds,
-            icon: iconBuilds
+            icon: iconBuilds,
+            pricing: [
+                { service: 'Base Custom Build', price: 'Starts at €1,500' },
+                { service: 'Neck Carve Refinement', price: '€180' },
+                { service: 'Full Hardware Swap', price: '€120 + Parts' }
+            ]
         },
         {
             id: 'setups',
@@ -62,7 +68,12 @@ export default function ServicesPage({ selectedCategory, onNavigate }) {
             subtitle: "Make it play like butter.",
             desc: "A guitar is only as good as its setup. From intonation to action, neck relief to pickup height—I'll make your instrument perform at its absolute peak. Say goodbye to fret buzz, stiff strings, and dead spots. I don't just 'set it to factory specs'; I set it to YOUR specs based on how hard you pick, what tuning you use, and what style you play.",
             img: imgSetups,
-            icon: iconSetups
+            icon: iconSetups,
+            pricing: [
+                { service: 'Standard 6-String Setup', price: '€65' },
+                { service: 'Floyd Rose / Tremolo Setup', price: '€85' },
+                { service: 'Acoustic Setup (inc. saddle shaving)', price: '€75' }
+            ]
         },
         {
             id: 'woodworking',
@@ -70,7 +81,12 @@ export default function ServicesPage({ selectedCategory, onNavigate }) {
             subtitle: "Bringing dead instruments back to life.",
             desc: "Broken headstock? Body cracks? Warped neck? Loose bracing on your favorite acoustic? Don't panic. Wood is alive, and sometimes it misbehaves (or gets dropped on stage). I specialize in complex structural repairs, using hide glues, splines, and modern clamping techniques to ensure the repair is often stronger than the original wood.",
             img: imgWoodworking,
-            icon: iconWoodworking
+            icon: iconWoodworking,
+            pricing: [
+                { service: 'Headstock Break Repair', price: '€150 - €300' },
+                { service: 'Acoustic Bridge Re-glue', price: '€120' },
+                { service: 'Crack Cleating & Sealing', price: '€80 per crack' }
+            ]
         },
         {
             id: 'paint',
@@ -78,7 +94,12 @@ export default function ServicesPage({ selectedCategory, onNavigate }) {
             subtitle: "Classy bursts, modern art, or heavy relics.",
             desc: "The finish of a guitar dramatically alters its vibe. Whether you want a breathing, classy nitrocellulose sunburst, an eccentric swirl, or a heavy relic job that looks like it barely survived a 70s stadium tour, I've got the paints, the patience, and the artistic eye to make it pop. We also handle minor finish touch-ups and drop-fills.",
             img: imgPaint,
-            icon: iconPaint
+            icon: iconPaint,
+            pricing: [
+                { service: 'Full Body Nitro Refinish', price: '€450' },
+                { service: 'Neck Refinish & Tinting', price: '€200' },
+                { service: 'Heavy Relic Job', price: '€350' }
+            ]
         },
         {
             id: 'fretwork',
@@ -86,7 +107,12 @@ export default function ServicesPage({ selectedCategory, onNavigate }) {
             subtitle: "Because dead notes are for amateurs.",
             desc: "Your frets are the interface between you and the wood. I offer precise fret leveling, crowning, and polishing to cure buzz and ensure perfect intonation. If your frets are completely worn out, we'll do a complete refret. Go vintage wire, jumbo, or upgrade to stainless steel so you never have to refret again.",
             img: imgFretwork,
-            icon: iconFretwork
+            icon: iconFretwork,
+            pricing: [
+                { service: 'Level, Crown & Polish', price: '€120' },
+                { service: 'Full Refret (Nickel-Silver)', price: '€250' },
+                { service: 'Full Refret (Stainless Steel)', price: '€350' }
+            ]
         },
         {
             id: 'electronics',
@@ -94,7 +120,12 @@ export default function ServicesPage({ selectedCategory, onNavigate }) {
             subtitle: "Performing the dark arts of soldering.",
             desc: "Custom wiring schemes, pickup swaps, coil-splits, kill-switches, out-of-phase switches, and fixing that mysterious hum that's been driving you crazy. I use premium pots, caps, and switches to ensure your signal path is pure. Want to add an onboard preamp or completely rewire a vintage mess? Let's hook it up.",
             img: imgElectronics,
-            icon: iconElectronics
+            icon: iconElectronics,
+            pricing: [
+                { service: 'Complete Re-wire', price: '€100 + Parts' },
+                { service: 'Pickup Swap (2 Pickups)', price: '€60' },
+                { service: 'Custom Treble Bleed / Push-Pull Mods', price: '€45 per mod' }
+            ]
         }
     ];
 
@@ -133,8 +164,8 @@ export default function ServicesPage({ selectedCategory, onNavigate }) {
                                         </button>
                                     </div>
                                 </div>
-                                <div className="services-page__image-wrap gs-reveal-scale">
-                                    <img src={service.img} alt={service.title} className="services-page__image" />
+                                <div className="services-page__image-wrap gs-reveal-scale" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', height: '100%', padding: '0 20px' }}>
+                                    <Accordion items={service.pricing} />
                                 </div>
                             </div>
                         </section>
