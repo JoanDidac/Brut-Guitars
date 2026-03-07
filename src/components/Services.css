@@ -41,7 +41,8 @@
     /* Let clicks pass through the pinned container so folder tabs are interactive */
 }
 
-.services__header .header-anim {
+.services__header h2.header-anim,
+.services__header h3.header-anim {
     pointer-events: auto;
     /* Restore pointer events strictly on the text elements so they can be selected */
 }
@@ -458,12 +459,122 @@
 }
 
 @media (max-width: 768px) {
+    .file-modal__header {
+        position: relative;
+        overflow: hidden;
+        border-bottom: 2px dashed var(--color-border-light);
+        padding: var(--space-xl) var(--space-md);
+    }
+
+    .file-modal__title {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+    }
+
+    .modal-icon-wrapper {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.15;
+        height: 180px;
+        width: 180px;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .modal-icon-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform: none !important;
+        /* Reset icon scale overrides if any */
+    }
+
+    .ampersand {
+        display: block;
+        margin: var(--space-xs) 0;
+        line-height: 1.2;
+    }
+
+    .file-modal__close {
+        position: absolute;
+        top: var(--space-sm);
+        right: var(--space-sm);
+        z-index: 2;
+    }
+
     .file-modal__content {
         grid-template-columns: 1fr;
+        position: relative;
+        background-image: var(--modal-bg);
+        background-size: cover;
+        background-position: center;
+    }
+
+    .file-modal__content::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--color-bg);
+        opacity: 0.85;
+        z-index: 0;
+    }
+
+    .file-modal__desc {
+        position: relative;
+        z-index: 1;
     }
 
     .file-modal__image {
-        min-height: 200px;
+        display: none;
+    }
+
+    .file-modal__desc .btn-pill {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .modal-icon-wrapper img.icon-builds {
+        object-fit: cover !important;
+    }
+
+    .modal-icon-wrapper img.icon-paint {
+        transform: scale(1.2) !important;
+    }
+
+    .file-folder {
+        margin-top: 1px;
+        margin-bottom: 1px;
+    }
+
+    .services::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.1;
+
+        /* Fade out pattern over the bottom 4% */
+        -webkit-mask-image: linear-gradient(to bottom, black 96%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 96%, transparent 100%);
+
+        --s: 50px;
+        /* control the size*/
+        --c1: #d9ceb2;
+        --c2: #948c75;
+
+        --_g: calc(2*var(--s)) calc(2*var(--s)) radial-gradient(25% 25%, var(--c1) 99%, #0000 101%);
+        background:
+            0 var(--s)/var(--_g), var(--s) 0/var(--_g),
+            radial-gradient(50% 50%, var(--c2) 97%, #0000) calc(var(--s)/2) calc(var(--s)/2)/var(--s) var(--s),
+            linear-gradient(90deg, var(--c1) 50%, var(--c2) 0) 0 0/calc(2*var(--s));
     }
 }
 

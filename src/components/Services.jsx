@@ -180,6 +180,32 @@ export default function Services({ onNavigate }) {
         return () => ctx.revert();
     }, []);
 
+    useLayoutEffect(() => {
+        if (!activeFolder) return;
+
+        let ctx = gsap.context(() => {
+            const isMobileMatches = window.matchMedia("(max-width: 768px)").matches;
+            if (isMobileMatches) {
+                gsap.fromTo('.modal-icon-wrapper',
+                    {
+                        x: 150, // Start 150px to the right of its original (clipped) position
+                        opacity: 1, // Full dark color
+                        scale: 1.1 // Zoomed in 10%
+                    },
+                    {
+                        x: 0, // Return to original transform positioning
+                        opacity: 0.15, // Final opacity
+                        scale: 1, // Final scale
+                        duration: 0.8,
+                        ease: "power3.out"
+                    }
+                );
+            }
+        });
+
+        return () => ctx.revert();
+    }, [activeFolder]);
+
     const services = [
         // ... (services data array remains unmodified)
         {
@@ -276,11 +302,24 @@ export default function Services({ onNavigate }) {
                     <div className="file-modal" onClick={e => e.stopPropagation()}>
                         <div className="file-modal__header">
                             <h3 className="file-modal__title">
-                                <span><img src={activeFolder.icon} alt="" className={`modal-icon-img icon-${activeFolder.id}`} /></span> {activeFolder.title}
+                                <span className="modal-icon-wrapper">
+                                    <img src={activeFolder.icon} alt="" className={`modal-icon-img icon-${activeFolder.id}`} />
+                                </span>
+                                <span className="modal-title-text">
+                                    {activeFolder.title.includes(' & ') ? (
+                                        <>
+                                            {activeFolder.title.split(' & ')[0]}
+                                            <span className="ampersand"> &amp; </span>
+                                            {activeFolder.title.split(' & ')[1]}
+                                        </>
+                                    ) : (
+                                        activeFolder.title
+                                    )}
+                                </span>
                             </h3>
                             <button className="file-modal__close" onClick={() => setActiveFolder(null)}>&times;</button>
                         </div>
-                        <div className="file-modal__content">
+                        <div className="file-modal__content" style={{ '--modal-bg': `url(${activeFolder.img})` }}>
                             <div className="file-modal__desc">
                                 <p>{activeFolder.desc}</p>
                                 <button
