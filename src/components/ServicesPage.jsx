@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import './ServicesPage.css';
 import Contact from './Contact';
 import Accordion from './Accordion';
+import SectionDial from './SectionDial';
 
 import imgBuilds from '../assets/workshop-1.jpg';
 import imgSetups from '../assets/gallery-headstock.jpg';
@@ -194,6 +195,8 @@ export default function ServicesPage({ selectedCategory, onNavigate }) {
             {contactModalService && (
                 <Contact isModal={true} modalBgSvg={contactModalService.icon} modalCategoryId={contactModalService.id} onCloseModal={() => setContactModalService(null)} />
             )}
+
+            <SectionDial onNavigate={onNavigate} />
         </div>
     );
 }

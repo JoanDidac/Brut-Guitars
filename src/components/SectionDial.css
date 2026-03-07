@@ -1,0 +1,184 @@
+.section-dial-wrapper {
+    position: relative;
+    width: 100%;
+    /* Container height designed to sit flush at the bottom */
+    height: 120px;
+    display: none;
+    /* Hide on desktop */
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+    /* Hide the lower half of the SVG arc */
+    margin-top: var(--space-2xl);
+    padding-bottom: 20px;
+}
+
+/* Base mobile visibility */
+@media (max-width: 768px) {
+    .section-dial-wrapper {
+        display: flex;
+    }
+}
+
+.section-dial-bg {
+    position: absolute;
+    bottom: -60px;
+    /* Force the lower half completely out of view */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.section-dial-bg img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* The SVG is vertically oriented like a D, turn it 90deg to be a hat/dome at the bottom */
+    transform: rotate(90deg);
+    /* Make it match the dark brand aesthetic */
+    filter: invert(1) brightness(0.1);
+}
+
+.section-dial-container {
+    position: relative;
+    z-index: 10;
+    /* Move up slightly to sit nicely inside the dome */
+    transform: translateY(-10px);
+}
+
+/* From Uiverse.io by SelfMadeSystem */
+.clock-input {
+    display: flex;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    --a: #0004, #fff4;
+    --b: var(--a), var(--a), var(--a);
+    --c: var(--b), var(--b), var(--b);
+    background: conic-gradient(from -2deg,
+            var(--color-bg),
+            #00000088,
+            var(--color-bg),
+            #00000088,
+            var(--color-bg)),
+        radial-gradient(var(--c), var(--c)),
+        radial-gradient(circle at 12% 12%, var(--color-bg), #9999a4);
+    background-size: calc(100% + 8px) calc(100% + 8px);
+    background-position: -4px -4px;
+    border: 3px solid var(--color-border);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.clock-input input {
+    display: none;
+    pointer-events: none;
+}
+
+.dial {
+    position: absolute;
+    width: 26px;
+    height: 4px;
+    border-radius: 99px;
+    background-color: var(--color-accent);
+    top: calc(50% - 2px);
+    left: calc(50% - 2px);
+    transform-origin: 2px 50%;
+    pointer-events: none;
+    transition: 0.15s;
+    animation: owo 0.15s;
+}
+
+@keyframes owo {
+    0% {
+        transform: rotate(-60deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.clock-input label {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+}
+
+#v1:checked~#l2 {
+    z-index: 2;
+}
+
+#v1:checked~.dial {
+    transform: rotate(0deg);
+}
+
+#v2:checked~#l3 {
+    z-index: 2;
+}
+
+#v2:checked~.dial {
+    transform: rotate(60deg);
+    animation: none;
+}
+
+#v3:checked~#l4 {
+    z-index: 2;
+}
+
+#v3:checked~.dial {
+    transform: rotate(120deg);
+    animation: none;
+}
+
+#v4:checked~#l5 {
+    z-index: 2;
+}
+
+#v4:checked~.dial {
+    transform: rotate(180deg);
+    animation: none;
+}
+
+#v5:checked~#l6 {
+    z-index: 2;
+}
+
+#v5:checked~.dial {
+    transform: rotate(240deg);
+    animation: none;
+}
+
+#v6:checked~#l1 {
+    z-index: 2;
+}
+
+#v6:checked~.dial {
+    transform: rotate(300deg);
+    animation: none;
+}
+
+.notch {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 1px;
+    background-color: var(--color-text);
+    transform: translate(-50%) rotate(calc((var(--n) - 1) * 60deg)) translateX(38px);
+    counter-reset: section;
+}
+
+.notch::before {
+    content: counter(section);
+    position: absolute;
+    counter-set: section var(--n);
+    color: var(--color-text);
+    transform: translate(12px, -50%) rotate(calc((var(--n) - 1) * -60deg));
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 11px;
+}
