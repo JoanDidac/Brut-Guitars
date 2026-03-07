@@ -164,8 +164,11 @@ export default function ServicesPage({ selectedCategory, onNavigate }) {
                                         </button>
                                     </div>
                                 </div>
-                                <div className="services-page__image-wrap gs-reveal-scale" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', height: '100%', padding: '0 20px' }}>
-                                    <Accordion items={service.pricing} />
+                                <div className="services-page__image-wrap gs-reveal-scale">
+                                    <img src={service.img} alt={service.title} className="services-page__image services-page__image--desktop" />
+                                    <div className="services-page__accordion services-page__accordion--mobile">
+                                        <Accordion items={service.pricing} />
+                                    </div>
                                 </div>
                             </div>
                         </section>

@@ -158,3 +158,27 @@
         max-width: 100%;
     }
 }
+
+/* Prime Directive: Mobile vs Desktop rendering */
+.services-page__accordion--mobile {
+    display: none;
+}
+
+.services-page__image--desktop {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .services-page__image--desktop {
+        display: none;
+    }
+
+    .services-page__accordion--mobile {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        padding: var(--space-sm);
+    }
+}
