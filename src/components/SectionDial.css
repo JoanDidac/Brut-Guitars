@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     /* Container height designed to sit flush at the bottom */
-    height: 120px;
+    height: 170px; /* Increased to allow taller stadium backgrounds */
     display: none;
     /* Hide on desktop */
     justify-content: center;
@@ -15,7 +15,7 @@
     padding-bottom: 20px;
     z-index: 99;
     /* ensure it is above other elements */
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
     pointer-events: none;
     /* Let clicks pass through the invisible parts */
 }
@@ -34,15 +34,14 @@
 
 .section-dial-bg {
     position: absolute;
-    bottom: -60px;
-    /* Hide some of the bottom */
+    bottom: -90px; /* Hide some of the bottom */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    width: 140px;
-    height: 160px;
+    width: 180px;
+    height: 260px;
     z-index: 0;
     pointer-events: none;
 }
@@ -56,9 +55,8 @@
 
 /* Second Texture (black fine leather): lies underneath and is slightly larger to reveal ridges */
 .dial-stadium--outer {
-    width: 140px;
-    height: 155px;
-    /* Taller and wider */
+    width: 170px;
+    height: 250px; /* Taller and wider */
     background-image: url('../assets/black-fine-leather-textured-background.jpg');
     background-size: cover;
     background-position: center;
@@ -69,9 +67,8 @@
 
 /* First Texture (O5GLMP0.jpg): main texture, sits on top */
 .dial-stadium--inner {
-    width: 120px;
-    height: 145px;
-    /* Nested snugly inside */
+    width: 150px;
+    height: 240px; /* Nested snugly inside */
     background-image: url('../assets/O5GLMP0.jpg');
     background-size: cover;
     background-position: center bottom;
