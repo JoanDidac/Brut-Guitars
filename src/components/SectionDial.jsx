@@ -80,12 +80,24 @@ export default function SectionDial() {
 
                     <div className="dial"></div>
                     <div className="notches">
-                        <div className="notch" style={{ '--n': 1 }}></div>
-                        <div className="notch" style={{ '--n': 2 }}></div>
-                        <div className="notch" style={{ '--n': 3 }}></div>
-                        <div className="notch" style={{ '--n': 4 }}></div>
-                        <div className="notch" style={{ '--n': 5 }}></div>
-                        <div className="notch" style={{ '--n': 6 }}></div>
+                        <div className={`notch ${activeSection === 'v1' ? 'is-active' : ''}`} style={{ '--n': 1 }}>
+                            <img src={iconBuilds} alt="Builds" className="notch-icon" />
+                        </div>
+                        <div className={`notch ${activeSection === 'v2' ? 'is-active' : ''}`} style={{ '--n': 2 }}>
+                            <img src={iconSetups} alt="Setups" className="notch-icon" />
+                        </div>
+                        <div className={`notch ${activeSection === 'v3' ? 'is-active' : ''}`} style={{ '--n': 3 }}>
+                            <img src={iconWoodworking} alt="Woodworking" className="notch-icon" />
+                        </div>
+                        <div className={`notch ${activeSection === 'v4' ? 'is-active' : ''}`} style={{ '--n': 4 }}>
+                            <img src={iconPaint} alt="Paint" className="notch-icon" />
+                        </div>
+                        <div className={`notch ${activeSection === 'v5' ? 'is-active' : ''}`} style={{ '--n': 5 }}>
+                            <img src={iconFretwork} alt="Fretwork" className="notch-icon" />
+                        </div>
+                        <div className={`notch ${activeSection === 'v6' ? 'is-active' : ''}`} style={{ '--n': 6 }}>
+                            <img src={iconElectronics} alt="Electronics" className="notch-icon" />
+                        </div>
                     </div>
                 </div>
             </div>

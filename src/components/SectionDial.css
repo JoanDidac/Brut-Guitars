@@ -193,7 +193,33 @@
     color: var(--color-bg);
     transform: translate(12px, -50%) rotate(calc((var(--n) - 1) * -60deg));
     font-family: var(--font-mono);
-    font-weight: 500;
-    font-size: 16px;
-    /* Bumped up from the original 11px to make numbers legible */
+    font-weight: 400;
+    font-size: 13px;
+    /* Shrunk for nicer proportion */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Morph: Hide number on active */
+.notch.is-active::before {
+    opacity: 0;
+    transform: translate(12px, -50%) rotate(calc((var(--n) - 1) * -60deg)) scale(0.5);
+}
+
+.notch-icon {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    /* Hide by default, waiting to morph */
+    opacity: 0;
+    transform: translate(16px, -50%) rotate(calc((var(--n) - 1) * -60deg)) scale(0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    filter: invert(1) sepia(0.2) saturate(0.5);
+    pointer-events: none;
+}
+
+/* Morph: Show SVG on active, scaled up to double size to exaggerate the active state */
+.notch.is-active .notch-icon {
+    opacity: 1;
+    transform: translate(16px, -50%) rotate(calc((var(--n) - 1) * -60deg)) scale(1.5);
+    /* Boosted scale for the effect */
 }
