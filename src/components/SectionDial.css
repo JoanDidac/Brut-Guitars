@@ -22,6 +22,7 @@
 
 .section-dial-wrapper--idle {
     opacity: 0.15;
+    transform: translateY(33%);
 }
 
 /* Base mobile visibility */
@@ -180,17 +181,17 @@
     left: 50%;
     width: 8px;
     height: 1px;
-    background-color: transparent;
-    /* Used to be var(--color-text), but now we use images */
+    background-color: var(--color-bg);
+    /* Restored the notch line, matched to the creamy color */
     transform: translate(-50%) rotate(calc((var(--n) - 1) * 60deg)) translateX(38px);
 }
 
 .notch-icon {
     position: absolute;
-    width: 14px;
-    height: 14px;
-    /* Cancel the rotation so icons stand upright */
-    transform: translate(12px, -50%) rotate(calc((var(--n) - 1) * -60deg));
+    width: 28px;
+    height: 28px;
+    /* Cancel the rotation so icons stand upright, push out slightly more due to larger size */
+    transform: translate(16px, -50%) rotate(calc((var(--n) - 1) * -60deg));
     /* Ensure the SVG displays in the creamy palette color */
     /* Using standard invert trick, or applying CSS filter to make it var(--color-bg) */
     /* For black SVGs to become creamy: invert it to white, then sepia/hue-rotate if needed. 
