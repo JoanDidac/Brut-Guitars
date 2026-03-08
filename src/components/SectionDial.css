@@ -89,7 +89,7 @@
     pointer-events: auto;
     /* Restores clicking on just the dial component */
     /* Move up slightly to sit nicely inside the dome */
-    transform: translateY(-10px);
+    transform: translateY(-15px);
 }
 
 /* From Uiverse.io by SelfMadeSystem */
@@ -230,7 +230,7 @@
 
 /* Make the active number slightly larger and brighter */
 .notch.is-active::before {
-    transform: translate(12px, -50%) rotate(calc((var(--n) - 1) * -60deg)) scale(1.4);
+    transform: translate(12px, -50%) rotate(calc((var(--n) - 1) * -60deg)) scale(1.2);
     /* Ensure high contrast for readability */
     color: #ffffff;
     font-weight: 500;
