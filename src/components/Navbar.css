@@ -183,8 +183,8 @@
     }
 
     .navbar--scrolled .navbar__animated-logo {
-        top: 16px;
-        /* var(--space-sm) padding */
+        top: 50%;
+        transform: translateY(-50%);
         height: 32px;
         width: 80px;
     }
