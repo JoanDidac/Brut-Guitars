@@ -5,7 +5,8 @@
     left: 0;
     width: 100%;
     /* Container height designed to sit flush at the bottom */
-    height: 170px; /* Increased to allow taller stadium backgrounds */
+    height: 170px;
+    /* Increased to allow taller stadium backgrounds */
     display: none;
     /* Hide on desktop */
     justify-content: center;
@@ -34,7 +35,8 @@
 
 .section-dial-bg {
     position: absolute;
-    bottom: -90px; /* Hide some of the bottom */
+    bottom: -90px;
+    /* Hide some of the bottom */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -56,19 +58,23 @@
 /* Second Texture (black fine leather): lies underneath and is slightly larger to reveal ridges */
 .dial-stadium--outer {
     width: 170px;
-    height: 250px; /* Taller and wider */
+    height: 250px;
+    /* Taller and wider */
+    /* Ensure there is a solid base color just in case the texture takes a moment to load or has transparency */
+    background-color: var(--color-bg-alt);
     background-image: url('../assets/black-fine-leather-textured-background.jpg');
     background-size: cover;
     background-position: center;
     box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.8), 0 4px 15px rgba(0, 0, 0, 0.5);
     /* Make the texture blend beautifully behind the dial */
-    filter: brightness(0.7) contrast(1.2);
+    filter: brightness(0.6) contrast(1.2);
 }
 
 /* First Texture (O5GLMP0.jpg): main texture, sits on top */
 .dial-stadium--inner {
     width: 150px;
-    height: 240px; /* Nested snugly inside */
+    height: 240px;
+    /* Nested snugly inside */
     background-image: url('../assets/O5GLMP0.jpg');
     background-size: cover;
     background-position: center bottom;
@@ -224,7 +230,10 @@
 
 /* Make the active number slightly larger and brighter */
 .notch.is-active::before {
-    transform: translate(12px, -50%) rotate(calc((var(--n) - 1) * -60deg)) scale(1.3);
-    color: var(--color-accent);
+    transform: translate(12px, -50%) rotate(calc((var(--n) - 1) * -60deg)) scale(1.4);
+    /* Ensure high contrast for readability */
+    color: #ffffff;
     font-weight: 500;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    /* Add a subtle glow for maximum visibility */
 }
