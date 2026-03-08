@@ -53,8 +53,6 @@
 
 .navbar--scrolled .navbar__logo-img {
     height: 32px;
-    margin-top: 20px;
-    /* Slight nudge down to perfect the optical center */
 }
 
 .navbar__logo:hover {
