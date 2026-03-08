@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './SectionDial.css';
 import halfCircleSvg from '../assets/solid-circle-half.svg';
+import redLight from '../assets/red-light.png';
 
 import iconBuilds from '../assets/electric-guitar-svgrepo-com.svg';
 import iconSetups from '../assets/calipers-svgrepo-com.svg';
@@ -12,7 +13,9 @@ import iconElectronics from '../assets/jack-svgrepo-com.svg';
 export default function SectionDial() {
     const [activeSection, setActiveSection] = useState('v1');
     const [isIdle, setIsIdle] = useState(false);
+    const [isBlinking, setIsBlinking] = useState(false);
     const idleTimerRef = useRef(null);
+    const blinkTimerRef = useRef(null);
 
     const resetIdleTimer = () => {
         setIsIdle(false);
@@ -35,15 +38,25 @@ export default function SectionDial() {
 
         return () => {
             if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+            if (blinkTimerRef.current) clearTimeout(blinkTimerRef.current);
             window.removeEventListener('scroll', resetIdleTimer);
             window.removeEventListener('mousemove', resetIdleTimer);
             window.removeEventListener('touchstart', resetIdleTimer);
         };
     }, []);
 
+    const triggerBlink = () => {
+        setIsBlinking(true);
+        if (blinkTimerRef.current) clearTimeout(blinkTimerRef.current);
+        blinkTimerRef.current = setTimeout(() => {
+            setIsBlinking(false);
+        }, 150);
+    };
+
     const handleNavigate = (id, serviceId) => {
         setActiveSection(id);
         resetIdleTimer(); // Wake it up when clicked
+        triggerBlink();
 
         // Add a slight delay for the CSS dial animation to play out
         setTimeout(() => {
@@ -61,6 +74,9 @@ export default function SectionDial() {
             <div className="section-dial-bg">
                 <div className="dial-stadium dial-stadium--outer"></div>
                 <div className="dial-stadium dial-stadium--inner"></div>
+                <div className={`red-light-pilot ${isIdle ? 'is-off' : 'is-on'} ${isBlinking ? 'is-blinking' : ''}`}>
+                    <img src={redLight} alt="Pilot Light" />
+                </div>
             </div>
 
             <div className="section-dial-container">
