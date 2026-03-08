@@ -23,7 +23,10 @@
 .navbar__inner {
     display: flex;
     align-items: center;
+    /* This ensures all items, including the logo container, are vertically centered */
     justify-content: space-between;
+    height: 100%;
+    /* Make sure inner takes full height to allow vertical centering */
 }
 
 /* Logo */
@@ -32,6 +35,8 @@
     transition: opacity var(--transition-fast);
     display: flex;
     align-items: center;
+    /* Ensures the image inside the link is vertically centered */
+    height: 100%;
 }
 
 .navbar__animated-logo {
@@ -48,6 +53,8 @@
 
 .navbar--scrolled .navbar__logo-img {
     height: 32px;
+    margin-top: 2px;
+    /* Slight nudge down to perfect the optical center */
 }
 
 .navbar__logo:hover {
