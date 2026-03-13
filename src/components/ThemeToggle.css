@@ -1,0 +1,39 @@
+/* =============================================
+   Theme Toggle — Moon / Sun Icon Button
+   ============================================= */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    line-height: 1;
+}
+
+.theme-toggle:hover {
+    color: var(--color-text);
+    transform: scale(1.15) rotate(-12deg);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-toggle__icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Inside mobile menu — slightly bigger */
+.navbar__theme-toggle--mobile .theme-toggle__icon {
+    width: 24px;
+    height: 24px;
+}

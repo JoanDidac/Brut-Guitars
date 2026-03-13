@@ -184,3 +184,20 @@
         gap: var(--space-lg);
     }
 }
+
+/* =============================================
+   Footer — Dark Mode Overrides
+   ============================================= */
+/* Footer is already dark — keep it but make the bg slightly different for contrast */
+[data-theme='dark'] .footer {
+    background-color: #0a0a0a;
+}
+
+[data-theme='dark'] .pre-footer__wave {
+    fill: #0a0a0a;
+}
+
+[data-theme='dark'] .footer__logo-img {
+    /* Keep the invert filter so logo stays cream-colored on the darker footer bg */
+    filter: invert(90%) sepia(5%) hue-rotate(340deg) brightness(100%) contrast(90%);
+}

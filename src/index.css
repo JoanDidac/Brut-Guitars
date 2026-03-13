@@ -50,6 +50,29 @@
 }
 
 /* =============================================
+   Dark Mode — Variable Overrides
+   ============================================= */
+[data-theme='dark'] {
+  --color-bg: #121212;
+  --color-bg-alt: #1a1a1a;
+  --color-bg-card: #242424;
+  --color-bg-dark: #0a0a0a;
+
+  --color-text: #f4ede4;
+  --color-text-muted: #a89e91;
+  --color-text-dim: #7a7269;
+  --color-text-light: #f4ede4;
+
+  --color-accent: #f4ede4;
+  --color-accent-hover: #d4cdc4;
+
+  --color-border: #f4ede4;
+  --color-border-light: rgba(244, 237, 228, 0.25);
+
+  color-scheme: dark;
+}
+
+/* =============================================
    Reset & Base
    ============================================= */
 *,
@@ -77,6 +100,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 h1,
@@ -291,4 +315,48 @@ button {
     transform: translateY(-47%);
     /* Moved up 7% from -40% */
   }
+}
+
+/* =============================================
+   Dark Mode — Selection & Scrollbar
+   ============================================= */
+[data-theme='dark'] ::selection {
+  background-color: rgba(244, 237, 228, 0.2);
+  color: var(--color-text);
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: rgba(244, 237, 228, 0.15);
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* =============================================
+   Dark Mode — Button Text Contrast Fixes
+   ============================================= */
+/* btn-pill--dark: cream bg needs dark text */
+[data-theme='dark'] .btn-pill--dark {
+  color: #1a1a1a;
+}
+
+[data-theme='dark'] .btn-pill--dark:hover {
+  color: var(--color-accent);
+}
+
+/* btn-pill--outline hover: cream bg needs dark text */
+[data-theme='dark'] .btn-pill--outline:hover {
+  color: #1a1a1a;
+}
+
+/* =============================================
+   Dark Mode — Navbar Logo Visibility
+   ============================================= */
+[data-theme='dark'] .navbar__logo-img {
+  filter: invert(90%) sepia(5%) hue-rotate(340deg) brightness(100%) contrast(90%);
 }

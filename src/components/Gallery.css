@@ -45,6 +45,21 @@
     transform: scale(1.40);
 }
 
+/* Photography-style filter for the first 3 cards only */
+.gallery__card:nth-child(-n+3) .gallery__card-img {
+    filter: contrast(1.15) brightness(1.02) saturate(1.15) hue-rotate(-2deg);
+}
+
+/* Specific rotation for the very first card image */
+.gallery__card:first-child .gallery__card-img {
+    transform: rotate(90deg); /* Maintain rotation */
+}
+
+.gallery__card:first-child:hover .gallery__card-img,
+.gallery__card:first-child.gallery__card--active .gallery__card-img {
+    transform: rotate(90deg) scale(1.40); /* Zoom IN + rotation */
+}
+
 /* Card info */
 .gallery__card-info {
     padding: var(--space-md) var(--space-md) var(--space-lg);

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import brandLogo from '../assets/brut_logo.png';
+import ThemeToggle from './ThemeToggle';
 import './Navbar.css';
 
 export default function Navbar({ currentPage, onNavigate }) {
@@ -44,7 +45,16 @@ export default function Navbar({ currentPage, onNavigate }) {
               </button>
             </li>
           ))}
+          {/* Dark mode toggle — visible only inside mobile menu */}
+          <li className="navbar__theme-toggle--mobile">
+            <ThemeToggle />
+          </li>
         </ul>
+
+        {/* Dark mode toggle — visible only on desktop, at the far right */}
+        <div className="navbar__actions">
+          <ThemeToggle />
+        </div>
 
         <button
           className={`navbar__burger ${mobileOpen ? 'navbar__burger--active' : ''}`}

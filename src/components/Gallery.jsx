@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Gallery.css';
-import img1 from '../assets/gallery-bass-body.jpg';
-import img2 from '../assets/gallery-bass-closeup.jpg';
-import img3 from '../assets/gallery-bass-angle.jpg';
+import img1 from '../assets/azul_yamaha_extended_v2.png';
+import img2 from '../assets/vespa_green_extended.png';
+import img3 from '../assets/rosa_palo_extended.png';
 import img4 from '../assets/gallery-headstock.jpg';
 import img5 from '../assets/gallery-fretboard-new.jpg'; // Updated to use the new downloaded fretboard image
 import img6 from '../assets/gallery-luthier-playing.jpg';
@@ -16,9 +16,9 @@ import bgSvg from '../assets/background-eraser-svgrepo-com.svg';
 gsap.registerPlugin(ScrollTrigger);
 
 const guitars = [
-    { id: 1, name: 'Walnut Burl 5-String', spec: 'Burl walnut top · Dual humbuckers', image: img1 },
-    { id: 2, name: 'Maple Body Close-up', spec: 'Figured maple body · Custom pickups', image: img2 },
-    { id: 3, name: 'Custom Bass Build', spec: 'Handcrafted body · Premium tonewoods', image: img3 },
+    { id: 1, name: 'Yamaha Blue Edition', spec: 'Deep blue resonance · Premium build', image: img1 },
+    { id: 2, name: 'Vespa Green Custom', spec: 'Vintage green finish · Precision crafted', image: img2 },
+    { id: 3, name: 'Pale Rose Finish', spec: 'Elegant rose tint · Boutique styling', image: img3 },
     { id: 4, name: 'BRUT Headstock', spec: 'Hand-shaped headstock · Precision tuners', image: img4 },
     { id: 5, name: 'Fretboard Detail', spec: 'Rosewood fretboard · Hand-dressed frets', image: img5 },
     { id: 6, name: 'In the Hands', spec: 'Road-tested by the maker himself', image: img6 },

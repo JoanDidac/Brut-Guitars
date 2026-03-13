@@ -270,3 +270,15 @@
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
     /* Add a subtle glow for maximum visibility */
 }
+
+/* =============================================
+   SectionDial — Dark Mode Overrides
+   ============================================= */
+/* Notch tick marks and numbers use var(--color-bg) which is #121212 in dark mode — override to cream */
+[data-theme='dark'] .notch {
+    background-color: #f4ede4;
+}
+
+[data-theme='dark'] .notch::before {
+    color: #f4ede4;
+}

@@ -1,4 +1,6 @@
-tw/* =============================================
+tw
+
+/* =============================================
    Process Section — Graza-inspired
    ============================================= */
 .process {
@@ -165,4 +167,13 @@ tw/* =============================================
         grid-template-columns: 1fr;
         gap: var(--space-md);
     }
+}
+
+/* =============================================
+   Process — Dark Mode Overrides
+   ============================================= */
+/* The .section-title "From Vision to Voice" subtitle paragraph: 
+   GSAP animates it to var(--color-bg) on mobile which becomes #121212 in dark mode */
+[data-theme='dark'] .process__subtitle {
+    color: var(--color-text-muted) !important;
 }

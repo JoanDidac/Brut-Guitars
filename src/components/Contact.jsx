@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact({ isModal = false, modalBgSvg = null, modalCategoryId = null, onCloseModal }) {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-    const [submitted, setSubmitted] = useState(false);
+    const [status, setStatus] = useState('idle'); // idle | loading | success | error
     const sectionRef = useRef(null);
 
     useLayoutEffect(() => {
@@ -97,10 +97,49 @@ export default function Contact({ isModal = false, modalBgSvg = null, modalCateg
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 4000);
+        setStatus('loading');
+
+        const webhookUrl = import.meta.env.VITE_APPS_SCRIPT_URL;
+
+        try {
+            const res = await fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                    date: new Date().toLocaleString('en-GB', { timeZone: 'Europe/Madrid' }),
+                }),
+            });
+
+            const text = await res.text();
+            console.log('Raw response text:', text);
+            console.log('Response status:', res.status, res.type, res.url);
+            
+            let data;
+            try {
+                data = JSON.parse(text);
+            } catch (e) {
+                console.error('Failed to parse JSON:', e);
+                data = {};
+            }
+
+            if (data && data.result === 'success') {
+                setStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+                setTimeout(() => setStatus('idle'), 5000);
+            } else {
+                console.error('Apps Script returned an error data:', data);
+                throw new Error('Apps Script returned an error');
+            }
+        } catch (err) {
+            console.error('Form submission error:', err);
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 5000);
+        }
     };
 
     const contactContent = (
@@ -132,7 +171,7 @@ export default function Contact({ isModal = false, modalBgSvg = null, modalCateg
                         <div className="contact__details">
                             <div className="contact__detail">
                                 <span className="contact__detail-label">Email</span>
-                                <span className="contact__detail-value">hello@brutguitars.com</span>
+                                <span className="contact__detail-value">info@brutguitars.com</span>
                             </div>
                             <div className="contact__detail">
                                 <span className="contact__detail-label">Workshop</span>
@@ -188,8 +227,15 @@ export default function Contact({ isModal = false, modalBgSvg = null, modalCateg
                             />
                         </div>
 
-                        <button className="btn-pill btn-pill--dark contact__submit" type="submit" disabled={submitted}>
-                            {submitted ? '✓ Message Sent' : 'Send Message'}
+                        <button
+                            className={`btn-pill btn-pill--dark contact__submit contact__submit--${status}`}
+                            type="submit"
+                            disabled={status === 'loading' || status === 'success'}
+                        >
+                            {status === 'loading' && '⏳ Sending…'}
+                            {status === 'success' && '✓ Message Received!'}
+                            {status === 'error' && '✗ Something went wrong — try again'}
+                            {status === 'idle' && 'Send Message'}
                         </button>
                     </form>
                 </div>
