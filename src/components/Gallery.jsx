@@ -16,9 +16,9 @@ import bgSvg from '../assets/background-eraser-svgrepo-com.svg';
 gsap.registerPlugin(ScrollTrigger);
 
 const guitars = [
-    { id: 1, name: 'Yamaha Blue Edition', spec: 'Deep blue resonance · Premium build', image: img1 },
-    { id: 2, name: 'Vespa Green Custom', spec: 'Vintage green finish · Precision crafted', image: img2 },
-    { id: 3, name: 'Pale Rose Finish', spec: 'Elegant rose tint · Boutique styling', image: img3 },
+    { id: 1, name: 'Yamaha SB-2A Sonic Blue', spec: 'Deep blue resonance · Premium build', image: img1 },
+    { id: 2, name: "Brut's Vintage Jade Green", spec: 'Vintage Green finish · Precision crafted', image: img2 },
+    { id: 3, name: 'Fender Precision Japan Pale Rose', spec: 'Elegant rose tint · Boutique styling', image: img3 },
     { id: 4, name: 'BRUT Headstock', spec: 'Hand-shaped headstock · Precision tuners', image: img4 },
     { id: 5, name: 'Fretboard Detail', spec: 'Rosewood fretboard · Hand-dressed frets', image: img5 },
     { id: 6, name: 'In the Hands', spec: 'Road-tested by the maker himself', image: img6 },
