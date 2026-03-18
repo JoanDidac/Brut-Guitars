@@ -1,7 +1,7 @@
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import guitarPick from '../assets/Brut-Guitars_Pick_soundhole.png';
+import guitarPick from '../assets/acoustic-Brut-Guitar.svg';
 
 gsap.registerPlugin(ScrollTrigger);
 
