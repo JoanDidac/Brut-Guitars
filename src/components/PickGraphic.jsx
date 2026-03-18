@@ -40,8 +40,8 @@ export default function PickGraphic() {
                         },
                         {
                             rotation: 0, // End completely vertical (point B)
-                            yPercent: 0, // Drop down completely so the top edge rests on the juncture
-                            y: -15, // Explicitly land 15px higher than the flush 0% mark
+                            yPercent: -17, // Resting position raised — 17% of own height above seam
+                            y: -35, // Explicitly land 35px higher than the flush 0% mark
                             ease: "none",
                             scrollTrigger: {
                                 trigger: containerRef.current,

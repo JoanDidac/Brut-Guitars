@@ -304,8 +304,8 @@ button {
   /* Pull the image halfway up across the literal seam. 
        Adjust this translate value visually if it needs to go higher or lower. */
   transform: translateY(-50%);
-  opacity: 0.4;
-  /* Tweaked opacity down to 0.4 */
+  opacity: 0.2;
+  /* Tweaked opacity down to 0.2 */
   /* Theme-aware color via currentColor on the inline SVG */
   color: var(--color-guitar-svg);
   transition: color 0.4s ease;
@@ -321,8 +321,8 @@ button {
   .section-transition-pick__img {
     width: 25rem;
     /* Massive 25rem trial scale */
-    transform: translateY(-47%);
-    /* Moved up 7% from -40% */
+    transform: translateY(-57%);
+    /* Trial: -57% */
   }
 }
 
