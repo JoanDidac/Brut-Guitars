@@ -170,10 +170,24 @@ tw
 }
 
 /* =============================================
+   Process — Mobile Subtitle Contrast Fix
+   ============================================= */
+/* On mobile the Gallery's dark background flows up behind this paragraph.
+   Force cream from the start so it's always readable — in both light & dark mode.
+   (--color-text-light = #f4ede4 in both themes)
+   Prime Directive: mobile only. */
+@media (max-width: 768px) {
+    .process__subtitle {
+        color: var(--color-text-light) !important;
+    }
+}
+
+/* =============================================
    Process — Dark Mode Overrides
    ============================================= */
-/* The .section-title "From Vision to Voice" subtitle paragraph: 
-   GSAP animates it to var(--color-bg) on mobile which becomes #121212 in dark mode */
+/* The .section-title "From Vision to Voice" subtitle paragraph:
+   GSAP animates it to var(--color-bg) on mobile which becomes #121212 in dark mode —
+   override keeps it cream in dark mode too. */
 [data-theme='dark'] .process__subtitle {
-    color: var(--color-text-muted) !important;
+    color: var(--color-text-light) !important;
 }
