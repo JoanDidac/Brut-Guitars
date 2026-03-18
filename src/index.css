@@ -21,6 +21,9 @@
   --color-border: #1a1a1a;
   --color-border-light: rgba(26, 26, 26, 0.15);
 
+  /* Acoustic Guitar SVG color — light mode: golden amber */
+  --color-guitar-svg: #bd8633;
+
   /* Typography */
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -68,6 +71,9 @@
 
   --color-border: #f4ede4;
   --color-border-light: rgba(244, 237, 228, 0.25);
+
+  /* Acoustic Guitar SVG color — dark mode: site cream */
+  --color-guitar-svg: #f4ede4;
 
   color-scheme: dark;
 }
@@ -300,6 +306,9 @@ button {
   transform: translateY(-50%);
   opacity: 0.4;
   /* Tweaked opacity down to 0.4 */
+  /* Theme-aware color via currentColor on the inline SVG */
+  color: var(--color-guitar-svg);
+  transition: color 0.4s ease;
 }
 
 /* Enable visibility and adjust scale specifically for mobile */
