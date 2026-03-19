@@ -7,7 +7,7 @@ import brandLogoLarge from '../assets/Brut logo.PNG';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Footer({ onNavigate }) {
+export default function Footer({ onNavigate, currentPage }) {
     const year = new Date().getFullYear();
     const footerRef = useRef(null);
 
@@ -16,7 +16,9 @@ export default function Footer({ onNavigate }) {
             const slices = gsap.utils.toArray('.pre-footer__logo-slice');
 
             if (slices.length) {
-                // Start the logo pieces pushed down initially
+                // Reset slices to start position before animating (important on re-runs after navigation)
+                gsap.set(slices, { y: 350 });
+
                 gsap.fromTo(slices,
                     {
                         y: 350 // Start much lower, looking 50% submerged into the footer area
@@ -37,7 +39,7 @@ export default function Footer({ onNavigate }) {
         }, footerRef);
 
         return () => ctx.revert();
-    }, []);
+    }, [currentPage]);
 
     const handleNav = (e, id) => {
         e.preventDefault();

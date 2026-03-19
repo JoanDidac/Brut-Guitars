@@ -77,7 +77,7 @@ function App() {
           <ServicesPage selectedCategory={selectedService} onNavigate={navigateTo} />
         )}
       </main>
-      <Footer onNavigate={navigateTo} />
+      <Footer onNavigate={navigateTo} currentPage={currentPage} />
     </>
   );
 }

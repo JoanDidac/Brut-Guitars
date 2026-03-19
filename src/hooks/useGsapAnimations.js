@@ -9,65 +9,77 @@ export default function useGsapAnimations(deps = []) {
     /* ── Reveal-on-scroll (fade-up) ── */
     const reveals = gsap.utils.toArray('.gs-reveal');
     reveals.forEach((el) => {
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
-        },
-      });
+      gsap.fromTo(el,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
     });
 
     /* ── Reveal-left ── */
     const lefts = gsap.utils.toArray('.gs-reveal-left');
     lefts.forEach((el) => {
-      gsap.to(el, {
-        opacity: 1,
-        x: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
-        },
-      });
+      gsap.fromTo(el,
+        { opacity: 0, x: -40 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
     });
 
     /* ── Reveal-right ── */
     const rights = gsap.utils.toArray('.gs-reveal-right');
     rights.forEach((el) => {
-      gsap.to(el, {
-        opacity: 1,
-        x: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
-        },
-      });
+      gsap.fromTo(el,
+        { opacity: 0, x: 40 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
     });
 
     /* ── Reveal-scale ── */
     const scales = gsap.utils.toArray('.gs-reveal-scale');
     scales.forEach((el) => {
-      gsap.to(el, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
-        },
-      });
+      gsap.fromTo(el,
+        { opacity: 0, scale: 0.85 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
     });
 
     /* ── Stagger children ── */
