@@ -178,7 +178,7 @@ tw
    Prime Directive: mobile only. */
 @media (max-width: 768px) {
     .process__subtitle {
-        color: var(--color-text-light) !important;
+        color: #C2AFA1 !important;
     }
 }
 
@@ -189,5 +189,5 @@ tw
    GSAP animates it to var(--color-bg) on mobile which becomes #121212 in dark mode —
    override keeps it cream in dark mode too. */
 [data-theme='dark'] .process__subtitle {
-    color: var(--color-text-light) !important;
+    color: #C2AFA1 !important;
 }
