@@ -25,7 +25,18 @@ export default function Navbar({ currentPage, onNavigate }) {
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__inner container">
-        <a className="navbar__logo" href="#" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>
+        <a className="navbar__logo" href="/" onClick={(e) => { 
+          if (currentPage !== 'home') {
+            e.preventDefault();
+            sessionStorage.removeItem('brut_currentPage');
+            sessionStorage.removeItem('brut_selectedService');
+            window.location.href = '/';
+          } else {
+            e.preventDefault();
+            onNavigate('home');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }}>
           <img src={brandLogo} alt="Brut Guitars Logo" className={`navbar__logo-img ${mobileOpen ? 'hidden-opacity' : ''}`} />
 
           {/* Animated Mobile Logo Slices */}

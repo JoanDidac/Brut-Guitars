@@ -81,10 +81,10 @@ export default function Hero() {
                 },
                 {
                     scale: 1,
-                    duration: 1.5,
+                    duration: 0.75,
                     ease: "power4.inOut"
                 },
-                "+=0.1" // Decreased delay for faster triggering
+                "+=0.05" // Decreased delay for faster triggering
             );
 
             // 4. Buttons pop in with a modern elastic stagger
