@@ -95,26 +95,18 @@ export default function Hero() {
                 "-=0.6" // Trigger dynamically as the dot shrinks
             );
 
-            // 5. Scroll animations for buttons (separate on scroll down proportionally to scroll via scrub)
-            gsap.to(".hero__btn-left", {
-                x: -300,
+            // 5. Scrubbed technique for buttons (unpinned, smooth scrub)
+            const scrubTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: heroRef.current,
                     start: "top top",
-                    end: "bottom top",
-                    scrub: true,
+                    end: "bottom top", // Animate as the section scrolls away natively
+                    scrub: 1 // Smoothing time factor to reduce tachy visual recalculation glitches
                 }
             });
 
-            gsap.to(".hero__btn-right", {
-                x: 300,
-                scrollTrigger: {
-                    trigger: heroRef.current,
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true,
-                }
-            });
+            scrubTl.to(".hero__btn-left", { x: -300, ease: "none" }, 0)
+                   .to(".hero__btn-right", { x: 300, ease: "none" }, 0);
 
         }, heroRef);
 
