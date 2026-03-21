@@ -406,4 +406,8 @@
     [data-theme='dark'] .navbar__links {
         background: var(--color-bg);
     }
+
+    [data-theme='dark'] .nav-slice {
+        filter: invert(90%) sepia(5%) hue-rotate(340deg) brightness(100%) contrast(90%);
+    }
 }
