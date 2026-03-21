@@ -224,21 +224,35 @@
         clip-path: inset(0 0 0 75%);
     }
 
-    /* When the menu opens, playfully scatter the letters slightly */
+    /* When the menu opens, animate the letters from a disintegrated state back to their pristine original form */
+    @keyframes assemble-b {
+        0% { transform: translate(-15px, -10px) rotate(-6deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
+    }
+    @keyframes assemble-r {
+        0% { transform: translate(-4px, 12px) rotate(4deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
+    }
+    @keyframes assemble-u {
+        0% { transform: translate(8px, -10px) rotate(-4deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
+    }
+    @keyframes assemble-t {
+        0% { transform: translate(16px, 6px) rotate(8deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
     .navbar__animated-logo--open .slice-b {
-        transform: translate(-10px, -5px) rotate(-4deg);
+        animation: assemble-b 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-
     .navbar__animated-logo--open .slice-r {
-        transform: translate(-2px, 8px) rotate(2deg);
+        animation: assemble-r 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-
     .navbar__animated-logo--open .slice-u {
-        transform: translate(5px, -6px) rotate(-3deg);
+        animation: assemble-u 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-
     .navbar__animated-logo--open .slice-t {
-        transform: translate(12px, 4px) rotate(5deg);
+        animation: assemble-t 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .navbar__links {
