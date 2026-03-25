@@ -225,9 +225,7 @@
     display: none;
 }
 
-.contact--modal .contact__form {
-    padding-bottom: 0;
-}
+
 
 .contact-modal-bg {
     position: absolute;
@@ -274,4 +272,9 @@
     .contact--modal .container {
         padding: 0 var(--space-md);
     }
+}
+
+/* Modal SVGs: invert to cream so they're visible on dark backgrounds */
+[data-theme='dark'] .contact-modal-bg img {
+    filter: invert(90%) sepia(5%) hue-rotate(340deg) brightness(100%) contrast(90%);
 }

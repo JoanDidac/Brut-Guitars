@@ -643,7 +643,8 @@
 }
 
 /* Folder icon SVGs: invert to cream so they're visible on dark backgrounds */
-[data-theme='dark'] .folder-icon-img {
+[data-theme='dark'] .folder-icon-img,
+[data-theme='dark'] .modal-icon-img {
     filter: invert(90%) sepia(5%) hue-rotate(340deg) brightness(100%) contrast(90%);
 }
 
