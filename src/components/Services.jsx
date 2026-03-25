@@ -3,11 +3,17 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Services.css';
 import imgBuilds from '../assets/Custom-Build-Brut.png';
+import imgBuildsWebp from '../assets/Custom-Build-Brut.webp';
 import imgSetups from '../assets/Adjustments-Brut.jpg';
+import imgSetupsWebp from '../assets/Adjustments-Brut.webp';
 import imgWoodworking from '../assets/workshop-1.jpg';
+import imgWoodworkingWebp from '../assets/workshop-1.webp';
 import imgPaint from '../assets/guitar-showcase.png';
+import imgPaintWebp from '../assets/guitar-showcase.webp';
 import imgFretwork from '../assets/gallery-fretboard.jpg';
+import imgFretworkWebp from '../assets/gallery-fretboard.webp';
 import imgElectronics from '../assets/Electronics-Brut.jpg';
+import imgElectronicsWebp from '../assets/Electronics-Brut.webp';
 import patternSvg from '../assets/vinyl-svgrepo-com.svg';
 import iconBuilds from '../assets/electric-guitar-svgrepo-com.svg';
 import iconSetups from '../assets/calipers-svgrepo-com.svg';
@@ -214,7 +220,8 @@ export default function Services({ onNavigate }) {
             shortTitle: "Custom Build",
             desc: "Dreaming of a 7-string headless beast or a classic blues machine with a twist? I build instruments tailored to your exact sonic and ergonomic needs. If you can imagine it (and even if you can't), we can build it.",
             icon: iconBuilds,
-            img: imgBuilds
+            img: imgBuilds,
+            imgWebp: imgBuildsWebp
         },
         {
             id: 'setups',
@@ -222,7 +229,8 @@ export default function Services({ onNavigate }) {
             shortTitle: "Adjustments",
             desc: "A guitar is only as good as its setup. From intonation to action, neck relief to pickup height—I'll make your instrument play like butter. Say goodbye to fret buzz and hello to effortless bending.",
             icon: iconSetups,
-            img: imgSetups
+            img: imgSetups,
+            imgWebp: imgSetupsWebp
         },
         {
             id: 'woodworking',
@@ -230,7 +238,8 @@ export default function Services({ onNavigate }) {
             shortTitle: "Woodworking",
             desc: "Broken headstock? Cracks? Warped neck? Don't panic. Wood is alive, and sometimes it misbehaves. I specialize in bringing dead instruments back to life so they can shred another day.",
             icon: iconWoodworking,
-            img: imgWoodworking
+            img: imgWoodworking,
+            imgWebp: imgWoodworkingWebp
         },
         {
             id: 'paint',
@@ -238,7 +247,8 @@ export default function Services({ onNavigate }) {
             shortTitle: "Painting",
             desc: "Whether you want a classy nitro burst, an eccentric modern art piece, or a relic job that looks like it survived a 70s stadium tour, I've got the paints, the patience, and the artistic eye to make it pop.",
             icon: iconPaint,
-            img: imgPaint
+            img: imgPaint,
+            imgWebp: imgPaintWebp
         },
         {
             id: 'fretwork',
@@ -246,7 +256,8 @@ export default function Services({ onNavigate }) {
             shortTitle: "Fretwork",
             desc: "Leveling, crowning, polishing, or complete stainless steel refrets. I'll make sure every note rings true and clear across the entire board. Because dead notes are for amateurs.",
             icon: iconFretwork,
-            img: imgFretwork
+            img: imgFretwork,
+            imgWebp: imgFretworkWebp
         },
         {
             id: 'electronics',
@@ -254,7 +265,8 @@ export default function Services({ onNavigate }) {
             shortTitle: "Electronics",
             desc: "Custom wiring schemes, pickup swaps, coil-splits, kill-switches, and fixing that mysterious hum that's been driving you crazy. I perform the dark arts of soldering.",
             icon: iconElectronics,
-            img: imgElectronics
+            img: imgElectronics,
+            imgWebp: imgElectronicsWebp
         }
     ];
 
@@ -280,7 +292,10 @@ export default function Services({ onNavigate }) {
                         <div
                             key={service.id}
                             className={`file-folder ${activeFolder?.id === service.id ? 'active' : ''}`}
-                            style={{ '--bg-img': `url(${service.img})`, zIndex: index }}
+                            style={{
+                                '--bg-img': `image-set(url(${service.imgWebp}) type('image/webp'), url(${service.img}) type('image/png'))`,
+                                zIndex: index
+                            }}
                             onClick={() => setActiveFolder(service)}
                             onMouseEnter={() => setHoveredFolderId(service.id)}
                             onMouseLeave={() => setHoveredFolderId(null)}
@@ -319,7 +334,7 @@ export default function Services({ onNavigate }) {
                             </h3>
                             <button className="file-modal__close" onClick={() => setActiveFolder(null)}>&times;</button>
                         </div>
-                        <div className="file-modal__content" style={{ '--modal-bg': `url(${activeFolder.img})` }}>
+                        <div className="file-modal__content" style={{ '--modal-bg': `image-set(url(${activeFolder.imgWebp}) type('image/webp'), url(${activeFolder.img}) type('image/png'))` }}>
                             <div className="file-modal__desc">
                                 <p>{activeFolder.desc}</p>
                                 <button
@@ -329,7 +344,10 @@ export default function Services({ onNavigate }) {
                                     View Service Page
                                 </button>
                             </div>
-                            <img src={activeFolder.img} alt={activeFolder.title} className="file-modal__image" />
+                            <picture>
+                                <source type="image/webp" srcSet={activeFolder.imgWebp} />
+                                <img src={activeFolder.img} alt={activeFolder.title} className="file-modal__image" />
+                            </picture>
                         </div>
                     </div>
                 </div>

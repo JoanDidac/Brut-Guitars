@@ -3,12 +3,18 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Process.css';
 import bassBlueprint from '../assets/bass-blueprint.jpg';
+import bassBlueprintWebp from '../assets/bass-blueprint.webp';
 import bassBlueprintMobile from '../assets/Blueprint-Brut.png';
+import bassBlueprintMobileWebp from '../assets/Blueprint-Brut.webp';
 
 import process1 from '../assets/process_1.png';
+import process1Webp from '../assets/process_1.webp';
 import process2 from '../assets/process_2.png';
+import process2Webp from '../assets/process_2.webp';
 import process3 from '../assets/workshop-1.jpg'; // Placeholder
+import process3Webp from '../assets/workshop-1.webp';
 import process4 from '../assets/process_4.png';
+import process4Webp from '../assets/process_4.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,25 +23,29 @@ const steps = [
         number: '01',
         title: 'Consultation',
         description: 'We discuss your playing style, tonal preferences, and the music that moves you.',
-        image: process1
+        image: process1,
+        imageWebp: process1Webp
     },
     {
         number: '02',
         title: 'Wood Selection',
         description: 'Hand-picked tonewoods chosen for their acoustic properties and grain character.',
-        image: process2
+        image: process2,
+        imageWebp: process2Webp
     },
     {
         number: '03',
         title: 'Shaping & Carving',
         description: 'Each body and neck is hand-shaped using traditional tools and refined techniques.',
-        image: process3
+        image: process3,
+        imageWebp: process3Webp
     },
     {
         number: '04',
         title: 'Finishing & Setup',
         description: 'Meticulous finishing, fretwork, electronics, and a professional setup.',
-        image: process4
+        image: process4,
+        imageWebp: process4Webp
     },
 ];
 
@@ -143,17 +153,23 @@ export default function Process() {
 
                 <div className="process__steps" style={{ position: 'relative', zIndex: 4, marginTop: '4rem' }}>
                     {/* Background Blueprint Image (Desktop Only) */}
-                    <img
-                        src={bassBlueprint}
-                        alt="Bass Blueprint Background Desktop"
-                        className="process__bg-img desktop-only"
-                    />
+                    <picture>
+                        <source type="image/webp" srcSet={bassBlueprintWebp} />
+                        <img
+                            src={bassBlueprint}
+                            alt="Bass Blueprint Background Desktop"
+                            className="process__bg-img desktop-only"
+                        />
+                    </picture>
                     {/* Background Blueprint Image Optimized Version (Mobile Only) */}
-                    <img
-                        src={bassBlueprintMobile}
-                        alt="Bass Blueprint Background Mobile"
-                        className="process__bg-img mobile-only"
-                    />
+                    <picture>
+                        <source type="image/webp" srcSet={bassBlueprintMobileWebp} />
+                        <img
+                            src={bassBlueprintMobile}
+                            alt="Bass Blueprint Background Mobile"
+                            className="process__bg-img mobile-only"
+                        />
+                    </picture>
                     {steps.map((step) => (
                         <div className="process__step" key={step.number} style={{ position: 'relative', zIndex: 1 }}>
                             <div className="process__step-inner">
@@ -165,7 +181,10 @@ export default function Process() {
                                 </div>
                                 {/* Back of Card: Image */}
                                 <div className="process__step-back">
-                                    <img src={step.image} alt={step.title} className="process__step-back-img" />
+                                    <picture>
+                                        <source type="image/webp" srcSet={step.imageWebp} />
+                                        <img src={step.image} alt={step.title} className="process__step-back-img" />
+                                    </picture>
                                 </div>
                             </div>
                         </div>

@@ -226,31 +226,57 @@
 
     /* When the menu opens, animate the letters from a disintegrated state back to their pristine original form */
     @keyframes assemble-b {
-        0% { transform: translate(-15px, -10px) rotate(-6deg); }
-        100% { transform: translate(0, 0) rotate(0deg); }
+        0% {
+            transform: translate(-15px, -10px) rotate(-6deg);
+        }
+
+        100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
     }
+
     @keyframes assemble-r {
-        0% { transform: translate(-4px, 12px) rotate(4deg); }
-        100% { transform: translate(0, 0) rotate(0deg); }
+        0% {
+            transform: translate(-4px, 12px) rotate(4deg);
+        }
+
+        100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
     }
+
     @keyframes assemble-u {
-        0% { transform: translate(8px, -10px) rotate(-4deg); }
-        100% { transform: translate(0, 0) rotate(0deg); }
+        0% {
+            transform: translate(8px, -10px) rotate(-4deg);
+        }
+
+        100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
     }
+
     @keyframes assemble-t {
-        0% { transform: translate(16px, 6px) rotate(8deg); }
-        100% { transform: translate(0, 0) rotate(0deg); }
+        0% {
+            transform: translate(16px, 6px) rotate(8deg);
+        }
+
+        100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
     }
 
     .navbar__animated-logo--open .slice-b {
         animation: assemble-b 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
     .navbar__animated-logo--open .slice-r {
         animation: assemble-r 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
     .navbar__animated-logo--open .slice-u {
         animation: assemble-u 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
     .navbar__animated-logo--open .slice-t {
         animation: assemble-t 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -287,7 +313,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: url('../assets/Brut-Guitars_metal-garage-door-2048x2048.png') center/cover no-repeat;
+        background: image-set(url('../assets/Brut-Guitars_metal-garage-door-2048x2048.webp') type('image/webp'),
+                url('../assets/Brut-Guitars_metal-garage-door-2048x2048.png') type('image/png')) center/cover no-repeat;
         opacity: 0.25;
         /* Increased opacity for the garage door image */
         pointer-events: none;
