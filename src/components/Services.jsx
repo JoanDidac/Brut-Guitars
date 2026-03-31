@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../hooks/LanguageContext.jsx';
 import './Services.css';
 import imgBuilds from '../assets/Custom-Build-Brut.png';
 import imgBuildsWebp from '../assets/Custom-Build-Brut.webp';
@@ -29,6 +30,7 @@ export default function Services({ onNavigate }) {
     const sectionRef = useRef(null);
     const [activeFolder, setActiveFolder] = useState(null);
     const [hoveredFolderId, setHoveredFolderId] = useState(null);
+    const { t } = useLanguage();
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -212,76 +214,25 @@ export default function Services({ onNavigate }) {
         return () => ctx.revert();
     }, [activeFolder]);
 
-    const services = [
-        // ... (services data array remains unmodified)
-        {
-            id: 'builds',
-            title: "Custom Builds & Personalizations",
-            shortTitle: "Custom Build",
-            desc: "Dreaming of a 7-string headless beast or a classic blues machine with a twist? I build instruments tailored to your exact sonic and ergonomic needs. If you can imagine it (and even if you can't), we can build it.",
-            icon: iconBuilds,
-            img: imgBuilds,
-            imgWebp: imgBuildsWebp
-        },
-        {
-            id: 'setups',
-            title: "Pro Setups & Adjustments",
-            shortTitle: "Adjustments",
-            desc: "A guitar is only as good as its setup. From intonation to action, neck relief to pickup height—I'll make your instrument play like butter. Say goodbye to fret buzz and hello to effortless bending.",
-            icon: iconSetups,
-            img: imgSetups,
-            imgWebp: imgSetupsWebp
-        },
-        {
-            id: 'woodworking',
-            title: "Structural Repairs & Woodworking",
-            shortTitle: "Woodworking",
-            desc: "Broken headstock? Cracks? Warped neck? Don't panic. Wood is alive, and sometimes it misbehaves. I specialize in bringing dead instruments back to life so they can shred another day.",
-            icon: iconWoodworking,
-            img: imgWoodworking,
-            imgWebp: imgWoodworkingWebp
-        },
-        {
-            id: 'paint',
-            title: "Custom Paint & Re-finishing",
-            shortTitle: "Painting",
-            desc: "Whether you want a classy nitro burst, an eccentric modern art piece, or a relic job that looks like it survived a 70s stadium tour, I've got the paints, the patience, and the artistic eye to make it pop.",
-            icon: iconPaint,
-            img: imgPaint,
-            imgWebp: imgPaintWebp
-        },
-        {
-            id: 'fretwork',
-            title: "Fretwork & Refretting",
-            shortTitle: "Fretwork",
-            desc: "Leveling, crowning, polishing, or complete stainless steel refrets. I'll make sure every note rings true and clear across the entire board. Because dead notes are for amateurs.",
-            icon: iconFretwork,
-            img: imgFretwork,
-            imgWebp: imgFretworkWebp
-        },
-        {
-            id: 'electronics',
-            title: "Electronics & Wizardry",
-            shortTitle: "Electronics",
-            desc: "Custom wiring schemes, pickup swaps, coil-splits, kill-switches, and fixing that mysterious hum that's been driving you crazy. I perform the dark arts of soldering.",
-            icon: iconElectronics,
-            img: imgElectronics,
-            imgWebp: imgElectronicsWebp
-        }
-    ];
+    const icons = [iconBuilds, iconSetups, iconWoodworking, iconPaint, iconFretwork, iconElectronics];
+    const imgs = [imgBuilds, imgSetups, imgWoodworking, imgPaint, imgFretwork, imgElectronics];
+    const imgWebps = [imgBuildsWebp, imgSetupsWebp, imgWoodworkingWebp, imgPaintWebp, imgFretworkWebp, imgElectronicsWebp];
+
+    const services = (t('services.items') || []).map((item, i) => ({
+        ...item,
+        icon: icons[i],
+        img: imgs[i],
+        imgWebp: imgWebps[i],
+    }));
 
     return (
         <section className="services section" id="services" ref={sectionRef}>
             <img src={halfCircleIcon} alt="Decorative Half Circle" className="services__top-arch" />
             <div className="container">
                 <div className="services__header">
-                    <h2 className="section-label header-anim">More Than Just Builds</h2>
-                    <h3 className="section-title header-anim">Our Full Service Catalogue :</h3>
-                    <p className="section-subtitle header-anim">
-                        Building guitars is an art, but maintaining, repairing, and upgrading them is a downright necessity.
-                        As a gigging bluesman and prog-rocker, I know exactly what it takes to make an instrument stage-ready and bulletproof.
-                        Whether it needs a simple tweak, a fresh coat of paint, or a full resurrection I've got you covered.
-                    </p>
+                    <h2 className="section-label header-anim">{t('services.label')}</h2>
+                    <h3 className="section-title header-anim">{t('services.title')}</h3>
+                    <p className="section-subtitle header-anim">{t('services.subtitle')}</p>
                 </div>
 
                 <div className="services__cabinet" data-hovered-folder={hoveredFolderId || ''}>
@@ -341,7 +292,7 @@ export default function Services({ onNavigate }) {
                                     className="btn-pill btn-pill--dark mt-md"
                                     onClick={() => onNavigate && onNavigate('services', activeFolder.id)}
                                 >
-                                    View Service Page
+                                    {t('services.viewService')}
                                 </button>
                             </div>
                             <picture>
@@ -351,7 +302,8 @@ export default function Services({ onNavigate }) {
                         </div>
                     </div>
                 </div>
-            )}
-        </section>
+            )
+            }
+        </section >
     );
 }

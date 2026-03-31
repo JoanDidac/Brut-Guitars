@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../hooks/LanguageContext.jsx';
 import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -22,6 +23,7 @@ const splitWord = (word, wordClass) => {
 
 export default function Hero() {
     const heroRef = useRef(null);
+    const { t } = useLanguage();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -106,7 +108,7 @@ export default function Hero() {
             });
 
             scrubTl.to(".hero__btn-left", { x: -300, ease: "none" }, 0)
-                   .to(".hero__btn-right", { x: 300, ease: "none" }, 0);
+                .to(".hero__btn-right", { x: 300, ease: "none" }, 0);
 
         }, heroRef);
 
@@ -118,17 +120,18 @@ export default function Hero() {
             <div className="hero__content container">
                 <div className="hero__text">
                     <h1 className="hero__title" style={{ perspective: '400px' }}>
-                        <span className="hero__combining-text">where</span>{' '}
-                        <span className="hero__keyword-mono gs-text-glow">{splitWord("Passion", "word-passion")}</span><br />
-                        <span className="hero__combining-text">meets</span>{' '}
-                        <span className="hero__keyword-mono gs-text-glow">{splitWord("Precision", "word-precision")}</span>
+                        <span className="hero__combining-text">{t('hero.combining1')}</span>{' '}
+                        <span className="hero__keyword-mono gs-text-glow">{splitWord(t('hero.keyword1'), 'word-passion')}</span><br />
+                        <span className="hero__combining-text">{t('hero.combining2')}</span>{' '}
+                        <span className="hero__keyword-mono gs-text-glow">{splitWord(t('hero.keyword2'), 'word-precision')}</span>
                         <span style={{ display: 'block', width: '100%', textAlign: 'center', marginTop: '-0.1em' }}>
                             <span className="hero__char hero__dot hero__keyword-mono gs-text-glow" style={{ display: 'inline-block', transformOrigin: 'center center' }}>.</span>
                         </span>
                     </h1>
                     <p className="hero__subtitle">
-                        Shaped by hand, tuned by ear and built to inspire musicians who demand more from their instrument.<br />
-                        Every instrument has a unique soul.
+                        {t('hero.subtitle').split('\n').map((line, i) => (
+                            <span key={i}>{line}{i === 0 && <br />}</span>
+                        ))}
                     </p>
                     <div className="hero__actions">
                         <button
@@ -136,14 +139,14 @@ export default function Hero() {
                             style={{ opacity: 0 }}
                             onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
                         >
-                            View Instruments
+                            {t('hero.cta1')}
                         </button>
                         <button
                             className="btn-pill btn-pill--outline hero__btn-right"
                             style={{ opacity: 0 }}
                             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                         >
-                            Commission a Build
+                            {t('hero.cta2')}
                         </button>
                     </div>
                 </div>

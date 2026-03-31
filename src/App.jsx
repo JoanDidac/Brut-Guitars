@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { LanguageProvider } from './hooks/LanguageContext.jsx';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
@@ -55,7 +56,7 @@ function App() {
   }, [currentPage, pendingScroll]);
 
   return (
-    <>
+    <LanguageProvider>
       <Navbar currentPage={currentPage} onNavigate={navigateTo} />
       <main>
         {currentPage === 'home' && (
@@ -78,7 +79,7 @@ function App() {
         )}
       </main>
       <Footer onNavigate={navigateTo} currentPage={currentPage} />
-    </>
+    </LanguageProvider>
   );
 }
 

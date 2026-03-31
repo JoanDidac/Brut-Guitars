@@ -1,6 +1,8 @@
+
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../hooks/LanguageContext.jsx';
 import './Process.css';
 import bassBlueprint from '../assets/bass-blueprint.jpg';
 import bassBlueprintWebp from '../assets/bass-blueprint.webp';
@@ -18,39 +20,18 @@ import process4Webp from '../assets/process_4.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const steps = [
-    {
-        number: '01',
-        title: 'Consultation',
-        description: 'We discuss your playing style, tonal preferences, and the music that moves you.',
-        image: process1,
-        imageWebp: process1Webp
-    },
-    {
-        number: '02',
-        title: 'Wood Selection',
-        description: 'Hand-picked tonewoods chosen for their acoustic properties and grain character.',
-        image: process2,
-        imageWebp: process2Webp
-    },
-    {
-        number: '03',
-        title: 'Shaping & Carving',
-        description: 'Each body and neck is hand-shaped using traditional tools and refined techniques.',
-        image: process3,
-        imageWebp: process3Webp
-    },
-    {
-        number: '04',
-        title: 'Finishing & Setup',
-        description: 'Meticulous finishing, fretwork, electronics, and a professional setup.',
-        image: process4,
-        imageWebp: process4Webp
-    },
-];
-
 export default function Process() {
     const sectionRef = useRef(null);
+    const { t } = useLanguage();
+
+    // Build steps from translations, merged with images
+    const images = [process1, process2, process3, process4];
+    const imageWebps = [process1Webp, process2Webp, process3Webp, process4Webp];
+    const steps = (t('process.steps') || []).map((step, i) => ({
+        ...step,
+        image: images[i],
+        imageWebp: imageWebps[i],
+    }));
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -142,12 +123,10 @@ export default function Process() {
         <section className="process section" id="process" ref={sectionRef}>
             <div className="container" style={{ position: 'relative' }}>
                 <div className="process__header gs-reveal">
-                    <span className="section-label">The Process</span>
-                    <h2 className="section-title">From Vision to Voice</h2>
-
-                    {/* Second subtitle: animates to creamy color on mobile for contrast with overlapping background */}
+                    <span className="section-label">{t('process.label')}</span>
+                    <h2 className="section-title">{t('process.title')}</h2>
                     <p className="section-subtitle process__subtitle" style={{ margin: 0, fontWeight: 400 }}>
-                        Building a custom guitar is a journey. Here&apos;s how we bring your dream instrument to life.
+                        {t('process.subtitle')}
                     </p>
                 </div>
 

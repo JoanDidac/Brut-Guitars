@@ -1,0 +1,123 @@
+/* =============================================
+   Language Switcher — Cycling Pill
+   ============================================= */
+.lang-switcher {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.lang-switcher__pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--color-border-light);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+    padding: 0;
+    /* Match ThemeToggle sizing */
+}
+
+.lang-switcher__pill:hover {
+    border-color: var(--color-text);
+    background: var(--color-border-light);
+}
+
+/* Badge — wraps the SVG, triggers the morph animation via key change */
+.lang-switcher__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: lang-morph 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes lang-morph {
+    0% {
+        opacity: 0;
+        transform: scale(0.6) rotate(-8deg);
+        filter: blur(3px);
+    }
+
+    60% {
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        filter: blur(0);
+    }
+}
+
+/* SVG badge */
+.lang-switcher__svg {
+    width: 2rem;
+    height: 0.9rem;
+    overflow: visible;
+}
+
+.lang-switcher__svg-text {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    fill: var(--color-text);
+    transition: fill var(--transition-fast);
+}
+
+/* Tooltip dropdown */
+.lang-switcher__tooltip {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    padding: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 7rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    z-index: 200;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.lang-switcher__tooltip--visible {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+.lang-switcher__option {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-align: left;
+    padding: 0.4rem 0.7rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    background: transparent;
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast);
+    border: none;
+}
+
+.lang-switcher__option:hover {
+    background: var(--color-border-light);
+    color: var(--color-text);
+}
+
+.lang-switcher__option--active {
+    color: var(--color-text);
+    font-weight: 700;
+}

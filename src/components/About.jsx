@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../hooks/LanguageContext.jsx';
 import './About.css';
 
 import craftImg1 from '../assets/about-workshop.jpg';
@@ -11,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
     const sectionRef = useRef(null);
+    const { t } = useLanguage();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -112,33 +114,25 @@ export default function About() {
                 </div>
 
                 <div className="about__content gs-reveal-right">
-                    <span className="section-label">The Craftsman</span>
-                    <h2 className="section-title">Built by Hand,<br />Designed by Ear</h2>
-                    <p className="about__text">
-                        With over a decade of dedication to the craft, every Brut Guitar begins as a
-                        carefully selected tonewood and transforms into a one-of-a-kind instrument
-                        through hours of meticulous handwork.
-                    </p>
-                    <p className="about__text">
-                        From the initial sketch to the final setup, each guitar reflects a deep
-                        understanding of wood, acoustics, and the unique needs of every musician.
-                        No two instruments are alike — because no two players are the same.
-                    </p>
+                    <span className="section-label">{t('about.label')}</span>
+                    <h2 className="section-title">{t('about.title1')}<br />{t('about.title2')}</h2>
+                    <p className="about__text">{t('about.p1')}</p>
+                    <p className="about__text">{t('about.p2')}</p>
 
                     <hr className="dashed-divider" />
 
                     <div className="about__stats gs-stagger">
                         <div className="about__stat gs-stagger-child">
                             <span className="about__stat-number">10+</span>
-                            <span className="about__stat-label">Years of Craft</span>
+                            <span className="about__stat-label">{t('about.stat1Label')}</span>
                         </div>
                         <div className="about__stat gs-stagger-child">
                             <span className="about__stat-number">1000+</span>
-                            <span className="about__stat-label">Guitars Serviced</span>
+                            <span className="about__stat-label">{t('about.stat2Label')}</span>
                         </div>
                         <div className="about__stat gs-stagger-child">
                             <span className="about__stat-number">100%</span>
-                            <span className="about__stat-label">Customer Satisfaction</span>
+                            <span className="about__stat-label">{t('about.stat3Label')}</span>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../hooks/LanguageContext.jsx';
 import './Footer.css';
 import brandLogo from '../assets/devil-horns-svgrepo-com.svg';
 import brandLogoLarge from '../assets/Brut logo.PNG';
@@ -10,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Footer({ onNavigate, currentPage }) {
     const year = new Date().getFullYear();
     const footerRef = useRef(null);
+    const { t } = useLanguage();
 
     useEffect(() => {
         let ctx = gsap.context(() => {
@@ -73,22 +75,22 @@ export default function Footer({ onNavigate, currentPage }) {
                         <div className="footer__brand">
                             <img src={brandLogo} alt="Devil Horns Logo" className="footer__logo-img" />
                             <p className="footer__tagline">
-                                Handcrafted custom guitars, built with passion and precision in La Garriga, Catalonia.
+                                {t('footer.tagline')}
                             </p>
                         </div>
 
                         <div className="footer__links-group">
-                            <h4 className="footer__links-title">Navigate</h4>
+                            <h4 className="footer__links-title">{t('footer.navigate')}</h4>
                             <ul className="footer__links">
-                                <li><a href="#about" onClick={(e) => handleNav(e, 'about')}>About</a></li>
-                                <li><a href="#gallery" onClick={(e) => handleNav(e, 'gallery')}>Gallery</a></li>
-                                <li><a href="#process" onClick={(e) => handleNav(e, 'process')}>Process</a></li>
-                                <li><a href="#contact" onClick={(e) => handleNav(e, 'contact')}>Contact</a></li>
+                                <li><a href="#about" onClick={(e) => handleNav(e, 'about')}>{t('nav.about')}</a></li>
+                                <li><a href="#gallery" onClick={(e) => handleNav(e, 'gallery')}>{t('nav.gallery')}</a></li>
+                                <li><a href="#process" onClick={(e) => handleNav(e, 'process')}>{t('nav.process')}</a></li>
+                                <li><a href="#contact" onClick={(e) => handleNav(e, 'contact')}>{t('nav.contact')}</a></li>
                             </ul>
                         </div>
 
                         <div className="footer__links-group">
-                            <h4 className="footer__links-title">Follow</h4>
+                            <h4 className="footer__links-title">{t('footer.follow')}</h4>
                             <ul className="footer__links">
                                 <li>
                                     <a href="#" target="_blank" rel="noopener noreferrer" className="footer__social-link">
@@ -123,7 +125,7 @@ export default function Footer({ onNavigate, currentPage }) {
                     <hr className="dashed-divider" />
 
                     <div className="footer__bottom">
-                        <p>&copy; {year} Brut Guitars. All rights reserved.</p>
+                        <p>&copy; {year} Brut Guitars. {t('footer.rights')}</p>
                     </div>
                 </div>
             </footer>

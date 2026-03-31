@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import brandLogo from '../assets/brut_logo.png';
 import ThemeToggle from './ThemeToggle';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '../hooks/LanguageContext.jsx';
 import './Navbar.css';
 
 export default function Navbar({ currentPage, onNavigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -25,7 +28,7 @@ export default function Navbar({ currentPage, onNavigate }) {
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__inner container">
-        <a className="navbar__logo" href="/" onClick={(e) => { 
+        <a className="navbar__logo" href="/" onClick={(e) => {
           if (currentPage !== 'home') {
             e.preventDefault();
             sessionStorage.removeItem('brut_currentPage');
@@ -52,18 +55,20 @@ export default function Navbar({ currentPage, onNavigate }) {
           {['about', 'gallery', 'process', 'services', 'contact'].map((item) => (
             <li key={item}>
               <button className="navbar__link" onClick={() => handleNav(item)}>
-                {item}
+                {t(`nav.${item}`)}
               </button>
             </li>
           ))}
-          {/* Dark mode toggle — visible only inside mobile menu */}
+          {/* Theme + Language toggles — visible only inside mobile menu */}
           <li className="navbar__theme-toggle--mobile">
             <ThemeToggle />
+            <LanguageSwitcher />
           </li>
         </ul>
 
-        {/* Dark mode toggle — visible only on desktop, at the far right */}
+        {/* Theme + Language toggles — visible only on desktop, at the far right */}
         <div className="navbar__actions">
+          <LanguageSwitcher />
           <ThemeToggle />
         </div>
 

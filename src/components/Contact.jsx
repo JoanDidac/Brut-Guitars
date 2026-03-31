@@ -1,6 +1,7 @@
 import { useState, useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../hooks/LanguageContext.jsx';
 import patternSvg from '../assets/vinyl-svgrepo-com.svg';
 import turntableSvg from '../assets/turntable-svgrepo-com.svg';
 import './Contact.css';
@@ -9,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact({ isModal = false, modalBgSvg = null, modalCategoryId = null, onCloseModal }) {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const { t } = useLanguage();
     const [status, setStatus] = useState('idle'); // idle | loading | success | error
     const sectionRef = useRef(null);
 
@@ -118,7 +120,7 @@ export default function Contact({ isModal = false, modalBgSvg = null, modalCateg
             const text = await res.text();
             console.log('Raw response text:', text);
             console.log('Response status:', res.status, res.type, res.url);
-            
+
             let data;
             try {
                 data = JSON.parse(text);
@@ -161,24 +163,21 @@ export default function Contact({ isModal = false, modalBgSvg = null, modalCateg
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="contact__grid">
                     <div className="contact__info gs-reveal-left">
-                        <span className="section-label">Get in Touch</span>
-                        <h2 className="section-title">Let&apos;s Build Your<br />Dream Guitar</h2>
-                        <p className="contact__text">
-                            Ready to commission a custom instrument? Have questions about the process?
-                            Every great guitar starts with a conversation.
-                        </p>
+                        <span className="section-label">{t('contact.label')}</span>
+                        <h2 className="section-title">{t('contact.title1')}<br />{t('contact.title2')}</h2>
+                        <p className="contact__text">{t('contact.text')}</p>
 
                         <div className="contact__details">
                             <div className="contact__detail">
-                                <span className="contact__detail-label">Email</span>
+                                <span className="contact__detail-label">{t('contact.emailLabel')}</span>
                                 <span className="contact__detail-value">info@brutguitars.com</span>
                             </div>
                             <div className="contact__detail">
-                                <span className="contact__detail-label">Workshop</span>
-                                <span className="contact__detail-value">La Garriga, Catalonia</span>
+                                <span className="contact__detail-label">{t('contact.workshopLabel')}</span>
+                                <span className="contact__detail-value">{t('contact.workshopValue')}</span>
                             </div>
                             <div className="contact__detail">
-                                <span className="contact__detail-label">Social</span>
+                                <span className="contact__detail-label">{t('contact.socialLabel')}</span>
                                 <span className="contact__detail-value">@brutguitarworks</span>
                             </div>
                         </div>
@@ -186,7 +185,7 @@ export default function Contact({ isModal = false, modalBgSvg = null, modalCateg
 
                     <form className="contact__form" onSubmit={handleSubmit}>
                         <div className="contact__field">
-                            <label className="contact__label" htmlFor="name">Full Name</label>
+                            <label className="contact__label" htmlFor="name">{t('contact.formName')}</label>
                             <input
                                 className="contact__input"
                                 type="text"
@@ -194,13 +193,13 @@ export default function Contact({ isModal = false, modalBgSvg = null, modalCateg
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                placeholder="Your name"
+                                placeholder={t('contact.formNamePlaceholder')}
                                 required
                             />
                         </div>
 
                         <div className="contact__field">
-                            <label className="contact__label" htmlFor="email">Email Address</label>
+                            <label className="contact__label" htmlFor="email">{t('contact.formEmail')}</label>
                             <input
                                 className="contact__input"
                                 type="email"
@@ -208,20 +207,20 @@ export default function Contact({ isModal = false, modalBgSvg = null, modalCateg
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="your@email.com"
+                                placeholder={t('contact.formEmailPlaceholder')}
                                 required
                             />
                         </div>
 
                         <div className="contact__field">
-                            <label className="contact__label" htmlFor="message">Tell me about your project</label>
+                            <label className="contact__label" htmlFor="message">{t('contact.formMessage')}</label>
                             <textarea
                                 className="contact__input contact__textarea"
                                 id="message"
                                 name="message"
                                 value={formData.message}
                                 onChange={handleChange}
-                                placeholder="I'm looking for a custom guitar with..."
+                                placeholder={t('contact.formMessagePlaceholder')}
                                 rows="5"
                                 required
                             />
@@ -232,10 +231,10 @@ export default function Contact({ isModal = false, modalBgSvg = null, modalCateg
                             type="submit"
                             disabled={status === 'loading' || status === 'success'}
                         >
-                            {status === 'loading' && '⏳ Sending…'}
-                            {status === 'success' && '✓ Message Received!'}
-                            {status === 'error' && '✗ Something went wrong — try again'}
-                            {status === 'idle' && 'Send Message'}
+                            {status === 'loading' && t('contact.submitLoading')}
+                            {status === 'success' && t('contact.submitSuccess')}
+                            {status === 'error' && t('contact.submitError')}
+                            {status === 'idle' && t('contact.submitIdle')}
                         </button>
                     </form>
                 </div>
