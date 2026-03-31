@@ -151,8 +151,10 @@ export default function Process() {
                     </p>
                 </div>
 
-                <div className="process__steps" style={{ position: 'relative', zIndex: 4, marginTop: '4rem' }}>
-                    {/* Background Blueprint Image (Desktop Only) */}
+                {/* Wrapper scopes the blueprint background to the cards area only */}
+                <div className="process__cards-zone">
+                    {/* Blueprint backgrounds — outside the grid so they don't consume grid cells */}
+                    {/* Desktop Only */}
                     <picture>
                         <source type="image/webp" srcSet={bassBlueprintWebp} />
                         <img
@@ -161,7 +163,7 @@ export default function Process() {
                             className="process__bg-img desktop-only"
                         />
                     </picture>
-                    {/* Background Blueprint Image Optimized Version (Mobile Only) */}
+                    {/* Mobile Only */}
                     <picture>
                         <source type="image/webp" srcSet={bassBlueprintMobileWebp} />
                         <img
@@ -170,25 +172,28 @@ export default function Process() {
                             className="process__bg-img mobile-only"
                         />
                     </picture>
-                    {steps.map((step) => (
-                        <div className="process__step" key={step.number} style={{ position: 'relative', zIndex: 1 }}>
-                            <div className="process__step-inner">
-                                {/* Front of Card */}
-                                <div className="process__step-front">
-                                    <div className="process__step-number">{step.number}</div>
-                                    <h3 className="process__step-title">{step.title}</h3>
-                                    <p className="process__step-desc">{step.description}</p>
-                                </div>
-                                {/* Back of Card: Image */}
-                                <div className="process__step-back">
-                                    <picture>
-                                        <source type="image/webp" srcSet={step.imageWebp} />
-                                        <img src={step.image} alt={step.title} className="process__step-back-img" />
-                                    </picture>
+
+                    <div className="process__steps" style={{ position: 'relative', zIndex: 4 }}>
+                        {steps.map((step) => (
+                            <div className="process__step" key={step.number} style={{ position: 'relative', zIndex: 1 }}>
+                                <div className="process__step-inner">
+                                    {/* Front of Card */}
+                                    <div className="process__step-front">
+                                        <div className="process__step-number">{step.number}</div>
+                                        <h3 className="process__step-title">{step.title}</h3>
+                                        <p className="process__step-desc">{step.description}</p>
+                                    </div>
+                                    {/* Back of Card: Image */}
+                                    <div className="process__step-back">
+                                        <picture>
+                                            <source type="image/webp" srcSet={step.imageWebp} />
+                                            <img src={step.image} alt={step.title} className="process__step-back-img" />
+                                        </picture>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

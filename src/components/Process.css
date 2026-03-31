@@ -7,6 +7,13 @@ tw
     background: var(--color-bg-alt);
 }
 
+/* Extra bottom breathing room on desktop only — mobile untouched */
+@media (min-width: 769px) {
+    .process {
+        padding-bottom: calc(var(--space-3xl) + 5rem);
+    }
+}
+
 .process__header {
     margin-bottom: var(--space-3xl);
     padding-top: 4rem;
@@ -71,6 +78,14 @@ tw
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-lg);
+}
+
+/* Scopes the blueprint background to the cards area only */
+.process__cards-zone {
+    position: relative;
+    margin-top: 4rem;
+    /* Extra bottom padding so blueprint doesn't clip the card shadows */
+    padding-bottom: var(--space-lg);
 }
 
 .process__step {
@@ -156,9 +171,17 @@ tw
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+/* Desktop: always enforce 4 columns above mobile breakpoint */
+@media (min-width: 769px) {
+    .process__steps {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
     .process__steps {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
     }
 }
 
