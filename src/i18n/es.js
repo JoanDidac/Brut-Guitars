@@ -1,164 +1,164 @@
 export default {
     nav: {
-        about: 'sobre',
+        about: 'conocenos',
         gallery: 'galería',
         process: 'proceso',
         services: 'servicios',
-        contact: 'contacto'
+        contact: 'contacto',
     },
 
     hero: {
-        combining1: 'donde la',
+        combining1: 'Donde la',
         keyword1: 'Pasión',
-        combining2: 'se une con la',
+        combining2: 'Marida con',
         keyword2: 'Precisión',
-        subtitle: 'Hecha a mano, afinada de oído y construida para inspirar a músicos que exigen más de su instrumento.\nCada instrumento tiene un alma única.',
-        cta1: 'Ver Instrumentos',
-        cta2: 'Encargar una Construcción'
+        subtitle: 'Moldeados a mano, afinados de oído y construidos para inspirar a los músicos que exigen más de su instrumento.\nCada instrumento tiene un alma única.',
+        cta1: 'Conoce Brut Guitars',
+        cta2: 'Encarga tu Proyecto',
     },
 
     about: {
-        label: 'El Artesano',
-        title1: 'Construido a Mano,',
-        title2: 'Diseñado de Oído',
-        p1: 'Con más de una década de dedicación al oficio, cada Guitarra Brut comienza como una madera seleccionada cuidadosamente y se transforma en un instrumento único a través de horas de meticuloso trabajo manual.',
-        p2: 'Desde el boceto inicial hasta el ajuste final, cada guitarra refleja un profundo conocimiento de la madera, la acústica y las necesidades únicas de cada músico. No hay dos instrumentos iguales, porque no hay dos músicos iguales.',
+        label: 'Nuestra Artesania',
+        title1: 'Construidos a Mano',
+        title2: 'Acabados de Oido',
+        p1: 'Con más de 3000 instrumentos a mis espaldas, he adquirido un profundo conocimiento de las técnicas de reparación, restauración y optimización de guitarras y bajos eléctricos, acústicos y clásicos.',
+        p2: 'Mi experiencia no solo me permite abordar cada instrumento con una mirada experta, sino que también me ha dado la capacidad de diagnosticar y detectar problemas simplemente escuchando o tocando el instrumento en question. Gracias a ello, puedo ofrecer soluciones rápidas y precisas, desde un ajuste fino hasta una restauración completa.',
         stat1Label: 'Años de Oficio',
         stat2Label: 'Guitarras Atendidas',
-        stat3Label: 'Satisfacción del Cliente'
+        stat3Label: 'Satisfacción del Cliente',
     },
 
     process: {
-        label: 'El Procés',
-        title: 'De la Visió a la Veu',
-        subtitle: "Construir una guitarra a mida és un viatge. Així és com donem vida al teu instrument de somni.",
+        label: 'Nuestro Proceso',
+        title: 'De una Vision a una Realidad Audible',
+        subtitle: 'Construir una guitarra personalizada es todo un viaje. Así es como hacemos realidad el instrumento de tus sueños.',
         steps: [
-            { number: '01', title: 'Consulta', description: 'Hablamos de tu estilo de toque, preferencias tonales y la música que te mueve.' },
-            { number: '02', title: 'Selección de Madera', description: 'Maderas seleccionadas a mano por sus propiedades acústicas y carácter de veta.' },
-            { number: '03', title: 'Forma y Tallado', description: 'Cada cuerpo y mástil se modela a mano con herramientas tradicionales y técnicas refinadas.' },
-            { number: '04', title: 'Acabado y Configuración', description: 'Meticuloso acabado, trabajo de trastes, electrónica y una configuración profesional.' }
-        ]
+            { number: '01', title: 'Consultoria', description: 'Hablamos sobre tu estilo de interpretación, tus preferencias tonales y la música y artistas que te mueven el alma.' },
+            { number: '02', title: 'Seleccion de Materiales', description: 'Maderas & Materiales seleccionadas a mano por sus propiedades resonantes, acústicas y sus vetas.' },
+            { number: '03', title: 'Moldeado & Personalizacion', description: 'Valoramos la historia de cada instrumento. Cada instrumento se moldea a mano utilizando herramientas tradicionales y técnicas modernas.' },
+            { number: '04', title: 'Acabados & Ajuste Fino', description: 'Acabados meticulosos, customizaciones, electrónica y una puesta a punto profesional.' },
+        ],
     },
 
     services: {
-        label: 'Más Que Simples Construcciones',
-        title: 'Nuestro Catálogo Completo de Servicios :',
-        subtitle: 'Construir guitarras es un arte, pero mantenerlas, repararlas y mejorarlas es una necesidad absoluta. Como bluesman y músico de prog-rock en activo, sé exactamente lo que se necesita para que un instrumento esté listo para el escenario y sea a prueba de balas. Ya sea un simple ajuste, una nueva capa de pintura o una resurrección completa, te tengo cubierto.',
+        label: 'Mucho mas que simples Creaciones',
+        title: 'Catalogo de Servicios:',
+        subtitle: 'Construir guitarras es un arte, pero mantenerlas, repararlas y mejorarlas es un derecho humanitario fundamental. Como músico de blues y rock progresivo amante del directo, sé exactamente lo que se necesita para que un instrumento esté listo para el escenario a prueba de balas. Ya sea que necesite un pequeño ajuste, una nueva capa de pintura o una restauración completa, Nosostros nos encargamos de todo.',
         items: [
             {
                 id: 'builds',
-                title: 'Construcciones a Medida & Personalizaciones',
+                title: 'Guitarras a medida & Personalizaciones',
                 shortTitle: 'Construcción',
-                desc: "¿Sueñas con una bestia de 7 cuerdas sin clavijero o una clásica máquina de blues con un toque especial? Construyo instrumentos adaptados a tus necesidades sonoras y ergonómicas exactas. Si puedes imaginarlo (e incluso si no puedes), podemos construirlo."
+                desc: '¿Sueñas con una bestia de 7 cuerdas sin clavijero o una clásica máquina de blues con un toque especial? Construyo instrumentos adaptados a tus necesidades sonoras y ergonómicas. Si puedes imaginarlo (e incluso si no), podemos construirlo.',
             },
             {
                 id: 'setups',
-                title: 'Ajustes & Configuraciones Pro',
+                title: 'Ajustes',
                 shortTitle: 'Ajustes',
-                desc: "Una guitarra es tan buena como su configuración. Desde la entonación hasta la acción, desde la curvatura del mástil hasta la altura de las pastillas, haré que tu instrumento se toque como la seda. Dile adiós a los trasteos y hola a los bends sin esfuerzo."
+                desc: 'Una guitarra es tan buena como su ajuste. Desde la entonación hasta la acción, la curvatura del mástil y la altura de las pastillas, haré que tu instrumento suene de maravilla. Dile adiós al trasteo y hola a los bends sin esfuerzo.',
             },
             {
                 id: 'woodworking',
-                title: 'Reparaciones Estructurales & Carpintería',
+                title: 'Carpintería',
                 shortTitle: 'Carpintería',
-                desc: "¿Pala partida? ¿Grietas? ¿Mástil deformado? No entres en pánico. La madera está viva y, a veces, se comporta de forma extraña. Me especializo en devolver la vida a instrumentos muertos para que puedan seguir dando guerra."
+                desc: '¿Clavijero roto? ¿Grietas? ¿Mástil deformado? No te preocupes. La madera está viva y a veces se comporta de forma extraña. Me especializo en devolverle la vida a instrumentos que ya no funcionan para que puedan volver a sonar.',
             },
             {
                 id: 'paint',
-                title: 'Pintura & Reacabado Personalizado',
+                title: 'Pintura',
                 shortTitle: 'Pintura',
-                desc: "Ya sea que busques un elegante acabado al nitro sunburst, una pieza de arte moderno excéntrica o un trabajo de relicado que parezca haber sobrevivido a una gira de estadios de los 70, tengo las pinturas, la paciencia y el ojo artístico para que destaque."
+                desc: 'Ya sea que busques un elegante acabado nitrocelulósico, una excéntrica obra de arte moderno o un acabado envejecido que parezca sacado de una gira de estadios de los 70, tengo las pinturas, la paciencia y el ojo artístico para que destaque.',
             },
             {
                 id: 'fretwork',
-                title: 'Trabajo de Trastes & Retrasteado',
+                title: 'Trabajo de trastes',
                 shortTitle: 'Trastes',
-                desc: "Nivelado, coronado, pulido o retrasteos completos de acero inoxidable. Me aseguraré de que cada nota suene nítida y clara en todo el diapasón. Porque las notas muertas son para aficionados."
+                desc: 'Nivelación, coronado, pulido o retrasteo completo. Me aseguraré de que cada nota suene nítida y clara en todo el diapasón. Porque las notas muertas involuntarias son para aficionados...',
             },
             {
                 id: 'electronics',
-                title: 'Electrónica & Magia',
+                title: 'Electrónica',
                 shortTitle: 'Electrónica',
-                desc: "Esquemas de cableado personalizados, cambios de pastillas, coil-splits, kill-switches y solución para ese misterioso zumbido que te está volviendo loco. Realizo las artes oscuras de la soldadura."
-            }
+                desc: 'Cableado personalizado, cambio de pastillas, división de bobinas, interruptores de corte y solución para ese zumbido misterioso que te vuelve loco. Practico las artes oscuras de la soldadura.',
+            },
         ],
-        viewService: 'Ver Página del Servicio'
+        viewService: 'Ver Todos Servicios',
     },
 
     servicesPage: {
         backBtn: '← Volver al inicio',
         pageTitle: 'Servicios de Luthier',
-        pageSubtitle: 'Desde ajustes básicos hasta resurrecciones estructurales completas, tu instrumento está en manos expertas.',
-        bookBtn: '¡Reserva una Cita!',
-        questionsBtn: '¿Preguntas? ¡Reserva una llamada!',
-        ctaTitle: '¿Listo para meter ruido?',
-        ctaSubtitle: "Tanto si es un ajuste rutinario como una construcción personalizada salvaje, ponte en contacto y hablemos de tu proyecto.",
-        ctaBtn: 'Contactar con el Taller',
+        pageSubtitle: 'Desde ajustes básicos hasta restauraciones estructurales completas, tu instrumento está en manos expertas.',
+        bookBtn: '¡Reserva una cita!',
+        questionsBtn: '¿Preguntas? ¡Llámanos!',
+        ctaTitle: '¿Listo para hacer ruido?',
+        ctaSubtitle: 'Ya sea una instalación estándar o un proyecto personalizado ambicioso, contáctanos y hablemos de tu proyecto.',
+        ctaBtn: 'Contacta con el taller',
         items: [
             {
                 id: 'builds',
-                title: 'Construcciones a Medida & Personalizaciones',
-                subtitle: 'Sueños convertidos en madera y cable.',
-                desc: "Tanto si sueñas con una bestia de 7 cuerdas sin clavijero, una clásica máquina de blues con un toque moderno o algo completamente extravagante, construyo instrumentos adaptados a tus necesidades sonoras y ergonómicas exactas. Consultaremos sobre maderas tonales, perfiles de mástil, mallas de trastes y electrónica para asegurar que el producto final sea una extensión de tus manos. Si puedes imaginarlo (e incluso si no puedes), podemos construirlo."
+                title: 'Construcción y personalización a medida',
+                subtitle: 'Sueños convertidos en madera y alambre.',
+                desc: 'Tanto si sueñas con una bestia de 7 cuerdas sin clavijero, una clásica máquina de blues con un toque moderno o algo completamente extravagante, construyo instrumentos adaptados a tus necesidades sonoras y ergonómicas exactas. Te asesoraremos sobre maderas, perfiles de mástil, tamaños de trastes y electrónica para garantizar que el producto final sea una extensión de tus manos. Si puedes imaginarlo (e incluso si no puedes), podemos construirlo.',
             },
             {
                 id: 'setups',
-                title: 'Ajustes & Configuraciones Pro',
-                subtitle: 'Haz que se toque como la seda.',
-                desc: "Una guitarra es tan buena como su configuración. Desde la entonación hasta la acción, desde la curvatura del mástil hasta la altura de las pastillas, haré que tu instrumento rinda al máximo. Dile adiós a los trasteos, las cuerdas duras y los puntos muertos. No solo la ajusto a las 'especificaciones de fábrica'; la ajusto a TUS especificaciones según cómo ataques las cuerdas, qué afinación uses y qué estilo toques."
+                title: 'Ajustes y configuraciones profesionales',
+                subtitle: 'Haz que tu guitarra suene como la seda.',
+                desc: 'Una guitarra es tan buena como su configuración. Desde la entonación hasta la acción, desde la curvatura del mástil hasta la altura de las pastillas, haré que tu instrumento rinda al máximo. Dile adiós al zumbido de los trastes, las cuerdas rígidas y los puntos muertos. No me limito a ajustarla a las especificaciones de fábrica; lo configuro según TUS especificaciones, en función de la fuerza con la que toques, la afinación que uses y el estilo que toques.',
             },
             {
                 id: 'woodworking',
-                title: 'Reparaciones Estructurales & Carpintería',
-                subtitle: 'Devolviendo la vida a instrumentos muertos.',
-                desc: "¿Pala partida? ¿Grietas en el cuerpo? ¿Mástil deformado? ¿Varetaje suelto en tu acústica favorita? No entres en pánico. La madera está viva y, a veces, se comporta de forma extraña (o se cae en el escenario). Me especializo en reparaciones estructurales complejas, utilizando colas animales, espigas y técnicas modernas de prensado para asegurar que la reparación sea a menudo más fuerte que la madera original."
+                title: 'Reparaciones estructurales y carpintería',
+                subtitle: 'Reviviendo instrumentos.',
+                desc: '¿Clavijero roto? ¿Cuerpo agrietado? ¿Mástil deformado? ¿Refuerzos sueltos en tu guitarra acústica favorita? No te preocupes. La madera está viva y a veces se descontrola (o se cae en el escenario). Me especializo en reparaciones estructurales complejas, utilizando colas de origen animal, espigas y técnicas modernas de sujeción para garantizar que la reparación sea a menudo más resistente que la madera original.',
             },
             {
                 id: 'paint',
-                title: 'Pintura & Reacabado Personalizado',
-                subtitle: 'Sunbursts elegantes, arte moderno o relicados intensos.',
-                desc: "El acabado de una guitarra altera drásticamente su vibra. Ya sea que busques un acabado al nitrocelulosa que deje respirar la madera, un remolino excéntrico o un trabajo de relicado que parezca haber sobrevivido a duras penas a una gira de estadios de los 70, tengo las pinturas, la paciencia y el ojo artístico para que destaque. También realizamos retoques menores y rellenos de golpes."
+                title: 'Pintura y acabado personalizados',
+                subtitle: 'Acabados elegantes, arte moderno o efectos envejecidos intensos.',
+                desc: 'El acabado de una guitarra cambia drásticamente su estilo. Ya sea que busques un elegante sunburst de nitrocelulosa, un remolino original o un acabado envejecido intenso que parezca haber sobrevivido a una gira de estadios de los 70, tengo las pinturas, la paciencia y el ojo artístico para lograr un resultado espectacular. También realizamos retoques menores y rellenos de imperfecciones.',
             },
             {
                 id: 'fretwork',
-                title: 'Trabajo de Trastes & Retrasteado',
-                subtitle: 'Porque las notas muertas son para aficionados.',
-                desc: "Tus trastes son la interfaz entre tú y la madera. Ofrezco nivelado, coronado y pulido de trastes precisos para curar zumbidos y asegurar una entonación perfecta. Si tus trastes están completamente desgastados, haremos un retrasteado completo. Elige traste vintage, jumbo o mejora a acero inoxidable para no tener que retrastear nunca más."
+                title: 'Trabajo de trastes y retrasteo',
+                subtitle: 'Porque las notas muertas involuntarias son para aficionados...',
+                desc: 'Tus trastes son la interfaz entre tú y la madera. Ofrezco nivelación, coronación y pulido precisos de trastes para eliminar el zumbido y asegurar una entonación perfecta. Si tus trastes están completamente desgastados, haremos un retrasteo completo. Elige alambre vintage, jumbo o actualiza a acero inoxidable para que nunca más tengas que retrastear.',
             },
             {
                 id: 'electronics',
-                title: 'Electrónica & Magia',
-                subtitle: 'Realizando las artes oscuras de la soldadura.',
-                desc: "Esquemas de cableado personalizados, cambios de pastillas, coil-splits, kill-switches, interruptores de fase y solución para ese misterioso zumbido que te está volviendo loco. Utilizo potenciómetros, condensadores e interruptores premium para asegurar que tu señal sea pura. ¿Quieres añadir un preamplificador a bordo o recablear completamente un desastre vintage? Vamos a conectarlo."
-            }
-        ]
+                title: 'Electrónica & Personalizaciones',
+                subtitle: 'Dominando el arte de la soldadura.',
+                desc: 'Cableado personalizado, cambio de pastillas, división de bobinas, interruptores de corte, interruptores de fase y solución para ese zumbido misterioso que te vuelve loco. Utilizo potenciómetros, condensadores e interruptores de alta calidad para garantizar una ruta de señal pura. ¿Quieres añadir un preamplificador integrado o recablear completamente un sistema vintage? ¡Vamos a conectarlo!',
+            },
+        ],
     },
 
     contact: {
-        label: 'Ponte en Contacto',
-        title1: 'Construyamos tu',
-        title2: 'Guitarra de Ensueño',
-        text: '¿Listo para encargar un instrumento a medida? ¿Tienes preguntas sobre el proceso? Cada gran guitarra comienza con una conversación.',
-        emailLabel: 'Email',
-        workshopLabel: 'Taller',
-        workshopValue: 'La Garriga, Cataluña',
-        socialLabel: 'Social',
-        formName: 'Nombre Completo',
+        label: 'Contacto',
+        title1: 'Contacto',
+        title2: 'Brut Guitars',
+        text: '¿Necesitas asesoramiento sobre reparaciones o ajustes? Estamos aquí para responder a todas tus preguntas con atención personalizada.',
+        emailLabel: 'Correo electrónico',
+        workshopLabel: 'Dirección',
+        workshopValue: 'Carrer Banys 47, La Garriga',
+        socialLabel: 'Teléfono',
+        formName: 'Nombre y apellidos',
         formNamePlaceholder: 'Tu nombre',
-        formEmail: 'Dirección de Email',
-        formEmailPlaceholder: 'tu@email.com',
-        formMessage: 'Cuéntame sobre tu proyecto',
-        formMessagePlaceholder: 'Estoy buscando una guitarra personalizada con...',
+        formEmail: 'Correo electrónico',
+        formEmailPlaceholder: 'tu@correo.com',
+        formMessage: 'Mensaje',
+        formMessagePlaceholder: 'Hablemos del proyecto...',
         submitIdle: 'Enviar Mensaje',
         submitLoading: '⏳ Enviando…',
-        submitSuccess: '✓ ¡Mensaje Recibido!',
-        submitError: '✗ Algo salió mal — inténtalo de nuevo'
+        submitSuccess: '✓ ¡Mensaje Enviado! Message in a bottle...',
+        submitError: '✗ Algo ha fallado — inténtalo de nuevo',
     },
 
     footer: {
         tagline: 'Guitarras personalizadas hechas a mano, construidas con pasión y precisión en La Garriga, Cataluña.',
         navigate: 'Navegar',
         follow: 'Seguir',
-        rights: 'Todos los derechos reservados.'
-    }
+        rights: 'Todos los derechos reservados.',
+    },
 };

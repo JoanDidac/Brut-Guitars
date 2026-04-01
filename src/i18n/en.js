@@ -31,7 +31,7 @@ export default {
     process: {
         label: 'The Process',
         title: 'From Vision to Voice',
-        subtitle: "Building a custom guitar is a journey. Here's how we bring your dream instrument to life.",
+        subtitle: "Construir una guitarra personalizada es todo un viaje. Así es como hacemos realidad el instrumento de tus sueños.",
         steps: [
             { number: '01', title: 'Consultation', description: 'We discuss your playing style, tonal preferences, and the music that moves you.' },
             { number: '02', title: 'Wood Selection', description: 'Hand-picked tonewoods chosen for their acoustic properties and grain character.' },
