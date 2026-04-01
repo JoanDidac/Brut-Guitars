@@ -56,7 +56,7 @@ export default {
 
     services: {
         label: 'Molt Més que Construccions',
-        title: 'El Nostre Catàleg de Serveis :',
+        title: 'Catàleg de Serveis Brut :',
         subtitle: "Construir guitarres és un art, però mantenir-les, reparar-les i millorar-les és una necessitat absoluta. Com a músic en actiu, sé exactament el que cal per fer que un instrument estigui a punt per a l'escenari. Tant si necessita un simple ajust, una nova capa de pintura o una resurrecció completa, et tinc cobert.",
         items: [
             {
