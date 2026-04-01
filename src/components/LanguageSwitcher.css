@@ -1,5 +1,5 @@
 /* =============================================
-   Language Switcher — Cycling Pill
+   Language Switcher — Circular Flag Pill
    ============================================= */
 .lang-switcher {
     position: relative;
@@ -7,38 +7,43 @@
     align-items: center;
 }
 
+/* Perfectly circular pill — flag fills it seamlessly */
 .lang-switcher__pill {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.4rem;
-    height: 2.4rem;
-    border-radius: var(--radius-pill);
-    border: 1.5px solid var(--color-border-light);
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-border-light);
     background: transparent;
     cursor: pointer;
-    transition: border-color var(--transition-fast), background var(--transition-fast);
+    overflow: hidden;
     padding: 0;
-    /* Match ThemeToggle sizing */
+    transition: box-shadow var(--transition-fast);
 }
 
 .lang-switcher__pill:hover {
-    border-color: var(--color-text);
-    background: var(--color-border-light);
+    box-shadow: 0 0 0 2px var(--color-border-light);
 }
 
-/* Badge — wraps the SVG, triggers the morph animation via key change */
-.lang-switcher__badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: lang-morph 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+/* Flag covers the entire circle with no gap */
+.lang-switcher__flag {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    animation: flag-swap 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-@keyframes lang-morph {
+@keyframes flag-swap {
     0% {
         opacity: 0;
-        transform: scale(0.6) rotate(-8deg);
+        transform: scale(0.7) rotate(-8deg);
         filter: blur(3px);
     }
 
@@ -54,23 +59,56 @@
     }
 }
 
-/* SVG badge */
-.lang-switcher__svg {
-    width: 2rem;
-    height: 0.9rem;
-    overflow: visible;
+/* Subtle cream overlay so the dark label stays readable */
+.lang-switcher__pill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(244, 237, 228, 0.35);
+    /* cream #f4ede4 at 35% */
+    pointer-events: none;
+    z-index: 1;
 }
 
-.lang-switcher__svg-text {
+/* Label — appears on click, briefly visible, then auto-fades */
+.lang-switcher__label {
+    position: absolute;
+    z-index: 2;
     font-family: var(--font-mono);
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    fill: var(--color-text);
-    transition: fill var(--transition-fast);
+    font-size: 0.48rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: #1a1a1a;
+    text-shadow: none;
+    pointer-events: none;
+    user-select: none;
+    animation: label-flash 1.8s cubic-bezier(0.4, 0, 0.6, 1) forwards;
 }
 
-/* Tooltip dropdown */
+@keyframes label-flash {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    15% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    55% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+/* ---- Tooltip dropdown ---- */
 .lang-switcher__tooltip {
     position: absolute;
     top: calc(100% + 0.5rem);
@@ -82,7 +120,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
-    min-width: 7rem;
+    min-width: 9rem;
     opacity: 0;
     pointer-events: none;
     transform: translateY(-4px);
@@ -98,18 +136,29 @@
 }
 
 .lang-switcher__option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.72rem;
     font-weight: 300;
     letter-spacing: 0.05em;
     text-align: left;
-    padding: 0.4rem 0.7rem;
+    padding: 0.4rem 0.6rem;
     border-radius: var(--radius-sm);
     color: var(--color-text-muted);
     background: transparent;
     cursor: pointer;
     transition: background var(--transition-fast), color var(--transition-fast);
     border: none;
+}
+
+.lang-switcher__option-flag {
+    width: 1.4rem;
+    height: 1.4rem;
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
 .lang-switcher__option:hover {

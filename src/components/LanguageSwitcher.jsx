@@ -1,38 +1,28 @@
 import { useState } from 'react';
 import { useLanguage } from '../hooks/LanguageContext.jsx';
-import { LANGUAGES, LANG_NAMES } from '../i18n/index.js';
+import { LANGUAGES } from '../i18n/index.js';
+import flagCA from '../assets/Catalan-Flag.png';
+import flagES from '../assets/Spanish-Flag.png';
+import flagEN from '../assets/English-Flag.png';
 import './LanguageSwitcher.css';
 
-// Inline SVG badge for each language code — same size, designed to morph via CSS
-const LangBadge = ({ code }) => (
-    <svg
-        className="lang-switcher__svg"
-        viewBox="0 0 36 16"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-    >
-        <text
-            x="18"
-            y="12.5"
-            textAnchor="middle"
-            dominantBaseline="auto"
-            className="lang-switcher__svg-text"
-        >
-            {code.toUpperCase()}
-        </text>
-    </svg>
-);
+const FLAGS = { ca: flagCA, es: flagES, en: flagEN };
+const LABELS = { ca: 'CAT', es: 'ESP', en: 'ENG' };
+const FULL_NAMES = { ca: 'Català', es: 'Español', en: 'English' };
 
 export default function LanguageSwitcher() {
     const { lang, setLang } = useLanguage();
-    const [animKey, setAnimKey] = useState(0);
+    const [animKey, setAnimKey] = useState(0); // key to re-trigger flag morph
+    const [labelKey, setLabelKey] = useState(null); // null = hidden, number = show anim
+
     const [tooltip, setTooltip] = useState(false);
 
     const handleClick = () => {
         const currentIdx = LANGUAGES.indexOf(lang);
         const nextLang = LANGUAGES[(currentIdx + 1) % LANGUAGES.length];
         setLang(nextLang);
-        setAnimKey(k => k + 1); // re-trigger animation
+        setAnimKey(k => k + 1);       // re-trigger flag swap animation
+        setLabelKey(k => (k ?? 0) + 1); // re-trigger label show-then-hide animation
     };
 
     return (
@@ -40,23 +30,35 @@ export default function LanguageSwitcher() {
             <button
                 className="lang-switcher__pill"
                 onClick={handleClick}
-                aria-label={`Current language: ${LANG_NAMES[lang]}. Click to switch.`}
-                title={`Switch language (${LANG_NAMES[lang]})`}
+                aria-label={`Current language: ${FULL_NAMES[lang]}. Click to switch.`}
+                title={`Switch language (${FULL_NAMES[lang]})`}
             >
-                <span key={animKey} className="lang-switcher__badge">
-                    <LangBadge code={lang} />
-                </span>
+                {/* Flag fills the pill perfectly */}
+                <img
+                    key={`flag-${animKey}`}
+                    src={FLAGS[lang]}
+                    alt={FULL_NAMES[lang]}
+                    className="lang-switcher__flag"
+                />
+
+                {/* Label appears on click then fades out automatically */}
+                {labelKey !== null && (
+                    <span key={`label-${labelKey}`} className="lang-switcher__label">
+                        {LABELS[lang]}
+                    </span>
+                )}
             </button>
 
-            {/* Tooltip showing all 3 lang names */}
+            {/* Tooltip dropdown */}
             <div className={`lang-switcher__tooltip ${tooltip ? 'lang-switcher__tooltip--visible' : ''}`}>
                 {LANGUAGES.map((l) => (
                     <button
                         key={l}
                         className={`lang-switcher__option ${l === lang ? 'lang-switcher__option--active' : ''}`}
-                        onClick={() => { setLang(l); setAnimKey(k => k + 1); setTooltip(false); }}
+                        onClick={() => { setLang(l); setAnimKey(k => k + 1); setLabelKey(k => (k ?? 0) + 1); setTooltip(false); }}
                     >
-                        {LANG_NAMES[l]}
+                        <img src={FLAGS[l]} alt={FULL_NAMES[l]} className="lang-switcher__option-flag" />
+                        {LABELS[l]} — {FULL_NAMES[l]}
                     </button>
                 ))}
             </div>
