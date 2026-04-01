@@ -28,6 +28,20 @@ export default {
         stat3Label: 'Satisfacción del Cliente',
     },
 
+    gallery: {
+        label: 'La Colección',
+        title: 'Nuestro Portafolio',
+        subtitle: 'Cada guitarra es un diálogo único entre la madera, cableado y las manos que la moldean.',
+        guitars: [
+            { name: 'Yamaha SB-2A Azul Sónico', spec: 'Tratamiento Vintage' },
+            { name: 'Nuestro Verde Jade Vintage', spec: 'Color Customizado' },
+            { name: 'Fender Precision Japan Rosa Palo', spec: 'Elegante Estilo Boutique' },
+            { name: 'Pala Restaurada BRUT', spec: 'Modelada a Mano · Clavijeros Precision' },
+            { name: 'Detalles en Mástil de Palo de Rosa', spec: 'Trastes Montados a Mano' },
+            { name: 'En Buenas Manos', spec: 'Testeando a prueba de Estadios' },
+        ],
+    },
+
     process: {
         label: 'Nuestro Proceso',
         title: 'De una Vision a una Realidad Audible',

@@ -28,10 +28,24 @@ export default {
         stat3Label: 'Customer Satisfaction',
     },
 
+    gallery: {
+        label: 'The Collection',
+        title: 'Recent Works',
+        subtitle: 'Each guitar is a unique conversation between wood, wire, and the hands that shape them.',
+        guitars: [
+            { name: 'Yamaha SB-2A Sonic Blue', spec: 'Deep blue resonance · Premium build' },
+            { name: "Brut's Vintage Jade Green", spec: 'Vintage Green finish · Precision crafted' },
+            { name: 'Fender Precision Japan Pale Rose', spec: 'Elegant rose tint · Boutique styling' },
+            { name: 'BRUT Headstock', spec: 'Hand-shaped headstock · Precision tuners' },
+            { name: 'Fretboard Detail', spec: 'Rosewood fretboard · Hand-dressed frets' },
+            { name: 'In the Hands', spec: 'Road-tested by the maker himself' },
+        ],
+    },
+
     process: {
         label: 'The Process',
         title: 'From Vision to Voice',
-        subtitle: "Construir una guitarra personalizada es todo un viaje. Así es como hacemos realidad el instrumento de tus sueños.",
+        subtitle: "Building a custom guitar is a journey. Here's how we bring your dream instrument to life.",
         steps: [
             { number: '01', title: 'Consultation', description: 'We discuss your playing style, tonal preferences, and the music that moves you.' },
             { number: '02', title: 'Wood Selection', description: 'Hand-picked tonewoods chosen for their acoustic properties and grain character.' },

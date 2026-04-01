@@ -28,6 +28,20 @@ export default {
         stat3Label: 'Satisfacció del Client',
     },
 
+    gallery: {
+        label: 'La Col·lecció',
+        title: 'El Nostre Portafoli',
+        subtitle: 'Cada guitarra és un diàleg únic entre la fusta, cablejat i les mans que la modelen.',
+        guitars: [
+            { name: 'Yamaha SB-2A Blau Elèctric', spec: 'Tractament Vintage' },
+            { name: 'El Nostre Verd Jade', spec: 'Color Customitzat' },
+            { name: 'Fender Precision Japan Rosa Pal', spec: 'Elegant Estil Boutique' },
+            { name: 'Pala Reparada BRUT', spec: 'Clavillers Precision' },
+            { name: 'Detalls de Màstil de Palisandre', spec: 'Trasts Vestits a Mà' },
+            { name: 'En Bones Mans', spec: "Testejat per L'Artesà" },
+        ],
+    },
+
     process: {
         label: 'El Procés',
         title: 'D\'una Visió a una Realitat Sonora',

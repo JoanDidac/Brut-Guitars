@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../hooks/LanguageContext.jsx';
 import './Gallery.css';
 import img1 from '../assets/azul_yamaha_extended_v2.png';
 import img2 from '../assets/vespa_green_extended.png';
@@ -15,17 +16,18 @@ import bgSvg from '../assets/background-eraser-svgrepo-com.svg';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const guitars = [
-    { id: 1, name: 'Yamaha SB-2A Sonic Blue', spec: 'Deep blue resonance · Premium build', image: img1 },
-    { id: 2, name: "Brut's Vintage Jade Green", spec: 'Vintage Green finish · Precision crafted', image: img2 },
-    { id: 3, name: 'Fender Precision Japan Pale Rose', spec: 'Elegant rose tint · Boutique styling', image: img3 },
-    { id: 4, name: 'BRUT Headstock', spec: 'Hand-shaped headstock · Precision tuners', image: img4 },
-    { id: 5, name: 'Fretboard Detail', spec: 'Rosewood fretboard · Hand-dressed frets', image: img5 },
-    { id: 6, name: 'In the Hands', spec: 'Road-tested by the maker himself', image: img6 },
-];
+const images = [img1, img2, img3, img4, img5, img6];
 
 export default function Gallery() {
     const sectionRef = useRef(null);
+    const { t } = useLanguage();
+
+    const guitars = (t('gallery.guitars') || []).map((g, i) => ({
+        id: i + 1,
+        name: g.name,
+        spec: g.spec,
+        image: images[i],
+    }));
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -205,9 +207,9 @@ export default function Gallery() {
         <section className="gallery section" id="gallery" ref={sectionRef}>
             <div className="container">
                 <div className="gallery__header gs-reveal" style={{ position: 'relative' }}>
-                    <span className="section-label">The Collection</span>
+                    <span className="section-label">{t('gallery.label')}</span>
                     <div className="gallery__title-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <h2 className="section-title" style={{ marginBottom: 0 }}>Recent Works</h2>
+                        <h2 className="section-title" style={{ marginBottom: 0 }}>{t('gallery.title')}</h2>
                     </div>
 
                     {/* Floating musical notes positioned absolutely, spread across the space */}
@@ -269,7 +271,7 @@ export default function Gallery() {
                     />
 
                     <p className="section-subtitle" style={{ marginTop: '1rem', position: 'relative', zIndex: 1 }}>
-                        Each guitar is a unique conversation between wood, wire, and the hands that shape them.
+                        {t('gallery.subtitle')}
                     </p>
                 </div>
 
